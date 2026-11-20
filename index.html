@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Computer Maintenance &amp; Networking</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+Ethiopic:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6fb;--card:#fff;--tx:#0f172a;--mu:#64748b;--pr:#0891b2;--pr2:#2563eb;--bd:#e2e8f0;--ok:#16a34a;--er:#dc2626;--sh:0 8px 30px rgba(15,23,42,.08)}
+@media(prefers-color-scheme:dark){:root{--bg:#0b1020;--card:#151b2e;--tx:#e8ecf8;--mu:#93a0bd;--bd:#26304a;--sh:0 8px 30px rgba(0,0,0,.4)}}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,'Noto Sans Ethiopic',sans-serif;background:var(--bg);color:var(--tx);-webkit-tap-highlight-color:transparent}
+button,input,textarea{font:inherit;color:inherit}
+.wrap{max-width:980px;margin:0 auto;padding:16px}
+.hero{position:relative;overflow:hidden;color:#fff;border-radius:22px;padding:26px 22px;margin:12px 0 18px;box-shadow:var(--sh);background:radial-gradient(circle at 85% 15%,rgba(34,211,238,.35),transparent 45%),linear-gradient(135deg,#0a1630,#10265a 60%,#0e3a6e)}
+.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:26px 26px;-webkit-mask-image:linear-gradient(120deg,transparent 20%,#000);mask-image:linear-gradient(120deg,transparent 20%,#000)}
+.hero>:not(.deco){position:relative;z-index:1}
+.badge{display:inline-block;font:600 .68rem/1 ui-monospace,Menlo,monospace;letter-spacing:.14em;color:#67e8f9;border:1px solid rgba(103,232,249,.45);padding:6px 10px;border-radius:99px;margin-bottom:12px}
+.hero h1{margin:0 0 8px;font-size:clamp(1.65rem,6vw,2.3rem);font-weight:800;line-height:1.15;letter-spacing:-.02em}.hero h1 span{background:linear-gradient(90deg,#67e8f9,#a5b4fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:0;opacity:.82;font-size:.92rem}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.chips b{font-weight:600;font-size:.76rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);padding:6px 11px;border-radius:9px}
+.doc{border-top:3px solid var(--pr)}
+header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--bd)}
+header .wrap{display:flex;align-items:center;gap:10px;padding:10px 16px}
+.logo{font-weight:700;flex:1;display:flex;gap:8px;align-items:center}.logo i{font-style:normal;background:linear-gradient(135deg,var(--pr),var(--pr2));color:#fff;border-radius:10px;padding:4px 8px}
+.btn{border:0;border-radius:12px;padding:10px 16px;background:linear-gradient(135deg,var(--pr),var(--pr2));color:#fff;font-weight:600;cursor:pointer}
+.btn.g{background:var(--card);color:var(--tx);border:1px solid var(--bd)}.btn.r{background:var(--er)}.btn.s{padding:6px 12px;font-size:.82rem;border-radius:9px}
+.btn:disabled{opacity:.5}
+.tabs{display:flex;gap:6px;margin:8px 0 14px;overflow-x:auto}
+.tabs button{border:1px solid var(--bd);background:var(--card);border-radius:999px;padding:8px 16px;cursor:pointer;white-space:nowrap}
+.tabs button.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:16px;box-shadow:var(--sh)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.doc h3{margin:0 0 6px;font-size:1.02rem}.doc p{margin:0 0 12px;color:var(--mu);font-size:.88rem}.doc .m{font-size:.76rem;color:var(--mu);margin-bottom:10px}
+.ico{font-size:2rem;margin-bottom:8px}
+input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--bg);margin:6px 0 10px;outline:0}
+input:focus,textarea:focus{border-color:var(--pr)}
+label{font-size:.82rem;color:var(--mu)}
+.auth{max-width:420px;margin:7vh auto}.auth .tabs{justify-content:center}
+.row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bd)}.row:last-child{border:0}.row .i{flex:1;min-width:0}.row .i b{display:block;overflow:hidden;text-overflow:ellipsis}.row .i small{color:var(--mu)}
+.tag{font-size:.72rem;padding:3px 9px;border-radius:99px;background:var(--bd)}.tag.approved{background:#dcfce7;color:#166534}.tag.pending{background:#fef3c7;color:#92400e}.tag.blocked{background:#fee2e2;color:#991b1b}
+.center{text-align:center;padding:40px 16px;color:var(--mu)}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#0f172a;color:#fff;padding:12px 18px;border-radius:12px;opacity:0;pointer-events:none;transition:.3s;z-index:99;max-width:90vw}#toast.on{opacity:1}
+#viewer{position:fixed;inset:0;background:#1e2235;z-index:50;display:none;flex-direction:column;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+#viewer.on{display:flex}
+.vb{display:flex;align-items:center;gap:8px;padding:10px 12px;background:#12152a;color:#fff}.vb .t{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.vb button{background:#2a3050;color:#fff;border:0;border-radius:10px;padding:8px 12px;cursor:pointer}
+#pages{flex:1;overflow:auto;padding:10px 8px;text-align:center;-webkit-overflow-scrolling:touch}
+.pg{margin:0 auto 10px;background:#fff;border-radius:4px;box-shadow:0 4px 18px rgba(0,0,0,.4)}.pg canvas{width:100%;height:100%;display:block;pointer-events:none}
+.sp{width:34px;height:34px;border:4px solid var(--bd);border-top-color:var(--pr);border-radius:50%;animation:s 1s linear infinite;margin:30px auto}@keyframes s{to{transform:rotate(360deg)}}
+@media print{body{display:none!important}}
+
+body{background:radial-gradient(900px 400px at 10% -10%,rgba(8,145,178,.15),transparent 60%),radial-gradient(700px 400px at 100% 0,rgba(37,99,235,.12),transparent 60%),var(--bg);background-attachment:fixed}
+.deco{position:absolute;right:6px;top:6px;width:130px;opacity:.4;pointer-events:none;z-index:0}
+.hero:after{content:"";position:absolute;width:230px;height:230px;right:-70px;bottom:-100px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,.45),transparent 70%);animation:fl 6s ease-in-out infinite alternate;pointer-events:none}
+@keyframes fl{to{transform:translate(-24px,-16px) scale(1.18)}}
+.hero{animation:up .6s both}.card{animation:up .5s both;transition:transform .2s,box-shadow .2s}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.dh{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.tile{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:1.4rem;background:linear-gradient(135deg,var(--pr),var(--pr2));box-shadow:0 6px 16px rgba(8,145,178,.35)}
+.doc:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(8,145,178,.24)}
+.btn{box-shadow:0 6px 16px rgba(8,145,178,.3);transition:transform .15s,filter .15s}.btn:hover{filter:brightness(1.08)}.btn:active{transform:scale(.97)}.btn.g{box-shadow:none}
+input:focus,textarea:focus{box-shadow:0 0 0 3px rgba(8,145,178,.2)}
+.logo i{box-shadow:0 4px 12px rgba(8,145,178,.4)}
+</style>
+</head>
+<body>
+<div id="app"><div class="sp"></div></div>
+<div id="viewer" oncontextmenu="return false">
+  <div class="vb"><button data-a="close">✕</button><span class="t"></span><span id="pn">1/1</span><button data-a="zo">−</button><button data-a="zi">+</button></div>
+  <div id="pages"></div>
+</div>
+<div id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+/* ============ CONFIG: paste your Supabase values ============ */
+const SUPABASE_URL = 'https://YOUR-PROJECT.supabase.co';
+const SUPABASE_ANON_KEY = 'YOUR-ANON-PUBLIC-KEY';
+/* ============================================================ */
+const COURSE = 'Computer Maintenance & Networking';
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+const $ = s => document.querySelector(s), app = $('#app');
+const e = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmtD = d => new Date(d).toLocaleString('am-ET', {dateStyle:'medium', timeStyle:'short'});
+const mb = n => (n / 1048576).toFixed(1) + ' MB';
+let me = null, tab = 'lib', mode = 'in', docs = [], pdf = null, cur = null, zoom = 1, obs = null, curPage = 1, saveT;
+
+function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('on'), 3200); }
+const busy = (b, on) => { if (b) b.disabled = on; };
+
+/* ---------- routing ---------- */
+async function route() {
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session) { me = null; return authView(); }
+  const { data } = await sb.from('profiles').select('*').eq('id', session.user.id).maybeSingle();
+  me = data;
+  if (!me) { await new Promise(r => setTimeout(r, 1200)); return route(); }
+  if (me.status === 'approved') return appView();
+  const msg = me.status === 'blocked'
+    ? ['⛔ አካውንትዎ ታግዷል', 'እባክዎ አስተማሪዎን ያነጋግሩ።']
+    : ['⏳ ፈቃድ በመጠበቅ ላይ', 'ምዝገባዎ ደርሶናል። አስተማሪዎ እስኪያጸድቅልዎ ድረስ ይጠብቁ፣ ከዚያ ገጹን ያድሱ።'];
+  app.innerHTML = `<div class="auth"><div class="card center"><div class="ico">${msg[0].slice(0,2)}</div><h2>${msg[0].slice(2)}</h2><p>${msg[1]}</p><p><small>${e(me.email)}</small></p><button class="btn" data-a="refresh">አድስ</button> <button class="btn g" data-a="out">ውጣ</button></div></div>`;
+}
+sb.auth.onAuthStateChange((ev) => { if (ev === 'SIGNED_OUT') route(); });
+
+/* ---------- auth ---------- */
+function authView() {
+  const reg = mode === 'up';
+  app.innerHTML = `<div class="auth"><div class="hero"><svg class="deco" viewBox="0 0 160 160" fill="none" stroke="#67e8f9" stroke-width="1.5"><path d="M20 120L60 70L100 90L140 30M60 70L50 30M100 90L130 130" opacity=".6"/><g fill="#0a1630"><circle cx="20" cy="120" r="7"/><circle cx="60" cy="70" r="9"/><circle cx="100" cy="90" r="7"/><circle cx="140" cy="30" r="8"/><circle cx="50" cy="30" r="6"/><circle cx="130" cy="130" r="6"/></g></svg><div class="badge">FULL GUIDE MODULE</div><h1>Computer <span>Maintenance</span> &amp; Networking</h1><p>Complete Course Guide • Reference Module</p><div class="chips"><b>💽 Software</b><b>🛠 Troubleshooting</b><b>🌐 Networking</b></div></div>
+  <div class="card"><div class="tabs"><button class="${reg ? '' : 'on'}" data-a="m-in">ግባ</button><button class="${reg ? 'on' : ''}" data-a="m-up">ተመዝገብ</button></div>
+  ${reg ? '<label>ሙሉ ስም</label><input id="nm" autocomplete="name">' : ''}
+  <label>ኢሜይል</label><input id="em" type="email" autocomplete="email">
+  <label>የይለፍ ቃል (ቢያንስ 6 ፊደል)</label><input id="pw" type="password" autocomplete="${reg ? 'new' : 'current'}-password">
+  <button class="btn" style="width:100%" data-a="auth">${reg ? 'ተመዝገብ' : 'ግባ'}</button></div></div>`;
+}
+async function doAuth(b) {
+  const email = $('#em').value.trim().toLowerCase(), password = $('#pw').value, name = $('#nm')?.value.trim();
+  if (!email || password.length < 6 || (mode === 'up' && !name)) return toast('እባክዎ ሁሉንም መረጃ በትክክል ይሙሉ');
+  busy(b, true);
+  const r = mode === 'up'
+    ? await sb.auth.signUp({ email, password, options: { data: { full_name: name } } })
+    : await sb.auth.signInWithPassword({ email, password });
+  busy(b, false);
+  if (r.error) return toast(r.error.message.includes('Invalid') ? 'ኢሜይል ወይም የይለፍ ቃል ልክ አይደለም' : r.error.message);
+  if (mode === 'up' && !r.data.session) return toast('ኢሜይልዎን አረጋግጠው ይግቡ');
+  route();
+}
+
+/* ---------- main app ---------- */
+async function appView() {
+  const adm = me.role === 'admin';
+  app.innerHTML = `<header><div class="wrap"><div class="logo"><i>💻</i><span>${COURSE}</span></div><small>${e(me.full_name || me.email)}</small><button class="btn g s" data-a="out">ውጣ</button></div></header>
+  <div class="wrap"><div class="hero"><svg class="deco" viewBox="0 0 160 160" fill="none" stroke="#67e8f9" stroke-width="1.5"><path d="M20 120L60 70L100 90L140 30M60 70L50 30M100 90L130 130" opacity=".6"/><g fill="#0a1630"><circle cx="20" cy="120" r="7"/><circle cx="60" cy="70" r="9"/><circle cx="100" cy="90" r="7"/><circle cx="140" cy="30" r="8"/><circle cx="50" cy="30" r="6"/><circle cx="130" cy="130" r="6"/></g></svg><div class="badge">FULL GUIDE MODULE</div><h1>Computer <span>Maintenance</span> &amp; Networking</h1><p>👋 ${e(me.full_name || '')}</p><div class="chips"><b>💽 Software</b><b>🛠 Troubleshooting</b><b>🌐 Networking</b></div></div>
+  ${adm ? `<div class="tabs">${[['lib','📚 ቤተ-መጽሐፍት'],['up','⬆️ ፋይል ጫን'],['st','👥 ተማሪዎች'],['em','✉️ የተፈቀዱ ኢሜይሎች'],['lg','📊 እንቅስቃሴ']].map(t => `<button class="${tab === t[0] ? 'on' : ''}" data-a="tab" data-t="${t[0]}">${t[1]}</button>`).join('')}</div>` : ''}
+  <div id="main"><div class="sp"></div></div></div>`;
+  const v = { lib: libView, up: upView, st: stView, em: emView, lg: lgView }[adm ? tab : 'lib'];
+  v();
+}
+async function libView() {
+  const { data } = await sb.from('documents').select('*').order('created_at', { ascending: false });
+  docs = data || [];
+  $('#main').innerHTML = !docs.length ? '<div class="card center"><div class="ico">📭</div>እስካሁን ምንም ፋይል አልተጫነም</div>'
+    : `<input id="q" placeholder="🔍 ፈልግ..."><div class="grid" id="gl"></div>`;
+  const draw = f => $('#gl').innerHTML = docs.filter(d => d.title.toLowerCase().includes(f)).map(d =>
+    `<div class="card doc"><div class="dh"><div class="tile">📘</div><span class="badge" style="color:var(--pr);border-color:var(--pr);margin:0">GUIDE MODULE</span></div><h3>${e(d.title)}</h3><p>${e(d.description || '')}</p><div class="m">${mb(d.size_bytes || 0)} • ${fmtD(d.created_at)}</div><button class="btn" style="width:100%" data-a="open" data-id="${d.id}">📖 አንብብ</button></div>`).join('');
+  if (docs.length) { draw(''); $('#q').oninput = ev => draw(ev.target.value.toLowerCase()); }
+}
+
+/* ---------- protected viewer ---------- */
+async function openDoc(id) {
+  cur = docs.find(d => d.id === id); if (!cur) return;
+  const v = $('#viewer'), P = $('#pages'); v.classList.add('on'); v.querySelector('.t').textContent = cur.title;
+  P.innerHTML = '<div class="sp"></div>'; document.body.style.overflow = 'hidden';
+  sb.from('access_logs').insert({ user_id: me.id, document_id: cur.id });
+  try {
+    const { data, error } = await sb.storage.from('documents').createSignedUrl(cur.file_path, 120);
+    if (error) throw error;
+    const buf = await (await fetch(data.signedUrl)).arrayBuffer();
+    pdf = await pdfjsLib.getDocument({ data: buf }).promise;
+    const { data: pr } = await sb.from('progress').select('page').eq('user_id', me.id).eq('document_id', cur.id).maybeSingle();
+    zoom = 1; await layout(pr?.page || 1);
+  } catch (x) { closeDoc(); toast('ፋይሉን መክፈት አልተቻለም'); }
+}
+async function layout(go) {
+  const P = $('#pages'); P.innerHTML = ''; obs?.disconnect();
+  const w = Math.min(P.clientWidth - 16, 900) * zoom;
+  obs = new IntersectionObserver(es => es.forEach(x => x.isIntersecting && render(x.target)), { root: P, rootMargin: '700px 0px' });
+  for (let i = 1; i <= pdf.numPages; i++) {
+    const vp = (await pdf.getPage(i)).getViewport({ scale: 1 }), s = w / vp.width, d = document.createElement('div');
+    d.className = 'pg'; d.dataset.n = i; d.dataset.s = s; d.style.cssText = `width:${w}px;height:${vp.height * s}px`;
+    P.appendChild(d); obs.observe(d);
+  }
+  P.children[go - 1]?.scrollIntoView(); updPage();
+}
+async function render(d) {
+  if (d.dataset.r) return; d.dataset.r = 1;
+  const p = await pdf.getPage(+d.dataset.n), vp = p.getViewport({ scale: d.dataset.s * Math.min(devicePixelRatio || 1, 2) });
+  const c = document.createElement('canvas'), x = c.getContext('2d'); c.width = vp.width; c.height = vp.height;
+  await p.render({ canvasContext: x, viewport: vp }).promise;
+  // visible watermark burned into the page: student's name + email
+  x.save(); x.globalAlpha = .08; x.fillStyle = '#000'; x.font = `600 ${vp.width / 24}px sans-serif`; x.rotate(-.5);
+  const t = (me.full_name || '') + ' • ' + me.email;
+  for (let yy = -vp.height * .2; yy < vp.height * 1.4; yy += vp.height / 5) for (let xx = -vp.width * .3; xx < vp.width; xx += vp.width * .8) x.fillText(t, xx, yy);
+  x.restore(); d.appendChild(c);
+}
+function updPage() {
+  const P = $('#pages'), top = P.scrollTop + P.clientHeight / 3; let n = 1;
+  for (const c of P.children) { if (c.offsetTop - P.offsetTop <= top) n = +c.dataset.n; else break; }
+  curPage = n; $('#pn').textContent = n + '/' + (pdf?.numPages || 1);
+  clearTimeout(saveT); saveT = setTimeout(() => cur && sb.from('progress').upsert({ user_id: me.id, document_id: cur.id, page: n, updated_at: new Date() }), 1500);
+}
+function closeDoc() { $('#viewer').classList.remove('on'); $('#pages').innerHTML = ''; document.body.style.overflow = ''; pdf = null; cur = null; obs?.disconnect(); }
+$('#pages').addEventListener('scroll', () => { clearTimeout(updPage._t); updPage._t = setTimeout(updPage, 120); });
+addEventListener('keydown', k => { if ((k.ctrlKey || k.metaKey) && ['s', 'p', 'u', 'c'].includes(k.key.toLowerCase()) && $('#viewer').classList.contains('on')) k.preventDefault(); });
+
+/* ---------- admin ---------- */
+function upView() {
+  $('#main').innerHTML = `<div class="card"><h3>አዲስ ፋይል (PDF) ጫን</h3><label>ርዕስ</label><input id="t"><label>መግለጫ (አማራጭ)</label><textarea id="ds" rows="2"></textarea><label>PDF ፋይል (እስከ 50 MB)</label><input id="f" type="file" accept="application/pdf"><button class="btn" style="width:100%" data-a="upload">⬆️ ጫን</button></div>
+  <h3>የተጫኑ ፋይሎች</h3><div class="card" id="dl"><div class="sp"></div></div>`;
+  sb.from('documents').select('*').order('created_at', { ascending: false }).then(({ data }) => {
+    docs = data || [];
+    $('#dl').innerHTML = docs.map(d => `<div class="row"><div class="i"><b>${e(d.title)}</b><small>${mb(d.size_bytes || 0)} • ${fmtD(d.created_at)}</small></div><button class="btn r s" data-a="deldoc" data-id="${d.id}">🗑</button></div>`).join('') || '<div class="center">ባዶ</div>';
+  });
+}
+async function upload(b) {
+  const f = $('#f').files[0], t = $('#t').value.trim();
+  if (!t || !f) return toast('ርዕስና ፋይል ያስፈልጋል');
+  if (f.type !== 'application/pdf') return toast('PDF ብቻ ነው የሚፈቀደው');
+  if (f.size > 52428800) return toast('ፋይሉ ከ50 MB በላይ ነው');
+  busy(b, true); b.textContent = '⏳ በመጫን ላይ...';
+  const path = crypto.randomUUID() + '.pdf';
+  const u = await sb.storage.from('documents').upload(path, f, { contentType: 'application/pdf' });
+  if (u.error) { busy(b, false); b.textContent = '⬆️ ጫን'; return toast(u.error.message); }
+  const r = await sb.from('documents').insert({ title: t, description: $('#ds').value.trim(), file_path: path, size_bytes: f.size });
+  toast(r.error ? r.error.message : '✅ ተጭኗል'); upView();
+}
+async function stView() {
+  const { data } = await sb.from('profiles').select('*').eq('role', 'student').order('created_at', { ascending: false });
+  const list = data || [];
+  $('#main').innerHTML = `<input id="q" placeholder="🔍 ፈልግ..."><div class="card" id="sl"></div>`;
+  const draw = f => $('#sl').innerHTML = list.filter(s => (s.full_name + s.email).toLowerCase().includes(f)).map(s => `<div class="row"><div class="i"><b>${e(s.full_name || '—')}</b><small>${e(s.email)}</small></div><span class="tag ${s.status}">${{ approved: 'ፈቃድ አለው', pending: 'በመጠበቅ ላይ', blocked: 'ታግዷል' }[s.status]}</span>
+    ${s.status !== 'approved' ? `<button class="btn s" data-a="setst" data-id="${s.id}" data-v="approved">✔</button>` : ''}${s.status !== 'blocked' ? `<button class="btn r s" data-a="setst" data-id="${s.id}" data-v="blocked">⛔</button>` : ''}</div>`).join('') || '<div class="center">ተማሪ የለም</div>';
+  draw(''); $('#q').oninput = ev => draw(ev.target.value.toLowerCase());
+}
+async function emView() {
+  const { data } = await sb.from('allowed_emails').select('*').order('created_at', { ascending: false });
+  $('#main').innerHTML = `<div class="card"><h3>የተማሪዎች ኢሜይል ዝርዝር</h3><p><small>በሚመዘገቡ ጊዜ ወዲያውኑ ይፈቀድላቸዋል። በአንድ መስመር አንድ ኢሜይል ወይም በኮማ ይለዩ።</small></p><textarea id="ae" rows="5"></textarea><button class="btn" style="width:100%" data-a="addem">➕ ጨምር</button></div>
+  <div class="card" style="margin-top:14px">${(data || []).map(x => `<div class="row"><div class="i">${e(x.email)}</div><button class="btn r s" data-a="rmem" data-id="${e(x.email)}">✕</button></div>`).join('') || '<div class="center">ባዶ</div>'}</div>`;
+}
+async function lgView() {
+  const { data } = await sb.from('access_logs').select('created_at, profiles(full_name,email), documents(title)').order('created_at', { ascending: false }).limit(100);
+  $('#main').innerHTML = `<div class="card">${(data || []).map(l => `<div class="row"><div class="i"><b>${e(l.profiles?.full_name || l.profiles?.email)}</b><small>${e(l.documents?.title || '')}</small></div><small>${fmtD(l.created_at)}</small></div>`).join('') || '<div class="center">ገና ምንም እንቅስቃሴ የለም</div>'}</div>`;
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click', async ev => {
+  const b = ev.target.closest('[data-a]'); if (!b) return; const a = b.dataset.a, id = b.dataset.id;
+  if (a === 'm-in' || a === 'm-up') { mode = a === 'm-up' ? 'up' : 'in'; authView(); }
+  else if (a === 'auth') doAuth(b);
+  else if (a === 'out') { await sb.auth.signOut(); route(); }
+  else if (a === 'refresh') route();
+  else if (a === 'tab') { tab = b.dataset.t; appView(); }
+  else if (a === 'open') openDoc(id);
+  else if (a === 'close') closeDoc();
+  else if (a === 'zi' || a === 'zo') { zoom = Math.max(.6, Math.min(2.5, zoom + (a === 'zi' ? .25 : -.25))); layout(curPage); }
+  else if (a === 'upload') upload(b);
+  else if (a === 'deldoc') {
+    if (!confirm('ይህ ፋይል ለዘላለም ይሰረዛል። እርግጠኛ ነዎት?')) return;
+    const d = docs.find(x => x.id === id); await sb.storage.from('documents').remove([d.file_path]); await sb.from('documents').delete().eq('id', id); upView();
+  }
+  else if (a === 'setst') { await sb.from('profiles').update({ status: b.dataset.v }).eq('id', id); stView(); }
+  else if (a === 'addem') {
+    const list = [...new Set($('#ae').value.toLowerCase().split(/[\s,;]+/).filter(x => x.includes('@')))];
+    if (!list.length) return toast('ትክክለኛ ኢሜይል ያስገቡ');
+    await sb.from('allowed_emails').upsert(list.map(email => ({ email })));
+    await sb.from('profiles').update({ status: 'approved' }).in('email', list).eq('status', 'pending');
+    toast('✅ ' + list.length + ' ኢሜይል ተጨምሯል'); emView();
+  }
+  else if (a === 'rmem') { await sb.from('allowed_emails').delete().eq('email', id); emView(); }
+});
+route();
+</script>
+</body>
+</html>
