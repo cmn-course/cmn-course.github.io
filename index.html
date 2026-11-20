@@ -101,7 +101,7 @@ label{font-size:.8rem;font-weight:600;color:var(--mu)}
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous"></script>
 <!-- Bump the number after ?v= every time you edit config.js so browsers never serve an old copy -->
-<script src="config.js?v=3"></script>
+<script src="config.js?v=4"></script>
 <script>
 if (typeof SUPABASE_URL === 'undefined' || typeof SUPABASE_ANON_KEY === 'undefined') { document.body.innerHTML = '<p style="padding:30px;font-family:sans-serif">config.js was not found or is incomplete.</p>'; throw new Error('config.js missing'); }
 if (typeof supabase === 'undefined' || typeof pdfjsLib === 'undefined') { document.body.innerHTML = '<div style="padding:30px;font-family:sans-serif"><p>Required libraries failed to load. Please check your internet connection.</p><button onclick="location.reload()" style="padding:10px 16px;cursor:pointer">Reload</button></div>'; throw new Error('libraries missing'); }
