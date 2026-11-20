@@ -62,6 +62,8 @@ body{background:radial-gradient(900px 400px at 10% -10%,rgba(8,145,178,.15),tran
 .doc:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(8,145,178,.24)}
 .btn{box-shadow:0 6px 16px rgba(8,145,178,.3);transition:transform .15s,filter .15s}.btn:hover{filter:brightness(1.08)}.btn:active{transform:scale(.97)}.btn.g{box-shadow:none}
 input:focus,textarea:focus{box-shadow:0 0 0 3px rgba(8,145,178,.2)}
+.pw{position:relative}.pw input{padding-right:50px}.eye{position:absolute;right:8px;top:14px;border:0;background:none;font-size:1.25rem;cursor:pointer;padding:2px 6px}
+.row{flex-wrap:wrap}
 .logo i{box-shadow:0 4px 12px rgba(8,145,178,.4)}
 </style>
 </head>
@@ -75,19 +77,21 @@ input:focus,textarea:focus{box-shadow:0 0 0 3px rgba(8,145,178,.2)}
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="config.js"></script>
 <script>
-/* ============ CONFIG: paste your Supabase values ============ */
-const SUPABASE_URL = 'https://oyhpzkjbanszffofsrew.supabase.co';
-const SUPABASE_ANON_KEY = 'sb_publishable_CXxNSbCPlmZL0t9n-jPU6Q_Jv3Jg7K5';
-/* ============================================================ */
-const COURSE = 'Computer Maintenance & Networking';
+if (typeof SUPABASE_URL === 'undefined') { document.body.innerHTML = '<p style="padding:30px;font-family:sans-serif">config.js ፋይል አልተገኘም</p>'; throw new Error('config.js missing'); }
+const B = Object.assign({ name: 'Computer Maintenance & Networking', accent: 'Maintenance', badge: 'FULL GUIDE MODULE', tagline: 'Complete Course Guide • Reference Module', chips: ['💽 Software', '🛠 Troubleshooting', '🌐 Networking'], owner: '', showUser: true, color1: '#0891b2', color2: '#2563eb' }, typeof BRAND !== 'undefined' ? BRAND : {});
+if (!B.owner) B.owner = B.name;
+document.title = B.name; document.documentElement.style.setProperty('--pr', B.color1); document.documentElement.style.setProperty('--pr2', B.color2);
+const COURSE = B.name;
+const heroTitle = () => B.accent ? e(B.name).replace(e(B.accent), '<span>$&</span>') : e(B.name);
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 const $ = s => document.querySelector(s), app = $('#app');
 const e = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const fmtD = d => new Date(d).toLocaleString('am-ET', {dateStyle:'medium', timeStyle:'short'});
 const mb = n => (n / 1048576).toFixed(1) + ' MB';
-let me = null, tab = 'lib', mode = 'in', docs = [], pdf = null, cur = null, zoom = 1, obs = null, curPage = 1, saveT;
+let tries = 0, me = null, tab = 'lib', mode = 'in', docs = [], pdf = null, cur = null, zoom = 1, obs = null, curPage = 1, saveT;
 
 function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('on'), 3200); }
 const busy = (b, on) => { if (b) b.disabled = on; };
@@ -96,9 +100,14 @@ const busy = (b, on) => { if (b) b.disabled = on; };
 async function route() {
   const { data: { session } } = await sb.auth.getSession();
   if (!session) { me = null; return authView(); }
-  const { data } = await sb.from('profiles').select('*').eq('id', session.user.id).maybeSingle();
+  const { data, error } = await sb.from('profiles').select('*').eq('id', session.user.id).maybeSingle();
   me = data;
-  if (!me) { await new Promise(r => setTimeout(r, 1200)); return route(); }
+  if (!me) {
+    if (!error && ++tries < 4) { await new Promise(r => setTimeout(r, 1200)); return route(); }
+    tries = 0;
+    app.innerHTML = `<div class="auth"><div class="card center"><div class="ico">⚠️</div><h2>መረጃ ማግኘት አልተቻለም</h2><p><small>${e(error?.message || 'profile not found')}</small></p><button class="btn" data-a="refresh">እንደገና ሞክር</button> <button class="btn g" data-a="out">ውጣ</button></div></div>`;
+    return;
+  }
   if (me.status === 'approved') return appView();
   const msg = me.status === 'blocked'
     ? ['⛔ አካውንትዎ ታግዷል', 'እባክዎ አስተማሪዎን ያነጋግሩ።']
@@ -110,11 +119,11 @@ sb.auth.onAuthStateChange((ev) => { if (ev === 'SIGNED_OUT') route(); });
 /* ---------- auth ---------- */
 function authView() {
   const reg = mode === 'up';
-  app.innerHTML = `<div class="auth"><div class="hero"><svg class="deco" viewBox="0 0 160 160" fill="none" stroke="#67e8f9" stroke-width="1.5"><path d="M20 120L60 70L100 90L140 30M60 70L50 30M100 90L130 130" opacity=".6"/><g fill="#0a1630"><circle cx="20" cy="120" r="7"/><circle cx="60" cy="70" r="9"/><circle cx="100" cy="90" r="7"/><circle cx="140" cy="30" r="8"/><circle cx="50" cy="30" r="6"/><circle cx="130" cy="130" r="6"/></g></svg><div class="badge">FULL GUIDE MODULE</div><h1>Computer <span>Maintenance</span> &amp; Networking</h1><p>Complete Course Guide • Reference Module</p><div class="chips"><b>💽 Software</b><b>🛠 Troubleshooting</b><b>🌐 Networking</b></div></div>
+  app.innerHTML = `<div class="auth"><div class="hero"><svg class="deco" viewBox="0 0 160 160" fill="none" stroke="#67e8f9" stroke-width="1.5"><path d="M20 120L60 70L100 90L140 30M60 70L50 30M100 90L130 130" opacity=".6"/><g fill="#0a1630"><circle cx="20" cy="120" r="7"/><circle cx="60" cy="70" r="9"/><circle cx="100" cy="90" r="7"/><circle cx="140" cy="30" r="8"/><circle cx="50" cy="30" r="6"/><circle cx="130" cy="130" r="6"/></g></svg><div class="badge">${e(B.badge)}</div><h1>${heroTitle()}</h1><p>${e(B.tagline)}</p><div class="chips">${B.chips.map(c => `<b>${e(c)}</b>`).join('')}</div></div>
   <div class="card"><div class="tabs"><button class="${reg ? '' : 'on'}" data-a="m-in">ግባ</button><button class="${reg ? 'on' : ''}" data-a="m-up">ተመዝገብ</button></div>
   ${reg ? '<label>ሙሉ ስም</label><input id="nm" autocomplete="name">' : ''}
   <label>ኢሜይል</label><input id="em" type="email" autocomplete="email">
-  <label>የይለፍ ቃል (ቢያንስ 6 ፊደል)</label><input id="pw" type="password" autocomplete="${reg ? 'new' : 'current'}-password">
+  <label>የይለፍ ቃል (ቢያንስ 6 ፊደል)</label><div class="pw"><input id="pw" type="password" autocomplete="${reg ? 'new' : 'current'}-password"><button type="button" class="eye" data-a="eye">👁</button></div>
   <button class="btn" style="width:100%" data-a="auth">${reg ? 'ተመዝገብ' : 'ግባ'}</button></div></div>`;
 }
 async function doAuth(b) {
@@ -134,7 +143,7 @@ async function doAuth(b) {
 async function appView() {
   const adm = me.role === 'admin';
   app.innerHTML = `<header><div class="wrap"><div class="logo"><i>💻</i><span>${COURSE}</span></div><small>${e(me.full_name || me.email)}</small><button class="btn g s" data-a="out">ውጣ</button></div></header>
-  <div class="wrap"><div class="hero"><svg class="deco" viewBox="0 0 160 160" fill="none" stroke="#67e8f9" stroke-width="1.5"><path d="M20 120L60 70L100 90L140 30M60 70L50 30M100 90L130 130" opacity=".6"/><g fill="#0a1630"><circle cx="20" cy="120" r="7"/><circle cx="60" cy="70" r="9"/><circle cx="100" cy="90" r="7"/><circle cx="140" cy="30" r="8"/><circle cx="50" cy="30" r="6"/><circle cx="130" cy="130" r="6"/></g></svg><div class="badge">FULL GUIDE MODULE</div><h1>Computer <span>Maintenance</span> &amp; Networking</h1><p>👋 ${e(me.full_name || '')}</p><div class="chips"><b>💽 Software</b><b>🛠 Troubleshooting</b><b>🌐 Networking</b></div></div>
+  <div class="wrap"><div class="hero"><svg class="deco" viewBox="0 0 160 160" fill="none" stroke="#67e8f9" stroke-width="1.5"><path d="M20 120L60 70L100 90L140 30M60 70L50 30M100 90L130 130" opacity=".6"/><g fill="#0a1630"><circle cx="20" cy="120" r="7"/><circle cx="60" cy="70" r="9"/><circle cx="100" cy="90" r="7"/><circle cx="140" cy="30" r="8"/><circle cx="50" cy="30" r="6"/><circle cx="130" cy="130" r="6"/></g></svg><div class="badge">${e(B.badge)}</div><h1>${heroTitle()}</h1><p>👋 ${e(me.full_name || '')}</p><div class="chips">${B.chips.map(c => `<b>${e(c)}</b>`).join('')}</div></div>
   ${adm ? `<div class="tabs">${[['lib','📚 ቤተ-መጽሐፍት'],['up','⬆️ ፋይል ጫን'],['st','👥 ተማሪዎች'],['em','✉️ የተፈቀዱ ኢሜይሎች'],['lg','📊 እንቅስቃሴ']].map(t => `<button class="${tab === t[0] ? 'on' : ''}" data-a="tab" data-t="${t[0]}">${t[1]}</button>`).join('')}</div>` : ''}
   <div id="main"><div class="sp"></div></div></div>`;
   const v = { lib: libView, up: upView, st: stView, em: emView, lg: lgView }[adm ? tab : 'lib'];
@@ -181,11 +190,15 @@ async function render(d) {
   const p = await pdf.getPage(+d.dataset.n), vp = p.getViewport({ scale: d.dataset.s * Math.min(devicePixelRatio || 1, 2) });
   const c = document.createElement('canvas'), x = c.getContext('2d'); c.width = vp.width; c.height = vp.height;
   await p.render({ canvasContext: x, viewport: vp }).promise;
-  // visible watermark burned into the page: student's name + email
-  x.save(); x.globalAlpha = .08; x.fillStyle = '#000'; x.font = `600 ${vp.width / 24}px sans-serif`; x.rotate(-.5);
-  const t = (me.full_name || '') + ' • ' + me.email;
-  for (let yy = -vp.height * .2; yy < vp.height * 1.4; yy += vp.height / 5) for (let xx = -vp.width * .3; xx < vp.width; xx += vp.width * .8) x.fillText(t, xx, yy);
-  x.restore(); d.appendChild(c);
+  // watermark: owner/brand name (large) + optional student name/email (small, traceable)
+  const wm = (txt, size, alpha, rows, off) => {
+    x.save(); x.globalAlpha = alpha; x.fillStyle = '#000'; x.font = `600 ${size}px sans-serif`; x.rotate(-.5);
+    for (let yy = -vp.height * .2 + off; yy < vp.height * 1.4; yy += vp.height / rows) for (let xx = -vp.width * .3; xx < vp.width; xx += vp.width * .8) x.fillText(txt, xx, yy);
+    x.restore();
+  };
+  wm(B.owner, vp.width / 14, .07, 4, 0);
+  if (B.showUser) wm((me.full_name || '') + ' • ' + me.email, vp.width / 36, .07, 8, vp.height / 16);
+  d.appendChild(c);
 }
 function updPage() {
   const P = $('#pages'), top = P.scrollTop + P.clientHeight / 3; let n = 1;
@@ -219,11 +232,11 @@ async function upload(b) {
   toast(r.error ? r.error.message : '✅ ተጭኗል'); upView();
 }
 async function stView() {
-  const { data } = await sb.from('profiles').select('*').eq('role', 'student').order('created_at', { ascending: false });
+  const { data } = await sb.from('profiles').select('*').neq('id', me.id).order('created_at', { ascending: false });
   const list = data || [];
   $('#main').innerHTML = `<input id="q" placeholder="🔍 ፈልግ..."><div class="card" id="sl"></div>`;
-  const draw = f => $('#sl').innerHTML = list.filter(s => (s.full_name + s.email).toLowerCase().includes(f)).map(s => `<div class="row"><div class="i"><b>${e(s.full_name || '—')}</b><small>${e(s.email)}</small></div><span class="tag ${s.status}">${{ approved: 'ፈቃድ አለው', pending: 'በመጠበቅ ላይ', blocked: 'ታግዷል' }[s.status]}</span>
-    ${s.status !== 'approved' ? `<button class="btn s" data-a="setst" data-id="${s.id}" data-v="approved">✔</button>` : ''}${s.status !== 'blocked' ? `<button class="btn r s" data-a="setst" data-id="${s.id}" data-v="blocked">⛔</button>` : ''}</div>`).join('') || '<div class="center">ተማሪ የለም</div>';
+  const draw = f => $('#sl').innerHTML = list.filter(s => (s.full_name + s.email).toLowerCase().includes(f)).map(s => `<div class="row"><div class="i"><b>${e(s.full_name || '—')}${s.role === 'admin' ? ' 👑' : ''}</b><small>${e(s.email)}</small></div><span class="tag ${s.status}">${{ approved: 'ፈቃድ አለው', pending: 'በመጠበቅ ላይ', blocked: 'ታግዷል' }[s.status]}</span>
+    ${s.status !== 'approved' ? `<button class="btn s" data-a="setst" data-id="${s.id}" data-v="approved">✔</button>` : ''}${s.status !== 'blocked' ? `<button class="btn r s" data-a="setst" data-id="${s.id}" data-v="blocked">⛔</button>` : ''}${s.status === 'approved' ? (s.role === 'admin' ? `<button class="btn g s" data-a="setrole" data-id="${s.id}" data-v="student">⬇ አድሚን አንሳ</button>` : `<button class="btn g s" data-a="setrole" data-id="${s.id}" data-v="admin">👑 አድሚን</button>`) : ''}</div>`).join('') || '<div class="center">ተማሪ የለም</div>';
   draw(''); $('#q').oninput = ev => draw(ev.target.value.toLowerCase());
 }
 async function emView() {
@@ -241,6 +254,7 @@ document.addEventListener('click', async ev => {
   const b = ev.target.closest('[data-a]'); if (!b) return; const a = b.dataset.a, id = b.dataset.id;
   if (a === 'm-in' || a === 'm-up') { mode = a === 'm-up' ? 'up' : 'in'; authView(); }
   else if (a === 'auth') doAuth(b);
+  else if (a === 'eye') { const i = $('#pw'); const h = i.type === 'password'; i.type = h ? 'text' : 'password'; b.textContent = h ? '🙈' : '👁'; }
   else if (a === 'out') { await sb.auth.signOut(); route(); }
   else if (a === 'refresh') route();
   else if (a === 'tab') { tab = b.dataset.t; appView(); }
@@ -253,6 +267,10 @@ document.addEventListener('click', async ev => {
     const d = docs.find(x => x.id === id); await sb.storage.from('documents').remove([d.file_path]); await sb.from('documents').delete().eq('id', id); upView();
   }
   else if (a === 'setst') { await sb.from('profiles').update({ status: b.dataset.v }).eq('id', id); stView(); }
+  else if (a === 'setrole') {
+    if (!confirm(b.dataset.v === 'admin' ? 'ይህ ሰው ሙሉ አድሚን ይሆናል (ፋይል መጫን፣ ተማሪዎችን ማስተዳደር)። እርግጠኛ ነዎት?' : 'የአድሚን መብቱ ይነሳ?')) return;
+    await sb.from('profiles').update({ role: b.dataset.v }).eq('id', id); stView();
+  }
   else if (a === 'addem') {
     const list = [...new Set($('#ae').value.toLowerCase().split(/[\s,;]+/).filter(x => x.includes('@')))];
     if (!list.length) return toast('ትክክለኛ ኢሜይል ያስገቡ');
@@ -262,6 +280,7 @@ document.addEventListener('click', async ev => {
   }
   else if (a === 'rmem') { await sb.from('allowed_emails').delete().eq('email', id); emView(); }
 });
+document.addEventListener('keydown', ev => { if (ev.key === 'Enter' && ev.target.closest('.auth')) $('[data-a=auth]')?.click(); });
 route();
 </script>
 </body>
