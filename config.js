@@ -6,7 +6,6 @@ const BRAND = {
   badge: 'FULL GUIDE MODULE',
   tagline: 'Complete Course Guide • Reference Module',
   chips: ['💽 Software', '🛠 Troubleshooting', '🌐 Networking'],
-  owner: 'YASIN MOHAMMED',
   showUser: true,
   color1: '#0891b2',
   color2: '#2563eb'
