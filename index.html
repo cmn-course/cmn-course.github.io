@@ -30,6 +30,7 @@ h2,h3{margin:0 0 8px;letter-spacing:-.01em}
 .hero h1{margin:0 0 8px;font-size:clamp(1.7rem,6.4vw,2.5rem);font-weight:800;line-height:1.1;letter-spacing:-.035em}
 .hero h1 span{background:linear-gradient(90deg,#67e8f9,#a5b4fc);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p{margin:0;opacity:.85;font-size:.95rem}
+.hero .tg{margin-top:6px;font-size:.8rem;opacity:.6}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.chips b{font-weight:600;font-size:.76rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);padding:6px 11px;border-radius:10px}
 header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 80%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd);padding-top:env(safe-area-inset-top)}
 header .wrap{display:flex;align-items:center;gap:8px;padding:10px 16px}
@@ -51,8 +52,12 @@ header small{max-width:32vw;overflow:hidden;text-overflow:ellipsis;white-space:n
 .dh{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .tile{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:1.4rem;background:linear-gradient(135deg,var(--pr),var(--pr2));box-shadow:0 6px 16px rgba(8,145,178,.35)}
 .ico{font-size:2.2rem;margin-bottom:8px}
-input,textarea{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--bd);background:color-mix(in srgb,var(--bg) 70%,transparent);margin:6px 0 12px;outline:0;transition:border .15s,box-shadow .15s}
-input:focus,textarea:focus{border-color:var(--pr);box-shadow:0 0 0 3px rgba(8,145,178,.2)}
+input,textarea,select{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--bd);background:color-mix(in srgb,var(--bg) 70%,transparent);margin:6px 0 12px;outline:0;transition:border .15s,box-shadow .15s}
+input:focus,textarea:focus,select:focus{border-color:var(--pr);box-shadow:0 0 0 3px rgba(8,145,178,.2)}
+select{cursor:pointer}option{background:var(--bg);color:var(--tx)}
+input[type=checkbox]{width:18px;height:18px;margin:2px 0 0;padding:0;flex:none;accent-color:var(--pr)}
+.opt{display:flex;gap:10px;align-items:flex-start;margin:4px 0 12px;font-size:.88rem;font-weight:500;color:var(--tx);line-height:1.45}
+#viewer input,#viewer textarea,.mo input,.mo textarea{-webkit-user-select:text;user-select:text}
 label{font-size:.8rem;font-weight:600;color:var(--mu)}
 .auth{max-width:440px;margin:5vh auto}.auth .tabs{justify-content:center}
 .pw{position:relative}.pw input{padding-right:50px}.eye{position:absolute;right:8px;top:14px;border:0;background:none;font-size:1.2rem;cursor:pointer;padding:2px 6px}
@@ -68,8 +73,14 @@ label{font-size:.8rem;font-weight:600;color:var(--mu)}
 #viewer.fake{inset:auto;top:0;left:0;width:100dvh;height:100dvw;transform-origin:0 0;transform:translateX(100dvw) rotate(90deg)}
 .vb{display:flex;align-items:center;gap:8px;padding:10px 12px;padding-top:calc(10px + env(safe-area-inset-top));background:#12152a;color:#fff;transition:transform .25s;z-index:2}.vb .t{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;font-size:.92rem}
 .vb button{background:#2a3050;color:#fff;border:0;border-radius:10px;padding:9px 12px;cursor:pointer;font-weight:600}
+.vb #pn{font-variant-numeric:tabular-nums;min-width:56px}
+#wmk{position:absolute;inset:0;z-index:1;pointer-events:none;background-repeat:repeat}
+#shield{display:none;position:absolute;inset:0;z-index:7;background:#000;color:#8d97b8;align-items:center;justify-content:center;text-align:center;padding:24px;font-weight:600;line-height:1.6}#shield.on{display:flex}
+#xit{display:none;position:absolute;top:calc(10px + env(safe-area-inset-top));right:10px;z-index:6;width:44px;height:44px;border-radius:50%;border:0;background:rgba(18,21,42,.72);color:#fff;font-size:1.1rem;cursor:pointer}
+.imm #xit{display:block}.imm.bar #xit{display:none}
+.tag.prot{background:#dbeafe;color:#1e40af}
 .imm .vb{position:absolute;top:0;left:0;right:0;transform:translateY(-110%)}.imm.bar .vb{transform:none}
-#pages{flex:1;overflow:auto;padding:10px 8px;text-align:center;-webkit-overflow-scrolling:touch}.imm #pages{padding:0}
+#pages{flex:1;overflow-y:scroll;overflow-x:auto;padding:10px 8px;text-align:center;-webkit-overflow-scrolling:touch}.imm #pages{padding:0}
 .pg{margin:0 auto 10px;background:#fff;border-radius:4px;box-shadow:0 4px 18px rgba(0,0,0,.4)}.imm .pg{border-radius:0;margin-bottom:4px}.pg canvas{width:100%;height:100%;display:block;pointer-events:none}
 @keyframes s{to{transform:rotate(360deg)}}@keyframes fl{to{transform:translate(-24px,-16px) scale(1.18)}}@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
@@ -78,57 +89,82 @@ label{font-size:.8rem;font-weight:600;color:var(--mu)}
 </head>
 <body>
 <div id="app"><div class="sp"></div></div>
-<div id="viewer" oncontextmenu="return false">
-  <div class="vb"><button data-a="close" aria-label="Close">✕</button><span class="t"></span><span id="pn">1/1</span><button data-a="zo" aria-label="Zoom out">−</button><button data-a="zi" aria-label="Zoom in">+</button><button data-a="land" id="lb" aria-label="Landscape full screen">⟳ Landscape</button></div>
+<div id="viewer" oncontextmenu="return false" role="dialog" aria-modal="true" aria-label="Document viewer">
+  <div class="vb"><button data-a="close" aria-label="Close">✕</button><span class="t"></span><button id="pn" data-a="jump" aria-label="Go to page">1/1</button><button data-a="zo" aria-label="Zoom out">−</button><button data-a="zi" aria-label="Zoom in">+</button><button data-a="land" id="lb" aria-label="Landscape full screen">⟳ Landscape</button></div>
   <div id="pages"></div>
+  <div id="wmk" aria-hidden="true"></div>
+  <button id="xit" data-a="land" aria-label="Exit full screen">✕</button>
+  <div id="shield" aria-hidden="true">🔒 Content is hidden while this window is inactive.<br>Return to this window to continue reading.</div>
 </div>
 <div id="toast" role="status" aria-live="polite"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous"></script>
+<!-- Bump the number after ?v= every time you edit config.js so browsers never serve an old copy -->
+<script src="config.js?v=3"></script>
 <script>
-if (typeof SUPABASE_URL === 'undefined') { document.body.innerHTML = '<p style="padding:30px;font-family:sans-serif">config.js was not found.</p>'; throw new Error('config.js missing'); }
+if (typeof SUPABASE_URL === 'undefined' || typeof SUPABASE_ANON_KEY === 'undefined') { document.body.innerHTML = '<p style="padding:30px;font-family:sans-serif">config.js was not found or is incomplete.</p>'; throw new Error('config.js missing'); }
+if (typeof supabase === 'undefined' || typeof pdfjsLib === 'undefined') { document.body.innerHTML = '<div style="padding:30px;font-family:sans-serif"><p>Required libraries failed to load. Please check your internet connection.</p><button onclick="location.reload()" style="padding:10px 16px;cursor:pointer">Reload</button></div>'; throw new Error('libraries missing'); }
 const B = Object.assign({ name: 'Computer Maintenance & Networking', accent: 'Maintenance', badge: 'FULL GUIDE MODULE', tagline: 'Complete Course Guide • Reference Module', chips: ['💽 Software', '🛠 Troubleshooting', '🌐 Networking'], owner: '', showUser: true, color1: '#0891b2', color2: '#2563eb' }, typeof BRAND !== 'undefined' ? BRAND : {});
 if (!B.owner) B.owner = B.name;
+if (!Array.isArray(B.chips)) B.chips = [];
 document.title = B.name; document.documentElement.style.setProperty('--pr', B.color1); document.documentElement.style.setProperty('--pr2', B.color2);
+const MINPW = 8;
 const $ = s => document.querySelector(s), app = $('#app');
 const e = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const heroTitle = () => B.accent ? e(B.name).replace(e(B.accent), () => '<span>' + e(B.accent) + '</span>') : e(B.name);
 const fmtD = d => new Date(d).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
 const mb = n => (n / 1048576).toFixed(1) + ' MB';
+const fsEl = () => document.fullscreenElement || document.webkitFullscreenElement;
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { flowType: 'implicit', detectSessionInUrl: true, persistSession: true, autoRefreshToken: true } });
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-let tries = 0, me = null, tab = 'lib', mode = 'in', docs = [], pdf = null, sizes = [], cur = null, zoom = 1, obs = null, curPage = 1, saveT, docTok = 0, imm = false, fgEmail = '';
+let tries = 0, me = null, tab = 'lib', mode = 'in', docs = [], pdf = null, sizes = [], cur = null, zoom = 1, obs = null, curPage = 1, saveT, docTok = 0, imm = false, fgEmail = '', lastW = 0, rt = 0, vt = 0, lgRows = [], lgDone = false, progMap = {}, hs = 0, prevOri = '', immBusy = false, hold = 0, wmT = 0;
 let rec = /type=recovery/.test(location.hash + location.search);
 const hp = new URLSearchParams(location.hash.slice(1));
 const linkErr = hp.get('error_description');
+const STL = { approved: 'Approved', pending: 'Pending', blocked: 'Blocked' };
 
-function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('on'), 3600); }
+function toast(m) {
+  const t = $('#toast'), h = fsEl() || document.body;
+  if (t.parentNode !== h) h.appendChild(t);
+  t.textContent = m; t.classList.add('on'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('on'), 3600);
+}
 const busy = (b, on) => { if (b) b.disabled = on; };
-const hero = sub => `<div class="hero"><svg class="deco" viewBox="0 0 160 160" fill="none" stroke="#67e8f9" stroke-width="1.5"><path d="M20 120L60 70L100 90L140 30M60 70L50 30M100 90L130 130" opacity=".6"/><g fill="#0a1630"><circle cx="20" cy="120" r="7"/><circle cx="60" cy="70" r="9"/><circle cx="100" cy="90" r="7"/><circle cx="140" cy="30" r="8"/><circle cx="50" cy="30" r="6"/><circle cx="130" cy="130" r="6"/></g></svg><div class="badge">${e(B.badge)}</div><h1>${heroTitle()}</h1><p>${sub}</p><div class="chips">${B.chips.map(c => `<b>${e(c)}</b>`).join('')}</div></div>`;
+const hero = sub => `<div class="hero"><svg class="deco" viewBox="0 0 160 160" fill="none" stroke="#67e8f9" stroke-width="1.5" aria-hidden="true"><path d="M20 120L60 70L100 90L140 30M60 70L50 30M100 90L130 130" opacity=".6"/><g fill="#0a1630"><circle cx="20" cy="120" r="7"/><circle cx="60" cy="70" r="9"/><circle cx="100" cy="90" r="7"/><circle cx="140" cy="30" r="8"/><circle cx="50" cy="30" r="6"/><circle cx="130" cy="130" r="6"/></g></svg><div class="badge">${e(B.badge)}</div><h1>${heroTitle()}</h1><p>${sub}</p>${B.tagline ? `<div class="tg">${e(B.tagline)}</div>` : ''}<div class="chips">${B.chips.map(c => `<b>${e(c)}</b>`).join('')}</div></div>`;
 const pwField = (id, label, ac) => `<label for="${id}">${label}</label><div class="pw"><input id="${id}" type="password" autocomplete="${ac}"><button type="button" class="eye" data-a="eye" data-t="${id}" aria-label="Show or hide password">👁</button></div>`;
+const live = () => { const t = ++vt; return () => t === vt && !!$('#main'); };
+const fail = er => { const m = $('#main'); if (m) m.innerHTML = `<div class="card center"><div class="ico">⚠️</div><p>${e(er?.message || er)}</p><button class="btn g" data-a="reload">Try again</button></div>`; };
 
-/* ---------- dialogs (replace prompt/confirm) ---------- */
+/* ---------- dialogs (replace prompt/confirm). `p` is trusted HTML: callers must escape ---------- */
 function dlg({ t, p = '', f = [], ok = 'Confirm', danger }) {
   return new Promise(res => {
-    const m = document.createElement('div'); m.className = 'mo';
-    m.innerHTML = `<div class="card" role="dialog" aria-modal="true"><h3>${e(t)}</h3>${p ? `<p class="mu">${p}</p>` : ''}${f.map((x, i) => `<label>${e(x.l)}</label><input id="f${i}" type="${x.type || 'text'}" autocomplete="off">`).join('')}<div class="ra"><button class="btn g" data-k="0">Cancel</button><button class="btn ${danger ? 'r' : ''}" data-k="1">${e(ok)}</button></div></div>`;
-    document.body.appendChild(m);
-    const done = v => { m.remove(); res(v); };
+    const prev = document.activeElement, m = document.createElement('div'); m.className = 'mo';
+    m.innerHTML = `<div class="card" role="dialog" aria-modal="true" aria-label="${e(t)}"><h3>${e(t)}</h3>${p ? `<p class="mu">${p}</p>` : ''}${f.map((x, i) => `<label for="f${i}">${e(x.l)}</label>${x.area
+      ? `<textarea id="f${i}" rows="3" maxlength="${+x.max || 1000}"></textarea>`
+      : `<input id="f${i}" type="${x.type || 'text'}" autocomplete="${x.ac || 'off'}"${x.max ? ` maxlength="${+x.max}"` : ''}${x.min != null ? ` min="${+x.min}"` : ''}${x.maxv != null ? ` max="${+x.maxv}"` : ''}>`}`).join('')}<div class="ra"><button class="btn g" data-k="0">Cancel</button><button class="btn ${danger ? 'r' : ''}" data-k="1">${e(ok)}</button></div></div>`;
+    (fsEl() || document.body).appendChild(m);
+    f.forEach((x, i) => { if (x.v != null) m.querySelector('#f' + i).value = x.v; });
+    const done = v => { m.remove(); setTimeout(() => { try { prev && prev.focus && prev.focus(); } catch (_) {} }, 0); res(v); };
     m.onclick = ev => { const k = ev.target.dataset.k; if (ev.target === m || k === '0') done(null); else if (k === '1') done(f.map((_, i) => m.querySelector('#f' + i).value)); };
-    m.onkeydown = ev => { if (ev.key === 'Escape') done(null); if (ev.key === 'Enter' && ev.target.tagName === 'INPUT') m.querySelector('[data-k="1"]').click(); };
-    (m.querySelector('input') || m.querySelector('[data-k="1"]')).focus();
+    m.onkeydown = ev => { if (ev.key === 'Escape') { ev.preventDefault(); done(null); } if (ev.key === 'Enter' && ev.target.tagName === 'INPUT') { ev.preventDefault(); m.querySelector('[data-k="1"]').click(); } };
+    (m.querySelector('input,textarea') || m.querySelector('[data-k="1"]')).focus();
   });
 }
 
 /* ---------- routing ---------- */
 async function route() {
+  const my = ++rt; vt++;
   if (rec) return resetView();
   let { data: { session } } = await sb.auth.getSession();
-  if (session) { const { error } = await sb.auth.getUser(); if (error && [401, 403, 404].includes(error.status)) { await sb.auth.signOut({ scope: 'local' }); session = null; toast('Your session has ended. Please sign in again.'); } }
+  if (my !== rt) return;
+  if (session) {
+    const { error } = await sb.auth.getUser();
+    if (my !== rt) return;
+    if (error && [401, 403, 404].includes(error.status)) { await sb.auth.signOut({ scope: 'local' }); session = null; toast('Your session has ended. Please sign in again.'); }
+  }
   if (!session) { me = null; return authView(); }
   const { data, error } = await sb.from('profiles').select('*').eq('id', session.user.id).maybeSingle();
+  if (my !== rt) return;
   me = data;
   if (!me) {
     if (!error && ++tries < 4) { await new Promise(r => setTimeout(r, 1200)); return route(); }
@@ -136,17 +172,25 @@ async function route() {
     app.innerHTML = `<div class="auth"><div class="card center"><div class="ico">⚠️</div><h2>Account unavailable</h2><p>${e(error?.message || 'Your account was not found. It may have been removed by your instructor.')}</p><button class="btn" data-a="refresh">Try again</button> <button class="btn g" data-a="out">Sign out</button></div></div>`;
     return;
   }
+  tries = 0;
   if (me.status === 'approved') return appView();
   const blocked = me.status === 'blocked';
   app.innerHTML = `<div class="auth"><div class="card center"><div class="ico">${blocked ? '⛔' : '⏳'}</div><h2>${blocked ? 'Account suspended' : 'Awaiting approval'}</h2><p>${blocked ? 'Please contact your instructor.' : 'Your registration was received. Once your instructor approves it, refresh this page.'}</p><p><small>${e(me.email)}</small></p><button class="btn" data-a="refresh">Refresh</button> <button class="btn g" data-a="out">Sign out</button></div></div>`;
 }
-sb.auth.onAuthStateChange(ev => { if (ev === 'SIGNED_OUT' && !rec) route(); if (ev === 'PASSWORD_RECOVERY') { rec = true; resetView(); } });
+// NOTE: never await other supabase calls directly inside this callback (deadlock risk), so work is deferred.
+sb.auth.onAuthStateChange(ev => {
+  if (ev === 'SIGNED_OUT' && !rec) setTimeout(() => { closeDoc(); route(); }, 0);
+  if (ev === 'PASSWORD_RECOVERY') { rec = true; setTimeout(resetView, 0); }
+});
 async function recheck() {
   if (document.visibilityState !== 'visible' || !me || rec) return;
-  const { data } = await sb.from('profiles').select('status,role').eq('id', me.id).maybeSingle();
+  const { data, error } = await sb.from('profiles').select('status,role').eq('id', me.id).maybeSingle();
+  if (error || !me) return; // temporary network problem: do not kick the reader out
   if (!data || data.status !== me.status || data.role !== me.role) { closeDoc(); route(); }
 }
-document.addEventListener('visibilitychange', recheck); setInterval(recheck, 60000);
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') saveProg(); else recheck(); });
+addEventListener('pagehide', saveProg);
+setInterval(recheck, 30000);
 
 /* ---------- auth ---------- */
 function authView() {
@@ -154,9 +198,9 @@ function authView() {
   const v = { em: $('#em')?.value || '', nm: $('#nm')?.value || '', pw: $('#pw')?.value || '' }, reg = mode === 'up';
   app.innerHTML = `<div class="auth">${hero(reg ? 'Create your student account' : 'Sign in to continue')}
   <div class="card"><div class="tabs"><button class="${reg ? '' : 'on'}" data-a="m-in">Sign in</button><button class="${reg ? 'on' : ''}" data-a="m-up">Register</button></div>
-  ${reg ? '<label for="nm">Full name</label><input id="nm" autocomplete="name">' : ''}
+  ${reg ? '<label for="nm">Full name</label><input id="nm" autocomplete="name" maxlength="80">' : ''}
   <label for="em">Email</label><input id="em" type="email" autocomplete="email" inputmode="email">
-  ${pwField('pw', reg ? 'Password (min. 6 characters)' : 'Password', reg ? 'new-password' : 'current-password')}
+  ${pwField('pw', reg ? `Password (min. ${MINPW} characters)` : 'Password', reg ? 'new-password' : 'current-password')}
   ${reg ? '' : '<div style="text-align:right;margin:-4px 0 12px"><button class="lnk" data-a="m-fg">Forgot password?</button></div>'}
   <button class="btn w" data-a="auth" data-enter>${reg ? 'Create account' : 'Sign in'}</button></div></div>`;
   $('#em').value = v.em; $('#pw').value = v.pw; if ($('#nm')) $('#nm').value = v.nm;
@@ -180,11 +224,11 @@ async function doFg(b) {
   fgView(true);
 }
 function resetView() {
-  app.innerHTML = `<div class="auth">${hero('Create a new password')}<div class="card"><h3>Set a new password</h3><p class="mu">Choose a new password for your account. It replaces your old one immediately.</p>${pwField('np', 'New password (min. 6 characters)', 'new-password')}${pwField('np2', 'Confirm new password', 'new-password')}<button class="btn w" data-a="setnew" data-enter>Update password</button><div style="text-align:center;margin-top:12px"><button class="lnk" data-a="cancelrec">Cancel</button></div></div></div>`;
+  app.innerHTML = `<div class="auth">${hero('Create a new password')}<div class="card"><h3>Set a new password</h3><p class="mu">Choose a new password for your account. It replaces your old one immediately.</p>${pwField('np', `New password (min. ${MINPW} characters)`, 'new-password')}${pwField('np2', 'Confirm new password', 'new-password')}<button class="btn w" data-a="setnew" data-enter>Update password</button><div style="text-align:center;margin-top:12px"><button class="lnk" data-a="cancelrec">Cancel</button></div></div></div>`;
 }
 async function doSetNew(b) {
   const p = $('#np').value, p2 = $('#np2').value;
-  if (p.length < 6) return toast('Password must be at least 6 characters');
+  if (p.length < MINPW) return toast(`Password must be at least ${MINPW} characters`);
   if (p !== p2) return toast('Passwords do not match');
   busy(b, true);
   const r = await sb.auth.updateUser({ password: p });
@@ -193,59 +237,104 @@ async function doSetNew(b) {
   rec = false; history.replaceState(null, '', location.pathname); toast('✅ Password updated successfully'); route();
 }
 async function doAuth(b) {
-  const email = $('#em').value.trim().toLowerCase(), password = $('#pw').value, name = $('#nm')?.value.trim();
-  if (!/^\S+@\S+\.\S+$/.test(email) || password.length < 6 || (mode === 'up' && !name)) return toast('Please fill in all fields correctly');
+  const reg = mode === 'up', email = $('#em').value.trim().toLowerCase(), password = $('#pw').value, name = ($('#nm')?.value || '').trim().replace(/\s+/g, ' ');
+  if (!/^\S+@\S+\.\S+$/.test(email)) return toast('Please enter a valid email address');
+  if (reg && !name) return toast('Please enter your full name');
+  if (reg ? password.length < MINPW : !password) return toast(reg ? `Password must be at least ${MINPW} characters` : 'Please enter your password');
   busy(b, true);
-  const r = mode === 'up'
-    ? await sb.auth.signUp({ email, password, options: { data: { full_name: name } } })
-    : await sb.auth.signInWithPassword({ email, password });
-  busy(b, false);
-  if (r.error) return toast(/invalid/i.test(r.error.message) ? 'Incorrect email or password' : r.error.message);
-  if (mode === 'up' && r.data.user?.identities?.length === 0) return toast('This email is already registered. Please sign in.');
-  if (mode === 'up' && !r.data.session) { mode = 'in'; authView(); return toast('Please confirm your email, then sign in'); }
-  route();
+  try {
+    const r = reg
+      ? await sb.auth.signUp({ email, password, options: { data: { full_name: name } } })
+      : await sb.auth.signInWithPassword({ email, password });
+    if (r.error) return toast(/invalid/i.test(r.error.message) ? 'Incorrect email or password' : r.error.message);
+    if (reg && r.data.user?.identities?.length === 0) return toast('This email is already registered. Please sign in.');
+    if (reg && !r.data.session) { mode = 'in'; authView(); return toast('Please confirm your email, then sign in'); }
+    route();
+  } finally { busy(b, false); }
 }
 
 /* ---------- main app ---------- */
 async function appView() {
   const adm = me.role === 'admin';
+  if (!adm) tab = 'lib';
   app.innerHTML = `<header><div class="wrap"><div class="logo"><i>💻</i><span>${e(B.name)}</span></div><small>${e(me.full_name || me.email)}</small><button class="btn g s" data-a="chpw" title="Change password" aria-label="Change password">🔑</button><button class="btn g s" data-a="out">Sign out</button></div></header>
   <div class="wrap">${hero('👋 Welcome, ' + e(me.full_name || ''))}
   ${adm ? `<div class="tabs">${[['lib', '📚 Library'], ['up', '⬆️ Upload'], ['st', '👥 Students'], ['em', '✉️ Allowed emails'], ['lg', '📊 Activity']].map(t => `<button class="${tab === t[0] ? 'on' : ''}" data-a="tab" data-t="${t[0]}">${t[1]}</button>`).join('')}</div>` : ''}
   <div id="main"><div class="sp"></div></div></div>`;
-  ({ lib: libView, up: upView, st: stView, em: emView, lg: lgView }[adm ? tab : 'lib'])();
+  ({ lib: libView, up: upView, st: stView, em: emView, lg: lgView }[tab] || libView)();
+}
+function drawLib() {
+  const g = $('#gl'); if (!g) return;
+  const f = ($('#q')?.value || '').toLowerCase();
+  g.innerHTML = docs.filter(d => (d.title + ' ' + (d.description || '')).toLowerCase().includes(f)).map(d => {
+    const pg = progMap[d.id];
+    return `<div class="card doc"><div class="dh"><div class="tile">📘</div><span class="badge" style="color:var(--pr);border-color:var(--pr);margin:0">GUIDE MODULE</span></div><h3>${e(d.title)}</h3><p>${e(d.description || '')}</p><div class="m">${mb(d.size_bytes || 0)} • ${e(fmtD(d.created_at))}</div><button class="btn w" data-a="open" data-id="${e(d.id)}">${pg > 1 ? '📖 Continue • page ' + (+pg) : '📖 Read'}</button></div>`;
+  }).join('') || '<div class="center" style="grid-column:1/-1">No matching files</div>';
 }
 async function libView() {
-  const { data } = await sb.from('documents').select('*').order('created_at', { ascending: false });
-  docs = data || [];
+  const ok = live();
+  const [dr, pr] = await Promise.all([
+    sb.from('documents').select('*').order('created_at', { ascending: false }),
+    sb.from('progress').select('document_id,page').eq('user_id', me.id)
+  ]);
+  if (!ok()) return;
+  if (dr.error) return fail(dr.error);
+  docs = dr.data || []; progMap = {}; (pr.data || []).forEach(x => { progMap[x.document_id] = x.page; });
   $('#main').innerHTML = !docs.length ? '<div class="card center"><div class="ico">📭</div>No files have been uploaded yet</div>' : `<input id="q" placeholder="🔍 Search..." aria-label="Search"><div class="grid" id="gl"></div>`;
-  const draw = f => $('#gl').innerHTML = docs.filter(d => d.title.toLowerCase().includes(f)).map(d =>
-    `<div class="card doc"><div class="dh"><div class="tile">📘</div><span class="badge" style="color:var(--pr);border-color:var(--pr);margin:0">GUIDE MODULE</span></div><h3>${e(d.title)}</h3><p>${e(d.description || '')}</p><div class="m">${mb(d.size_bytes || 0)} • ${fmtD(d.created_at)}</div><button class="btn w" data-a="open" data-id="${d.id}">📖 Read</button></div>`).join('') || '<div class="center" style="grid-column:1/-1">No matching files</div>';
-  if (docs.length) { draw(''); $('#q').oninput = ev => draw(ev.target.value.toLowerCase()); }
+  if (docs.length) { drawLib(); $('#q').oninput = drawLib; }
 }
 
 /* ---------- protected viewer ---------- */
 async function openDoc(id) {
-  cur = docs.find(d => d.id === id); if (!cur) return;
-  const tok = ++docTok, v = $('#viewer'), P = $('#pages'); v.classList.add('on'); v.querySelector('.t').textContent = cur.title;
+  const d = docs.find(x => x.id === id); if (!d) return;
+  cur = d; pdf = null; sizes = []; curPage = 1;
+  const tok = ++docTok, v = $('#viewer'), P = $('#pages');
+  v.classList.add('on'); v.querySelector('.t').textContent = d.title; $('#pn').textContent = '…';
+  if (hs < 1) hpush(); startWm(); chk();
   P.innerHTML = '<div class="sp"></div>'; document.body.style.overflow = 'hidden';
-  sb.from('access_logs').insert({ user_id: me.id, document_id: cur.id }).then(() => {}, () => {});
+  sb.from('access_logs').insert({ user_id: me.id, document_id: d.id }).then(() => {}, () => {});
   try {
-    const { data, error } = await sb.storage.from('documents').createSignedUrl(cur.file_path, 120);
+    const { data, error } = await sb.storage.from('documents').createSignedUrl(d.file_path, 60);
     if (error) throw error;
-    const buf = await (await fetch(data.signedUrl)).arrayBuffer();
+    const res = await fetch(data.signedUrl);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const buf = await res.arrayBuffer();
+    if (tok !== docTok) return;
     const doc = await pdfjsLib.getDocument({ data: buf, cMapUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/cmaps/', cMapPacked: true, standardFontDataUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/standard_fonts/', isEvalSupported: false }).promise;
-    const pgs = await Promise.all(Array.from({ length: doc.numPages }, (_, i) => doc.getPage(i + 1)));
-    if (tok !== docTok) return;
-    pdf = doc; sizes = pgs.map(p => { const w = p.getViewport({ scale: 1 }); return [w.width, w.height]; });
-    const { data: pr } = await sb.from('progress').select('page').eq('user_id', me.id).eq('document_id', cur.id).maybeSingle();
-    if (tok !== docTok) return;
-    zoom = 1; layout(pr?.page || 1);
+    if (tok !== docTok) { doc.destroy(); return; }
+    // Only page 1 is measured up-front; the other pages are measured in the background (see loadSizes) so huge PDFs open fast.
+    const v1 = (await doc.getPage(1)).getViewport({ scale: 1 });
+    const { data: pr } = await sb.from('progress').select('page').eq('user_id', me.id).eq('document_id', d.id).maybeSingle();
+    if (tok !== docTok) { doc.destroy(); return; }
+    pdf = doc; sizes = Array.from({ length: doc.numPages }, () => [v1.width, v1.height]);
+    zoom = 1; layout(Math.min(Math.max(1, pr?.page || 1), doc.numPages), 0);
+    loadSizes(doc, tok).catch(() => {});
   } catch (x) { if (tok === docTok) { closeDoc(); toast('Unable to open this file'); } }
 }
-function layout(go) {
+async function loadSizes(doc, tok) {
+  const n = doc.numPages;
+  for (let i = 1; i < n; i += 24) {
+    const idx = Array.from({ length: Math.min(24, n - i) }, (_, k) => i + k);
+    const ps = await Promise.all(idx.map(j => doc.getPage(j + 1)));
+    if (tok !== docTok || doc !== pdf) return;
+    const P = $('#pages'), a = P.children[curPage - 1], t0 = a ? a.getBoundingClientRect().top : 0;
+    let ch = false;
+    ps.forEach((p, k) => { const w = p.getViewport({ scale: 1 }); ch = setSize(idx[k], w.width, w.height) || ch; });
+    if (ch && a) P.scrollTop += a.getBoundingClientRect().top - t0; // keep what the reader is looking at in place
+  }
+}
+function setSize(i, pw, ph, quiet) {
+  const o = sizes[i];
+  if (o && Math.abs(o[0] - pw) < .5 && Math.abs(o[1] - ph) < .5) return false;
+  sizes[i] = [pw, ph];
+  const d = $('#pages').children[i]; if (!d || !d.dataset.n) return true;
+  const s = parseFloat(d.style.width) / pw; d.dataset.s = s; d.style.height = ph * s + 'px';
+  if (!quiet && d.dataset.r) { unrender(d); if (obs) { obs.unobserve(d); obs.observe(d); } }
+  return true;
+}
+function layout(go, frac) {
   if (!pdf) return;
-  const P = $('#pages'); P.innerHTML = ''; obs?.disconnect();
+  const P = $('#pages'); P.innerHTML = ''; obs?.disconnect(); lastW = P.clientWidth;
   const w = Math.min(P.clientWidth - (imm ? 0 : 16), imm ? 1800 : 900) * zoom;
   obs = new IntersectionObserver(es => es.forEach(x => x.isIntersecting ? render(x.target) : unrender(x.target)), { root: P, rootMargin: '1400px 0px' });
   sizes.forEach(([pw, ph], i) => {
@@ -253,26 +342,34 @@ function layout(go) {
     d.className = 'pg'; d.dataset.n = i + 1; d.dataset.s = s; d.style.cssText = `width:${w}px;height:${ph * s}px`;
     P.appendChild(d); obs.observe(d);
   });
-  P.children[Math.min(go, sizes.length) - 1]?.scrollIntoView(); updPage();
+  const c = P.children[Math.min(Math.max(go || 1, 1), sizes.length) - 1];
+  if (c) P.scrollTop = c.offsetTop - P.offsetTop + (frac || 0) * c.offsetHeight;
+  updPage();
 }
-function unrender(d) { if (!d.dataset.r) return; d._k = (d._k || 0) + 1; delete d.dataset.r; const c = d.querySelector('canvas'); if (c) { c.width = c.height = 0; c.remove(); } }
+function relayout() {
+  const P = $('#pages'), c = P.children[curPage - 1];
+  const f = c && c.dataset.n ? Math.max(0, Math.min(1, (P.scrollTop - (c.offsetTop - P.offsetTop)) / (c.offsetHeight || 1))) : 0;
+  layout(curPage, f);
+}
+function goPage(n) { const P = $('#pages'), c = P.children[n - 1]; if (c && c.dataset.n) { P.scrollTop = c.offsetTop - P.offsetTop; updPage(); } }
+function unrender(d) { if (!d.dataset.r) return; d._k = (d._k || 0) + 1; try { d._t && d._t.cancel(); } catch (_) {} d._t = null; delete d.dataset.r; const c = d.querySelector('canvas'); if (c) { c.width = c.height = 0; c.remove(); } }
 async function render(d) {
-  if (d.dataset.r || !pdf) return; d.dataset.r = 1; const k0 = d._k = (d._k || 0) + 1, doc = pdf;
+  if (d.dataset.r || !pdf) return; d.dataset.r = 1; const k0 = d._k = (d._k || 0) + 1, doc = pdf, i = +d.dataset.n - 1;
   try {
-    const p = await doc.getPage(+d.dataset.n), s = +d.dataset.s, base = p.getViewport({ scale: s });
+    const p = await doc.getPage(i + 1), v1 = p.getViewport({ scale: 1 });
+    setSize(i, v1.width, v1.height, true); // pages that differ from page 1 correct themselves here
+    if (d._k !== k0 || doc !== pdf) return;
+    const s = +d.dataset.s, base = p.getViewport({ scale: s });
     // high-quality render: >=2x pixel density, capped to stay within mobile canvas memory limits
     const k = Math.max(1, Math.min(Math.max(devicePixelRatio || 1, 2) * 1.25, 3.5, Math.sqrt(14e6 / (base.width * base.height))));
     const vp = p.getViewport({ scale: s * k }), c = document.createElement('canvas'), x = c.getContext('2d');
     c.width = Math.floor(vp.width); c.height = Math.floor(vp.height); x.imageSmoothingQuality = 'high';
-    await p.render({ canvasContext: x, viewport: vp }).promise;
-    if (d._k !== k0 || doc !== pdf) return;
-    const wm = (txt, size, alpha, rows, off) => {
-      x.save(); x.globalAlpha = alpha; x.fillStyle = '#000'; x.font = `600 ${size}px sans-serif`; x.rotate(-.5);
-      for (let yy = -vp.height * .2 + off; yy < vp.height * 1.4; yy += vp.height / rows) for (let xx = -vp.width * .3; xx < vp.width; xx += vp.width * .8) x.fillText(txt, xx, yy);
-      x.restore();
-    };
-    wm(B.owner, vp.width / 14, .07, 4, 0);
-    if (B.showUser) wm((me.full_name || '') + ' • ' + me.email, vp.width / 36, .07, 8, vp.height / 16);
+    const task = p.render({ canvasContext: x, viewport: vp }); d._t = task;
+    await task.promise; d._t = null;
+    if (d._k !== k0 || doc !== pdf) { c.width = c.height = 0; return; }
+    // Watermarks are burned into the pixels: dense tiling over the WHOLE page, so any crop or capture of the page still carries them.
+    if (!isProt(cur)) tileWM(x, c.width, c.height, B.owner, c.width / 30, .08, -.5);
+    if (B.showUser) tileWM(x, c.width, c.height, wmUser(), c.width / 46, .12, -.25, 2, 4);
     d.appendChild(c);
   } catch (x) { if (d._k === k0) delete d.dataset.r; }
 }
@@ -282,47 +379,212 @@ function updPage() {
   curPage = n; $('#pn').textContent = n + '/' + (pdf?.numPages || 1);
   clearTimeout(saveT); saveT = setTimeout(saveProg, 1500);
 }
-function saveProg() { if (cur && pdf && me) sb.from('progress').upsert({ user_id: me.id, document_id: cur.id, page: curPage, updated_at: new Date() }).then(() => {}, () => {}); }
-function closeDoc() {
-  if (imm) immersive(false);
-  clearTimeout(saveT); saveProg(); docTok++;
-  $('#viewer').classList.remove('on'); $('#pages').innerHTML = ''; document.body.style.overflow = ''; pdf = null; cur = null; sizes = []; obs?.disconnect();
+function saveProg() { if (cur && pdf && me) sb.from('progress').upsert({ user_id: me.id, document_id: cur.id, page: curPage, updated_at: new Date() }, { onConflict: 'user_id,document_id' }).then(() => {}, () => {}); }
+function closeDoc(fromHist) {
+  if (imm) immersive(false, true);
+  clearTimeout(saveT); saveProg();
+  if (cur && pdf) progMap[cur.id] = curPage;
+  docTok++; stopWm(); hold = 0; $('#shield').classList.remove('on');
+  $('#viewer').classList.remove('on'); $('#pages').innerHTML = ''; document.body.style.overflow = '';
+  try { pdf?.destroy(); } catch (_) {}
+  pdf = null; cur = null; sizes = []; obs?.disconnect(); drawLib();
+  if (!fromHist) hpop(0);
 }
 /* landscape + full-screen reading mode */
-const fsEl = () => document.fullscreenElement || document.webkitFullscreenElement;
-async function immersive(on) {
+// Puts the device back in the orientation it had before landscape mode (Android keeps the lock otherwise).
+async function releaseOri() {
+  try {
+    const o = screen.orientation; if (!o) return;
+    if (/^portrait/.test(prevOri) && /^landscape/.test(o.type)) { try { await o.lock('portrait'); } catch (_) {} }
+    o.unlock();
+  } catch (_) {}
+  prevOri = '';
+}
+async function immersive(on, fromHist) {
   const v = $('#viewer');
   if (on) {
-    imm = true; v.classList.add('imm', 'bar');
-    try { const f = v.requestFullscreen || v.webkitRequestFullscreen; if (f) await f.call(v, { navigationUI: 'hide' }); } catch (_) {}
-    try { await screen.orientation.lock('landscape'); } catch (_) {}
-    $('#lb').textContent = '⤢ Exit';
-    setTimeout(() => { v.classList.toggle('fake', innerHeight > innerWidth); layout(curPage); setTimeout(() => v.classList.remove('bar'), 2200); }, 450);
-    toast('Tap the page to show or hide controls');
+    if (imm || immBusy) return;
+    immBusy = true;
+    try {
+      imm = true; v.classList.add('imm', 'bar'); if (hs < 2) hpush();
+      try { const f = v.requestFullscreen || v.webkitRequestFullscreen; if (f) await f.call(v, { navigationUI: 'hide' }); } catch (_) {}
+      try { prevOri = screen.orientation.type; await screen.orientation.lock('landscape'); } catch (_) { prevOri = ''; }
+      if (!imm) { await releaseOri(); return; } // user already left while the browser was switching
+      $('#lb').textContent = '⤢ Exit';
+      setTimeout(() => { if (!imm) return; v.classList.toggle('fake', innerHeight > innerWidth); relayout(); setTimeout(() => v.classList.remove('bar'), 2200); }, 450);
+      toast('Tap the page for controls • ✕ (top right) exits');
+    } finally { immBusy = false; }
   } else {
+    if (!imm) return;
     imm = false; v.classList.remove('imm', 'bar', 'fake'); $('#lb').textContent = '⟳ Landscape';
-    try { screen.orientation.unlock(); } catch (_) {}
-    if (fsEl()) try { (document.exitFullscreen || document.webkitExitFullscreen).call(document); } catch (_) {}
-    setTimeout(() => layout(curPage), 200);
+    if (!fromHist) hpop(1);
+    await releaseOri(); // while still full screen, so the browser allows the lock change
+    if (fsEl()) { try { await (document.exitFullscreen || document.webkitExitFullscreen).call(document); } catch (_) {} }
+    setTimeout(() => { if (pdf) relayout(); }, 250);
   }
 }
 ['fullscreenchange', 'webkitfullscreenchange'].forEach(n => document.addEventListener(n, () => { if (imm && !fsEl()) immersive(false); }));
-let rz; addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { if (!pdf) return; if (imm) $('#viewer').classList.toggle('fake', innerHeight > innerWidth); layout(curPage); }, 250); });
+let rz;
+addEventListener('resize', () => {
+  clearTimeout(rz);
+  rz = setTimeout(() => {
+    if (!pdf) return;
+    if (imm) $('#viewer').classList.toggle('fake', innerHeight > innerWidth);
+    // only the WIDTH matters: mobile address-bar show/hide changes the height and must not redraw every page
+    if (Math.abs($('#pages').clientWidth - lastW) > 2) relayout();
+  }, 250);
+});
 $('#pages').addEventListener('click', () => { if (imm) $('#viewer').classList.toggle('bar'); });
 $('#pages').addEventListener('scroll', () => { clearTimeout(updPage._t); updPage._t = setTimeout(updPage, 120); });
+/* ---------- screen-capture / copy deterrents + history (Back button) ---------- */
+const vOn = () => $('#viewer').classList.contains('on');
+const typing = t => !!t && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName || '');
+const wipeClip = () => { try { navigator.clipboard?.writeText(' ')?.catch(() => {}); } catch (_) {} };
+function shield(on, ms) {
+  const s = $('#shield'); if (!s) return;
+  if (on) { s.classList.add('on'); if (ms) { hold = Date.now() + ms; setTimeout(chk, ms + 30); } return; }
+  if (Date.now() < hold) return;
+  s.classList.remove('on');
+}
+// Desktop: hide the pages whenever this window is not the active one. Touch devices: only when the page is hidden
+// (app switcher / tab change), because document.hasFocus() is unreliable on some mobile browsers.
+function chk() {
+  const bad = vOn() && (document.hidden || (matchMedia('(hover:hover) and (pointer:fine)').matches && !document.hasFocus()));
+  shield(!!bad);
+}
+$('#shield').addEventListener('click', () => { hold = 0; chk(); });
+addEventListener('blur', chk); addEventListener('focus', chk); document.addEventListener('visibilitychange', chk);
+addEventListener('pagehide', () => { if (vOn()) shield(true); });
+addEventListener('beforeprint', () => shield(true, 3000));
 addEventListener('keydown', k => {
-  const on = $('#viewer').classList.contains('on');
-  if (on && (k.ctrlKey || k.metaKey) && ['s', 'p', 'u', 'c'].includes(k.key.toLowerCase())) k.preventDefault();
-  if (on && k.key === 'Escape' && !document.querySelector('.mo') && !imm) closeDoc();
+  if (!vOn()) return;
+  const key = (k.key || '').toLowerCase(), mod = k.ctrlKey || k.metaKey, dlgOpen = !!document.querySelector('.mo');
+  if (key === 'escape' && !dlgOpen && !imm) return closeDoc();
+  if (key === 'printscreen' || (k.metaKey && k.shiftKey && ['3', '4', '5', 's', '#', '$', '%'].includes(key))) { shield(true, 2500); wipeClip(); }
+  if (dlgOpen) return;
+  if (key === 'f12' || (mod && k.shiftKey && ['i', 'j', 'c'].includes(key)) || (mod && ['s', 'p', 'u', 'c', 'a', 'x'].includes(key))) k.preventDefault();
 });
+addEventListener('keyup', k => { if (vOn() && (k.key || '') === 'PrintScreen') { shield(true, 2500); wipeClip(); } });
+['copy', 'cut', 'dragstart', 'selectstart', 'contextmenu'].forEach(n => document.addEventListener(n, ev => { if (vOn() && !typing(ev.target)) ev.preventDefault(); }));
+// Back button: first closes full-screen mode, then the viewer (instead of leaving the site).
+const hpush = () => { try { history.pushState({ s: ++hs }, ''); } catch (_) {} };
+const hpop = to => { if (hs > to) { const n = hs - to; hs = to; try { history.go(-n); } catch (_) {} } };
+addEventListener('popstate', () => {
+  hs = (history.state && history.state.s) || 0;
+  if (imm && hs < 2) immersive(false, true);
+  if (vOn() && hs < 1) closeDoc(true);
+});
+if (history.state && history.state.s) { try { history.replaceState(null, ''); } catch (_) {} }
+
+/* ---------- watermark helpers ---------- */
+const isProt = d => /\.p\.pdf$/.test((d && d.file_path) || '');
+const wmUser = () => (me.full_name ? me.full_name + ' • ' : '') + me.email + ' • ' + fmtD(new Date());
+// Dense diagonal tiling over the whole canvas (white + black pass so it stays visible on light and dark pages).
+function tileWM(x, W, H, txt, size, alpha, ang, gx = 3, gy = 5) {
+  x.save(); x.font = `700 ${size}px sans-serif`; x.textBaseline = 'middle'; x.textAlign = 'left';
+  const tw = x.measureText(txt).width, sx = tw + size * gx, sy = size * gy, R = Math.hypot(W, H) / 2, o = Math.max(1, size / 24);
+  x.translate(W / 2, H / 2); x.rotate(ang); x.globalAlpha = alpha;
+  let row = 0;
+  for (let yy = -R; yy < R; yy += sy, row++) for (let xx = -R - (row % 2) * sx / 2; xx < R; xx += sx) {
+    x.fillStyle = '#fff'; x.fillText(txt, xx + o, yy + o);
+    x.fillStyle = '#000'; x.fillText(txt, xx, yy);
+  }
+  x.restore();
+}
+// Always-on overlay above the pages: any screenshot or photo of the screen contains the reader's identity + time.
+function wmDraw() {
+  const o = $('#wmk'); if (!o) return;
+  const W = 520, H = 340, c = document.createElement('canvas'), x = c.getContext('2d'); c.width = W * 2; c.height = H * 2; x.scale(2, 2);
+  const L = B.showUser && me ? [(me.full_name ? me.full_name + ' • ' : '') + me.email, B.owner + ' • ' + fmtD(new Date())] : [B.owner, B.owner];
+  [[W * .5, H * .25, L[0]], [W * .5, H * .75, L[1]]].forEach(([px, py, t]) => {
+    x.save(); x.translate(px, py); x.rotate(-.38); x.textAlign = 'center'; x.textBaseline = 'middle';
+    let s = 15; x.font = `700 ${s}px sans-serif`;
+    while (x.measureText(t).width > 430 && s > 9) { s--; x.font = `700 ${s}px sans-serif`; }
+    x.globalAlpha = .16; x.fillStyle = '#fff'; x.fillText(t, 1, 1); x.fillStyle = '#000'; x.fillText(t, 0, 0); x.restore();
+  });
+  o.style.backgroundImage = `url(${c.toDataURL()})`; o.style.backgroundSize = W + 'px ' + H + 'px';
+}
+function startWm() { stopWm(); wmDraw(); wmT = setInterval(wmDraw, 60000); }
+function stopWm() { clearInterval(wmT); wmT = 0; const o = $('#wmk'); if (o) o.style.backgroundImage = ''; }
+
+/* ---------- "Protect": flatten a PDF into watermarked images (no text layer, watermark permanently inside the file) ---------- */
+const QL = { c: { long: 1800, q: .78 }, s: { long: 2400, q: .8 }, h: { long: 3000, q: .85 } };
+const uid = () => crypto.randomUUID ? crypto.randomUUID() : Date.now() + '-' + Math.random().toString(36).slice(2);
+function buildImagePdf(pages) {
+  const enc = new TextEncoder(), parts = [], off = [], N = pages.length, total = 2 + N * 3;
+  let len = 0;
+  const push = u => { parts.push(u); len += u.length; }, txt = s => push(enc.encode(s));
+  const obj = (n, body) => { off[n] = len; txt(`${n} 0 obj\n${body}\nendobj\n`); };
+  push(new Uint8Array([0x25, 0x50, 0x44, 0x46, 0x2d, 0x31, 0x2e, 0x34, 0x0a, 0x25, 0xe2, 0xe3, 0xcf, 0xd3, 0x0a]));
+  obj(1, '<< /Type /Catalog /Pages 2 0 R >>');
+  obj(2, `<< /Type /Pages /Kids [${pages.map((_, i) => `${3 + i * 3} 0 R`).join(' ')}] /Count ${N} >>`);
+  pages.forEach((p, i) => {
+    const po = 3 + i * 3, co = po + 1, io = po + 2, W = p.pw.toFixed(2), H = p.ph.toFixed(2), cs = `q ${W} 0 0 ${H} 0 0 cm /Im0 Do Q`;
+    obj(po, `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${W} ${H}] /Resources << /XObject << /Im0 ${io} 0 R >> >> /Contents ${co} 0 R >>`);
+    obj(co, `<< /Length ${cs.length} >>\nstream\n${cs}\nendstream`);
+    off[io] = len;
+    txt(`${io} 0 obj\n<< /Type /XObject /Subtype /Image /Width ${p.w} /Height ${p.h} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${p.jpg.length} >>\nstream\n`);
+    push(p.jpg); txt('\nendstream\nendobj\n');
+  });
+  const xo = len;
+  let x = `xref\n0 ${total + 1}\n0000000000 65535 f \n`;
+  for (let n = 1; n <= total; n++) x += String(off[n]).padStart(10, '0') + ' 00000 n \n';
+  txt(x + `trailer\n<< /Size ${total + 1} /Root 1 0 R >>\nstartxref\n${xo}\n%%EOF\n`);
+  return new Blob(parts, { type: 'application/pdf' });
+}
+async function flattenPdf(buf, { long = 2400, q = .8, onProgress } = {}) {
+  const doc = await pdfjsLib.getDocument({ data: buf, cMapUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/cmaps/', cMapPacked: true, standardFontDataUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/standard_fonts/', isEvalSupported: false }).promise;
+  try {
+    const n = doc.numPages, pages = [];
+    for (let i = 1; i <= n; i++) {
+      if (onProgress) onProgress(i, n);
+      const p = await doc.getPage(i), v1 = p.getViewport({ scale: 1 });
+      const s = Math.min(long / Math.max(v1.width, v1.height), Math.sqrt(9e6 / (v1.width * v1.height))), vp = p.getViewport({ scale: s });
+      const c = document.createElement('canvas'), x = c.getContext('2d');
+      c.width = Math.max(1, Math.floor(vp.width)); c.height = Math.max(1, Math.floor(vp.height));
+      x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
+      await p.render({ canvasContext: x, viewport: vp }).promise;
+      tileWM(x, c.width, c.height, B.owner, c.width / 30, .11, -.5);
+      const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', q));
+      if (!blob) throw new Error('Image encoding failed');
+      pages.push({ w: c.width, h: c.height, pw: v1.width, ph: v1.height, jpg: new Uint8Array(await blob.arrayBuffer()) });
+      c.width = c.height = 0; p.cleanup();
+    }
+    return buildImagePdf(pages);
+  } finally { try { doc.destroy(); } catch (_) {} }
+}
+async function protectDoc(b, id) {
+  const d = docs.find(x => x.id === id); if (!d || isProt(d)) return;
+  if (!await dlg({ t: 'Protect this file?', p: 'Every page becomes a watermarked image and the original file is replaced. This can take a few minutes for large files; keep this tab open.', ok: 'Protect' })) return;
+  const old = b.textContent; busy(b, true);
+  try {
+    b.textContent = '⏳ Downloading…';
+    const { data, error } = await sb.storage.from('documents').createSignedUrl(d.file_path, 120);
+    if (error) throw error;
+    const res = await fetch(data.signedUrl); if (!res.ok) throw new Error('HTTP ' + res.status);
+    const blob = await flattenPdf(await res.arrayBuffer(), { ...QL.s, onProgress: (i, n) => { b.textContent = `⏳ ${i}/${n}`; } });
+    if (blob.size > 52428800) throw new Error('Protected file is ' + mb(blob.size) + ' (limit 50 MB). Upload the original again with Compact quality.');
+    b.textContent = '⏳ Saving…';
+    const path = uid() + '.p.pdf';
+    const u = await sb.storage.from('documents').upload(path, blob, { contentType: 'application/pdf' });
+    if (u.error) throw u.error;
+    const r = await sb.from('documents').update({ file_path: path, size_bytes: blob.size }).eq('id', id);
+    if (r.error) { await sb.storage.from('documents').remove([path]); throw r.error; }
+    await sb.storage.from('documents').remove([d.file_path]);
+    toast('✅ File protected'); upView();
+  } catch (x) { busy(b, false); b.textContent = old; toast('Protection failed: ' + (x?.message || x)); }
+}
 
 /* ---------- admin ---------- */
 function upView() {
-  $('#main').innerHTML = `<div class="card"><h3>Upload a new PDF</h3><label for="t">Title</label><input id="t"><label for="ds">Description (optional)</label><textarea id="ds" rows="2"></textarea><label for="f">PDF file (up to 50 MB)</label><input id="f" type="file" accept="application/pdf"><button class="btn w" data-a="upload">⬆️ Upload</button></div>
+  const ok = live();
+  $('#main').innerHTML = `<div class="card"><h3>Upload a new PDF</h3><label for="t">Title</label><input id="t" maxlength="200"><label for="ds">Description (optional)</label><textarea id="ds" rows="2" maxlength="1000"></textarea><label for="f">PDF file (up to 50 MB)</label><input id="f" type="file" accept="application/pdf"><label class="opt"><input id="pt" type="checkbox" checked><span>🛡 <b>Protect file</b> (recommended): every page is converted to an image with a permanent watermark. The file has no selectable text, and any copy someone manages to download still carries the watermark.</span></label><label for="pq">Protected quality (higher = larger file)</label><select id="pq"><option value="c">Compact</option><option value="s" selected>Standard</option><option value="h">High</option></select><button class="btn w" data-a="upload">⬆️ Upload</button></div>
   <h3 style="margin-top:20px">Uploaded files</h3><div class="card" id="dl"><div class="sp"></div></div>`;
-  sb.from('documents').select('*').order('created_at', { ascending: false }).then(({ data }) => {
+  sb.from('documents').select('*').order('created_at', { ascending: false }).then(({ data, error }) => {
+    if (!ok()) return;
+    if (error) { $('#dl').innerHTML = `<div class="center">${e(error.message)}</div>`; return; }
     docs = data || [];
-    $('#dl').innerHTML = docs.map(d => `<div class="row"><div class="i"><b>${e(d.title)}</b><small>${mb(d.size_bytes || 0)} • ${fmtD(d.created_at)}</small></div><button class="btn r s" data-a="deldoc" data-id="${d.id}" title="Delete file" aria-label="Delete file">🗑</button></div>`).join('') || '<div class="center">Empty</div>';
+    $('#dl').innerHTML = docs.map(d => `<div class="row"><div class="i"><b>${e(d.title)}</b><small>${mb(d.size_bytes || 0)} • ${e(fmtD(d.created_at))}</small></div>${isProt(d) ? '<span class="tag prot">🛡 Protected</span>' : `<button class="btn s" data-a="protect" data-id="${e(d.id)}" title="Convert to a protected, watermarked copy" aria-label="Protect file">🛡 Protect</button>`}<button class="btn g s" data-a="edoc" data-id="${e(d.id)}" title="Edit title and description" aria-label="Edit file details">✏️</button><button class="btn r s" data-a="deldoc" data-id="${e(d.id)}" title="Delete file" aria-label="Delete file">🗑</button></div>`).join('') || '<div class="center">Empty</div>';
   });
 }
 async function upload(b) {
@@ -330,94 +592,156 @@ async function upload(b) {
   if (!t || !f) return toast('A title and a file are required');
   if (f.type !== 'application/pdf' && !/\.pdf$/i.test(f.name)) return toast('Only PDF files are allowed');
   if (f.size > 52428800) return toast('File exceeds 50 MB');
-  busy(b, true); b.textContent = '⏳ Uploading...';
-  const path = (crypto.randomUUID ? crypto.randomUUID() : Date.now() + '-' + Math.random().toString(36).slice(2)) + '.pdf';
-  const u = await sb.storage.from('documents').upload(path, f, { contentType: 'application/pdf' });
-  if (u.error) { busy(b, false); b.textContent = '⬆️ Upload'; return toast(u.error.message); }
-  const r = await sb.from('documents').insert({ title: t, description: $('#ds').value.trim(), file_path: path, size_bytes: f.size });
-  if (r.error) await sb.storage.from('documents').remove([path]);
-  toast(r.error ? r.error.message : '✅ Uploaded'); upView();
+  const head = new TextDecoder('latin1').decode(await f.slice(0, 1024).arrayBuffer());
+  if (!head.includes('%PDF-')) return toast('This file is not a valid PDF');
+  const prot = !!$('#pt')?.checked, ql = QL[$('#pq')?.value] || QL.s;
+  busy(b, true);
+  const reset = () => { busy(b, false); b.textContent = '⬆️ Upload'; };
+  let blob = f;
+  if (prot) {
+    b.textContent = '⏳ Protecting…';
+    try { blob = await flattenPdf(await f.arrayBuffer(), { ...ql, onProgress: (i, n) => { b.textContent = `⏳ Protecting ${i}/${n}`; } }); }
+    catch (x) { reset(); return toast('Could not protect this PDF: ' + (x?.message || x)); }
+    if (blob.size > 52428800) { reset(); return toast('Protected file is ' + mb(blob.size) + ' (limit 50 MB). Choose Compact quality or split the PDF.'); }
+  }
+  b.textContent = '⏳ Uploading...';
+  const path = uid() + (prot ? '.p.pdf' : '.pdf');
+  const u = await sb.storage.from('documents').upload(path, blob, { contentType: 'application/pdf' });
+  if (u.error) { reset(); return toast(u.error.message); }
+  const r = await sb.from('documents').insert({ title: t, description: $('#ds').value.trim(), file_path: path, size_bytes: blob.size });
+  if (r.error) { await sb.storage.from('documents').remove([path]); reset(); return toast(r.error.message); }
+  toast('✅ Uploaded'); upView();
 }
+const stRow = s => `<div class="row"><div class="i"><b>${e(s.full_name || '—')}${s.role === 'admin' ? ' 👑' : ''}</b><small>${e(s.email)}${s.created_at ? ' • ' + e(fmtD(s.created_at)) : ''}</small></div><span class="tag ${e(s.status)}">${STL[s.status] || e(s.status)}</span>`
+  + (s.status !== 'approved' ? `<button class="btn s" data-a="setst" data-id="${e(s.id)}" data-v="approved" title="Approve" aria-label="Approve">✔</button>` : '')
+  + (s.status !== 'blocked' ? `<button class="btn r s" data-a="setst" data-id="${e(s.id)}" data-v="blocked" title="Block" aria-label="Block">⛔</button>` : '')
+  + (s.status === 'approved' ? (s.role === 'admin' ? `<button class="btn g s" data-a="setrole" data-id="${e(s.id)}" data-v="student">⬇ Remove admin</button>` : `<button class="btn g s" data-a="setrole" data-id="${e(s.id)}" data-v="admin">👑 Make admin</button>`) : '')
+  + (s.role !== 'admin' ? `<button class="btn g s" data-a="setpw" data-id="${e(s.id)}" data-n="${e(s.email)}" title="Set temporary password" aria-label="Set temporary password">🔑</button><button class="btn r s" data-a="deluser" data-id="${e(s.id)}" data-n="${e(s.email)}" title="Delete permanently" aria-label="Delete permanently">🗑</button>` : '')
+  + '</div>';
 async function stView() {
-  const { data } = await sb.from('profiles').select('*').neq('id', me.id).order('created_at', { ascending: false });
-  const rank = { pending: 0, approved: 1, blocked: 2 }, list = (data || []).sort((a, b) => rank[a.status] - rank[b.status]);
+  const ok = live();
+  const { data, error } = await sb.from('profiles').select('*').neq('id', me.id).order('created_at', { ascending: false });
+  if (!ok()) return;
+  if (error) return fail(error);
+  const rank = { pending: 0, approved: 1, blocked: 2 }, list = (data || []).sort((a, b) => (rank[a.status] ?? 3) - (rank[b.status] ?? 3));
   const np = list.filter(s => s.status === 'pending').length;
   $('#main').innerHTML = `<input id="q" placeholder="🔍 Search students..." aria-label="Search students"><p class="mu" style="margin:0 0 10px"><small>${list.length} accounts${np ? ` • <b>${np} awaiting approval</b>` : ''}</small></p><div class="card" id="sl"></div>`;
-  const lab = { approved: 'Approved', pending: 'Pending', blocked: 'Blocked' };
-  const draw = f => $('#sl').innerHTML = list.filter(s => ((s.full_name || '') + s.email).toLowerCase().includes(f)).map(s => `<div class="row"><div class="i"><b>${e(s.full_name || '—')}${s.role === 'admin' ? ' 👑' : ''}</b><small>${e(s.email)}</small></div><span class="tag ${s.status}">${lab[s.status] || e(s.status)}</span>
-    ${s.status !== 'approved' ? `<button class="btn s" data-a="setst" data-id="${s.id}" data-v="approved" title="Approve" aria-label="Approve">✔</button>` : ''}${s.status !== 'blocked' ? `<button class="btn r s" data-a="setst" data-id="${s.id}" data-v="blocked" title="Block" aria-label="Block">⛔</button>` : ''}${s.status === 'approved' ? (s.role === 'admin' ? `<button class="btn g s" data-a="setrole" data-id="${s.id}" data-v="student">⬇ Remove admin</button>` : `<button class="btn g s" data-a="setrole" data-id="${s.id}" data-v="admin">👑 Make admin</button>`) : ''}<button class="btn g s" data-a="setpw" data-id="${s.id}" data-n="${e(s.email)}" title="Set temporary password" aria-label="Set temporary password">🔑</button>${s.role !== 'admin' ? `<button class="btn r s" data-a="deluser" data-id="${s.id}" data-n="${e(s.email)}" title="Delete permanently" aria-label="Delete permanently">🗑</button>` : ''}</div>`).join('') || '<div class="center">No students</div>';
+  const draw = f => { const sl = $('#sl'); if (sl) sl.innerHTML = list.filter(s => ((s.full_name || '') + s.email).toLowerCase().includes(f)).map(stRow).join('') || '<div class="center">No students</div>'; };
   draw(''); $('#q').oninput = ev => draw(ev.target.value.toLowerCase());
 }
 async function emView() {
-  const { data } = await sb.from('allowed_emails').select('*').order('created_at', { ascending: false });
+  const ok = live();
+  const { data, error } = await sb.from('allowed_emails').select('*').order('created_at', { ascending: false });
+  if (!ok()) return;
+  if (error) return fail(error);
   $('#main').innerHTML = `<div class="card"><h3>Student email allow-list</h3><p class="mu"><small>Students who register with these emails are approved instantly. One email per line, or separate with commas.</small></p><textarea id="ae" rows="5"></textarea><button class="btn w" data-a="addem">➕ Add</button></div>
   <div class="card" style="margin-top:14px">${(data || []).map(x => `<div class="row"><div class="i">${e(x.email)}</div><button class="btn r s" data-a="rmem" data-id="${e(x.email)}" aria-label="Remove">✕</button></div>`).join('') || '<div class="center">Empty</div>'}</div>`;
 }
-async function lgView() {
-  const { data } = await sb.from('access_logs').select('created_at, profiles(full_name,email), documents(title)').order('created_at', { ascending: false }).limit(100);
-  $('#main').innerHTML = `<div class="card">${(data || []).map(l => `<div class="row"><div class="i"><b>${e(l.profiles?.full_name || l.profiles?.email)}</b><small>${e(l.documents?.title || '')}</small></div><small>${fmtD(l.created_at)}</small></div>`).join('') || '<div class="center">No activity yet</div>'}</div>`;
+function lgDraw() {
+  const l = $('#lgl'); if (!l) return;
+  const f = ($('#q')?.value || '').toLowerCase();
+  l.innerHTML = lgRows.filter(r => ((r.profiles?.full_name || '') + (r.profiles?.email || '') + (r.documents?.title || '')).toLowerCase().includes(f)).map(r => `<div class="row"><div class="i"><b>${e(r.profiles?.full_name || r.profiles?.email || '—')}</b><small>${e(r.documents?.title || '')}</small></div><small>${e(fmtD(r.created_at))}</small></div>`).join('') || '<div class="center">No activity yet</div>';
+  $('#lgm').innerHTML = lgDone ? '' : '<button class="btn g" data-a="lgmore">Load more</button>';
 }
-const genPw = () => { const c = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789', a = crypto.getRandomValues(new Uint32Array(10)); return [...a].map(n => c[n % c.length]).join(''); };
+async function lgMore() {
+  const my = vt;
+  const { data, error } = await sb.from('access_logs').select('created_at, profiles(full_name,email), documents(title)').order('created_at', { ascending: false }).range(lgRows.length, lgRows.length + 49);
+  if (my !== vt || !$('#lgl')) return; // the admin switched tabs while this was loading
+  if (error) return toast(error.message);
+  lgRows = lgRows.concat(data || []); lgDone = !data || data.length < 50; lgDraw();
+}
+async function lgView() {
+  live(); lgRows = []; lgDone = false;
+  $('#main').innerHTML = `<input id="q" placeholder="🔍 Search activity..." aria-label="Search activity"><div class="card" id="lgl"><div class="sp"></div></div><div id="lgm" style="text-align:center;margin-top:12px"></div>`;
+  $('#q').oninput = lgDraw;
+  await lgMore();
+}
+const genPw = () => { const c = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789', a = crypto.getRandomValues(new Uint32Array(12)); return [...a].map(n => c[n % c.length]).join(''); };
 
 /* ---------- events ---------- */
-document.addEventListener('click', async ev => {
-  const b = ev.target.closest('[data-a]'); if (!b) return; const a = b.dataset.a, id = b.dataset.id;
+async function act(b) {
+  const a = b.dataset.a, id = b.dataset.id;
   if (a === 'm-in' || a === 'm-up' || a === 'm-fg') { mode = a === 'm-up' ? 'up' : a === 'm-fg' ? 'fg' : 'in'; authView(); }
-  else if (a === 'auth') doAuth(b);
-  else if (a === 'fg') doFg(b);
-  else if (a === 'setnew') doSetNew(b);
+  else if (a === 'auth') await doAuth(b);
+  else if (a === 'fg') await doFg(b);
+  else if (a === 'setnew') await doSetNew(b);
   else if (a === 'cancelrec') { rec = false; history.replaceState(null, '', location.pathname); await sb.auth.signOut(); mode = 'in'; route(); }
   else if (a === 'eye') { const i = $('#' + b.dataset.t); const h = i.type === 'password'; i.type = h ? 'text' : 'password'; b.textContent = h ? '🙈' : '👁'; }
-  else if (a === 'out') { closeDoc(); await sb.auth.signOut(); me = null; mode = 'in'; route(); }
+  else if (a === 'out') { closeDoc(); await sb.auth.signOut(); me = null; mode = 'in'; tab = 'lib'; route(); }
   else if (a === 'refresh') route();
+  else if (a === 'reload') appView();
   else if (a === 'tab') { tab = b.dataset.t; appView(); }
   else if (a === 'open') openDoc(id);
   else if (a === 'close') closeDoc();
   else if (a === 'land') immersive(!imm);
-  else if (a === 'zi' || a === 'zo') { zoom = Math.max(.6, Math.min(2.5, zoom + (a === 'zi' ? .25 : -.25))); layout(curPage); }
-  else if (a === 'upload') upload(b);
+  else if (a === 'zi' || a === 'zo') { if (!pdf) return; zoom = Math.max(.6, Math.min(2.5, zoom + (a === 'zi' ? .25 : -.25))); relayout(); }
+  else if (a === 'jump') {
+    if (!pdf) return;
+    const r = await dlg({ t: 'Go to page', f: [{ l: `Page number (1–${pdf.numPages})`, type: 'number', min: 1, maxv: pdf.numPages, v: curPage }], ok: 'Go' }); if (!r) return;
+    const n = Math.round(+r[0]);
+    if (!(n >= 1 && n <= pdf.numPages)) return toast('Enter a number between 1 and ' + pdf.numPages);
+    goPage(n);
+  }
+  else if (a === 'upload') await upload(b);
+  else if (a === 'protect') await protectDoc(b, id);
+  else if (a === 'edoc') {
+    const d = docs.find(x => x.id === id); if (!d) return;
+    const r = await dlg({ t: 'Edit file details', f: [{ l: 'Title', v: d.title, max: 200 }, { l: 'Description (optional)', v: d.description || '', area: 1, max: 1000 }], ok: 'Save' }); if (!r) return;
+    const t = r[0].trim(); if (!t) return toast('Title is required');
+    const u = await sb.from('documents').update({ title: t, description: r[1].trim() }).eq('id', id);
+    toast(u.error ? u.error.message : '✅ Saved'); upView();
+  }
   else if (a === 'deldoc') {
     if (!await dlg({ t: 'Delete this file?', p: 'The file will be permanently deleted for everyone.', ok: 'Delete', danger: 1 })) return;
+    busy(b, true);
     const d = docs.find(x => x.id === id), r = await sb.from('documents').delete().eq('id', id);
-    if (r.error) return toast(r.error.message);
+    if (r.error) { busy(b, false); return toast(r.error.message); }
     if (d) await sb.storage.from('documents').remove([d.file_path]);
     upView();
   }
-  else if (a === 'setst') { const r = await sb.from('profiles').update({ status: b.dataset.v }).eq('id', id); if (r.error) toast(r.error.message); stView(); }
+  else if (a === 'setst') { busy(b, true); const r = await sb.from('profiles').update({ status: b.dataset.v }).eq('id', id); if (r.error) toast(r.error.message); stView(); }
   else if (a === 'setrole') {
     const up = b.dataset.v === 'admin';
     if (!await dlg({ t: up ? 'Grant admin access?' : 'Remove admin access?', p: up ? 'This person will be able to upload files and manage all students.' : 'This person will become a regular student.', ok: 'Confirm' })) return;
-    const r = await sb.from('profiles').update({ role: b.dataset.v }).eq('id', id); if (r.error) toast(r.error.message); stView();
+    busy(b, true); const r = await sb.from('profiles').update({ role: b.dataset.v }).eq('id', id); if (r.error) toast(r.error.message); stView();
   }
   else if (a === 'chpw') {
-    const r = await dlg({ t: 'Change your password', f: [{ l: 'New password (min. 6 characters)', type: 'password' }, { l: 'Confirm new password', type: 'password' }], ok: 'Update' }); if (!r) return;
-    if (r[0].length < 6) return toast('Password must be at least 6 characters');
+    const r = await dlg({ t: 'Change your password', f: [{ l: `New password (min. ${MINPW} characters)`, type: 'password', ac: 'new-password' }, { l: 'Confirm new password', type: 'password', ac: 'new-password' }], ok: 'Update' }); if (!r) return;
+    if (r[0].length < MINPW) return toast(`Password must be at least ${MINPW} characters`);
     if (r[0] !== r[1]) return toast('Passwords do not match');
     const u = await sb.auth.updateUser({ password: r[0] }); toast(u.error ? u.error.message : '✅ Your password has been changed');
   }
   else if (a === 'setpw') {
-    const r = await dlg({ t: 'Set temporary password', p: 'For <b>' + b.dataset.n + '</b>. Suggested: <b>' + (window._g = genPw()) + '</b>', f: [{ l: 'New temporary password (min. 6 characters)' }], ok: 'Set password' }); if (!r) return;
-    const pw = r[0] || window._g;
-    if (pw.length < 6) return toast('Password must be at least 6 characters');
+    const g = genPw();
+    const r = await dlg({ t: 'Set temporary password', p: 'For <b>' + e(b.dataset.n) + '</b>. Suggested: <b>' + g + '</b>', f: [{ l: `New temporary password (min. ${MINPW} characters; leave empty to use the suggestion)` }], ok: 'Set password' }); if (!r) return;
+    const pw = r[0] || g;
+    if (pw.length < MINPW) return toast(`Password must be at least ${MINPW} characters`);
     const u = await sb.rpc('admin_set_password', { target: id, new_password: pw });
     if (u.error) return toast(u.error.message);
     try { await navigator.clipboard.writeText(pw); } catch (_) {}
     toast('✅ Password set (copied). Share it with the student; they can change it with 🔑 after signing in.');
   }
   else if (a === 'deluser') {
-    if (!await dlg({ t: 'Delete student permanently?', p: '<b>' + b.dataset.n + '</b> will be removed from the database, including their account, progress and activity history. This cannot be undone.', ok: 'Delete permanently', danger: 1 })) return;
+    if (!await dlg({ t: 'Delete student permanently?', p: '<b>' + e(b.dataset.n) + '</b> will be removed from the database, including their account, progress and activity history. This cannot be undone.', ok: 'Delete permanently', danger: 1 })) return;
+    busy(b, true);
     const r = await sb.rpc('admin_delete_user', { target: id });
     toast(r.error ? r.error.message : '🗑 Student deleted'); stView();
   }
   else if (a === 'addem') {
     const list = [...new Set($('#ae').value.toLowerCase().split(/[\s,;]+/).filter(x => /^\S+@\S+\.\S+$/.test(x)))];
     if (!list.length) return toast('Enter at least one valid email');
+    busy(b, true);
     const r = await sb.from('allowed_emails').upsert(list.map(email => ({ email })));
-    if (r.error) return toast(r.error.message);
-    await sb.from('profiles').update({ status: 'approved' }).in('email', list).eq('status', 'pending');
+    if (r.error) { busy(b, false); return toast(r.error.message); }
+    for (let i = 0; i < list.length; i += 100) await sb.from('profiles').update({ status: 'approved' }).in('email', list.slice(i, i + 100)).eq('status', 'pending');
     toast('✅ ' + list.length + ' email(s) added'); emView();
   }
-  else if (a === 'rmem') { const r = await sb.from('allowed_emails').delete().eq('email', id); if (r.error) toast(r.error.message); emView(); }
+  else if (a === 'rmem') { busy(b, true); const r = await sb.from('allowed_emails').delete().eq('email', id); if (r.error) toast(r.error.message); emView(); }
+  else if (a === 'lgmore') { busy(b, true); await lgMore(); }
+}
+document.addEventListener('click', ev => {
+  const b = ev.target.closest('[data-a]'); if (!b) return;
+  act(b).catch(x => { console.error(x); busy(b, false); toast('Something went wrong. Please try again.'); });
 });
 document.addEventListener('keydown', ev => { if (ev.key === 'Enter' && ev.target.closest('.auth') && ev.target.tagName === 'INPUT') $('[data-enter]')?.click(); });
 if (linkErr) { mode = 'fg'; history.replaceState(null, '', location.pathname); setTimeout(() => toast('This reset link is invalid or has expired. Please request a new one.'), 400); }
