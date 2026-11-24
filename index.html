@@ -4,747 +4,935 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<meta name="referrer" content="no-referrer">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#0a1630">
-<title>Computer Maintenance &amp; Networking</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💻%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Noto+Sans+Ethiopic:wght@400;600;700&display=swap" rel="stylesheet">
+<meta name="theme-color" content="#08122a">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; object-src 'none'; base-uri 'self'; form-action 'self'">
+<script>if(location.protocol==='http:'&&!/^(localhost|127\.|\[::1\])/.test(location.hostname))location.replace('https:'+location.href.substring(5));</script>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Course Library</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230891b2'/%3E%3Cg fill='none' stroke='white' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='9' cy='9' r='2.5' fill='white'/%3E%3Ccircle cx='23' cy='11' r='2.5' fill='white'/%3E%3Ccircle cx='15' cy='23' r='2.5' fill='white'/%3E%3Cpath d='M10.5 10.5l3 10M21.5 13l-5 8.5M11.5 9.5l9 1'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:wght@400..700&display=swap" rel="stylesheet">
+<script>try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}</script>
 <style>
-:root{--bg:#f4f7fc;--card:rgba(255,255,255,.86);--tx:#0b1220;--mu:#64748b;--pr:#0891b2;--pr2:#2563eb;--bd:#e2e8f2;--er:#dc2626;--sh:0 12px 40px -14px rgba(15,23,42,.22)}
-@media(prefers-color-scheme:dark){:root{--bg:#070b16;--card:rgba(20,27,46,.8);--tx:#e8ecf8;--mu:#97a3c0;--bd:#25304b;--sh:0 12px 40px -14px rgba(0,0,0,.7)}}
+:root{
+  --pr:#0891b2;--pr2:#2563eb;
+  --bg:#f3f6fa;--card:#fff;--soft:#eaeff6;--tx:#0b1220;--mu:#586478;--bd:#dfe6ef;
+  --lk:color-mix(in srgb,var(--pr) 72%,#000);
+  --oktx:#166534;--okbg:#dcfce7;--watx:#92400e;--wabg:#fef3c7;--ertx:#991b1b;--erbg:#fee2e2;--er:#dc2626;
+  --r-lg:22px;--r-md:16px;
+  --fd:'Bricolage Grotesque','Figtree',system-ui,sans-serif;
+  --fb:'Figtree',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  color-scheme:light;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){
+  --bg:#080d19;--card:#101829;--soft:#17213a;--tx:#e8edf9;--mu:#93a0ba;--bd:#222d47;
+  --lk:color-mix(in srgb,var(--pr) 55%,#fff);
+  --oktx:#86efac;--okbg:#0f2f1d;--watx:#fcd34d;--wabg:#3a2a0a;--ertx:#fca5a5;--erbg:#3b1417;
+  color-scheme:dark}}
+:root[data-theme=dark]{
+  --bg:#080d19;--card:#101829;--soft:#17213a;--tx:#e8edf9;--mu:#93a0ba;--bd:#222d47;
+  --lk:color-mix(in srgb,var(--pr) 55%,#fff);
+  --oktx:#86efac;--okbg:#0f2f1d;--watx:#fcd34d;--wabg:#3a2a0a;--ertx:#fca5a5;--erbg:#3b1417;
+  color-scheme:dark}
+
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;min-height:100dvh;font-family:'Plus Jakarta Sans','Noto Sans Ethiopic',system-ui,sans-serif;color:var(--tx);-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased;background:radial-gradient(900px 420px at 8% -10%,rgba(8,145,178,.16),transparent 60%),radial-gradient(700px 420px at 100% 0,rgba(37,99,235,.13),transparent 60%),var(--bg);background-attachment:fixed}
+body{margin:0;font-family:var(--fb);font-size:16px;line-height:1.5;background:var(--bg);color:var(--tx);-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased}
 button,input,textarea{font:inherit;color:inherit}
-h2,h3{margin:0 0 8px;letter-spacing:-.01em}
-.wrap{max-width:980px;margin:0 auto;padding:16px}
-.mu,small{color:var(--mu)}
-.hero{position:relative;overflow:hidden;color:#fff;border-radius:24px;padding:28px 22px;margin:12px 0 18px;box-shadow:var(--sh);background:radial-gradient(circle at 85% 15%,rgba(34,211,238,.35),transparent 45%),linear-gradient(135deg,#0a1630,#10265a 60%,#0e3a6e);animation:up .6s both}
-.hero:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:26px 26px;-webkit-mask-image:linear-gradient(120deg,transparent 20%,#000);mask-image:linear-gradient(120deg,transparent 20%,#000)}
-.hero:after{content:"";position:absolute;width:230px;height:230px;right:-70px;bottom:-100px;border-radius:50%;background:radial-gradient(circle,rgba(34,211,238,.45),transparent 70%);animation:fl 6s ease-in-out infinite alternate;pointer-events:none}
-.hero>:not(.deco){position:relative;z-index:1}
-.deco{position:absolute;right:6px;top:6px;width:130px;opacity:.4;pointer-events:none}
-.badge{display:inline-block;font:700 .66rem/1 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.16em;color:#67e8f9;border:1px solid rgba(103,232,249,.45);padding:7px 11px;border-radius:99px;margin-bottom:14px}
-.hero h1{margin:0 0 8px;font-size:clamp(1.7rem,6.4vw,2.5rem);font-weight:800;line-height:1.1;letter-spacing:-.035em}
-.hero h1 span{background:linear-gradient(90deg,#67e8f9,#a5b4fc);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{margin:0;opacity:.85;font-size:.95rem}
-.hero .tg{margin-top:6px;font-size:.8rem;opacity:.6}
-.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}.chips b{font-weight:600;font-size:.76rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);padding:6px 11px;border-radius:10px}
-header{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 80%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd);padding-top:env(safe-area-inset-top)}
-header .wrap{display:flex;align-items:center;gap:8px;padding:10px 16px}
-header small{max-width:32vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.logo{font-weight:800;flex:1;min-width:0;display:flex;gap:9px;align-items:center;letter-spacing:-.02em}.logo span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.logo i{font-style:normal;background:linear-gradient(135deg,var(--pr),var(--pr2));color:#fff;border-radius:11px;padding:4px 8px;box-shadow:0 4px 12px rgba(8,145,178,.4)}
-.btn{border:0;border-radius:12px;padding:11px 16px;background:linear-gradient(135deg,var(--pr),var(--pr2));color:#fff;font-weight:600;cursor:pointer;box-shadow:0 6px 16px rgba(8,145,178,.3);transition:transform .15s,filter .15s}
-.btn:hover{filter:brightness(1.08)}.btn:active{transform:scale(.97)}.btn:disabled{opacity:.5;cursor:default}
-.btn.g{background:var(--card);color:var(--tx);border:1px solid var(--bd);box-shadow:none}.btn.r{background:var(--er);box-shadow:0 6px 16px rgba(220,38,38,.25)}.btn.s{padding:7px 12px;font-size:.82rem;border-radius:10px}.btn.w{width:100%}
-.lnk{background:none;border:0;color:var(--pr);font-weight:600;font-size:.85rem;cursor:pointer;padding:4px 0}.lnk:hover{text-decoration:underline}
+button{cursor:pointer}
+h1,h2,h3{font-family:var(--fd);letter-spacing:-.02em;line-height:1.2}
 :focus-visible{outline:2px solid var(--pr);outline-offset:2px}
-.tabs{display:flex;gap:6px;margin:8px 0 14px;overflow-x:auto;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}
-.tabs button{border:1px solid var(--bd);background:var(--card);border-radius:999px;padding:9px 16px;cursor:pointer;white-space:nowrap;font-weight:600;font-size:.88rem}
-.tabs button.on{background:linear-gradient(135deg,var(--pr),var(--pr2));color:#fff;border-color:transparent}
-.card{background:var(--card);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid var(--bd);border-radius:18px;padding:18px;box-shadow:var(--sh);animation:up .5s both;transition:transform .2s,box-shadow .2s}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-.doc{border-top:3px solid var(--pr)}.doc:hover{transform:translateY(-4px);box-shadow:0 16px 38px rgba(8,145,178,.24)}
-.doc h3{font-size:1.04rem}.doc p{margin:0 0 12px;color:var(--mu);font-size:.88rem}.doc .m{font-size:.76rem;color:var(--mu);margin-bottom:12px}
-.dh{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.tile{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:1.4rem;background:linear-gradient(135deg,var(--pr),var(--pr2));box-shadow:0 6px 16px rgba(8,145,178,.35)}
-.ico{font-size:2.2rem;margin-bottom:8px}
-input,textarea,select{width:100%;padding:13px 14px;border-radius:12px;border:1px solid var(--bd);background:color-mix(in srgb,var(--bg) 70%,transparent);margin:6px 0 12px;outline:0;transition:border .15s,box-shadow .15s}
-input:focus,textarea:focus,select:focus{border-color:var(--pr);box-shadow:0 0 0 3px rgba(8,145,178,.2)}
-select{cursor:pointer}option{background:var(--bg);color:var(--tx)}
-input[type=checkbox]{width:18px;height:18px;margin:2px 0 0;padding:0;flex:none;accent-color:var(--pr)}
-.opt{display:flex;gap:10px;align-items:flex-start;margin:4px 0 12px;font-size:.88rem;font-weight:500;color:var(--tx);line-height:1.45}
-#viewer input,#viewer textarea,.mo input,.mo textarea{-webkit-user-select:text;user-select:text}
-label{font-size:.8rem;font-weight:600;color:var(--mu)}
-.auth{max-width:440px;margin:5vh auto}.auth .tabs{justify-content:center}
-.pw{position:relative}.pw input{padding-right:50px}.eye{position:absolute;right:8px;top:14px;border:0;background:none;font-size:1.2rem;cursor:pointer;padding:2px 6px}
-.row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:12px 0;border-bottom:1px solid var(--bd)}.row:last-child{border:0}.row .i{flex:1;min-width:150px}.row .i b{display:block;overflow:hidden;text-overflow:ellipsis}.row .i small{word-break:break-all}
-.tag{font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:99px;background:var(--bd)}.tag.approved{background:#dcfce7;color:#166534}.tag.pending{background:#fef3c7;color:#92400e}.tag.blocked{background:#fee2e2;color:#991b1b}
-.center{text-align:center;padding:40px 16px;color:var(--mu)}.auth .center{padding:30px 18px}
-.ra{display:flex;gap:8px;justify-content:flex-end;margin-top:6px}
-.mo{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:16px;background:rgba(2,6,23,.55);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}.mo .card{width:100%;max-width:400px;background:var(--bg)}
-#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translateX(-50%);background:#0f172a;color:#fff;padding:12px 18px;border-radius:12px;opacity:0;pointer-events:none;transition:.3s;z-index:99;max-width:90vw;box-shadow:var(--sh)}#toast.on{opacity:1}
-.sp{width:34px;height:34px;border:4px solid var(--bd);border-top-color:var(--pr);border-radius:50%;animation:s 1s linear infinite;margin:30px auto}
-#viewer{position:fixed;inset:0;background:#1e2235;z-index:50;display:none;flex-direction:column;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+[hidden]{display:none!important}
+svg{flex:none}
+.wrap{max-width:1000px;margin:0 auto;padding:16px}
+.page{padding-bottom:calc(48px + env(safe-area-inset-bottom))}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border:0;border-radius:12px;background:linear-gradient(135deg,var(--pr),var(--pr2));color:#fff;font-weight:600;transition:filter .15s,transform .1s,background .15s}
+.btn:hover{filter:brightness(1.08)}.btn:active{transform:scale(.98)}
+.btn.g{background:var(--card);color:var(--tx);border:1px solid var(--bd)}
+.btn.g:hover{background:var(--soft);filter:none}
+.btn.r{background:var(--er);color:#fff}
+.btn.s{min-height:36px;padding:0 12px;font-size:.85rem;border-radius:10px}
+.btn.ic{width:40px;min-height:40px;padding:0}
+.btn.wide{width:100%}
+.btn:disabled{opacity:.55;cursor:not-allowed;filter:none;transform:none}
+.btn.loading{position:relative;pointer-events:none}
+.btn.loading>*{opacity:0}
+.btn.loading{color:transparent!important}
+.btn.loading::after{content:"";position:absolute;width:18px;height:18px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;animation:spin .7s linear infinite}
+.btn.g.loading::after{border-color:var(--bd);border-top-color:var(--pr)}
+.lnk{background:none;border:0;padding:0;color:var(--lk);font-weight:600}
+.lnk:hover{text-decoration:underline}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* forms */
+.f{margin-bottom:16px}
+.f label,.lab{display:block;font-weight:600;font-size:.86rem;margin-bottom:6px}
+.opt{font-weight:400;color:var(--mu)}
+.lrow{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.lrow label{margin-bottom:6px}.lrow .lnk{font-size:.86rem;margin-bottom:6px}
+input,textarea{width:100%;font-size:16px;padding:12px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--bg);outline:0;transition:border-color .15s,box-shadow .15s}
+input:focus,textarea:focus{border-color:var(--pr);box-shadow:0 0 0 3px color-mix(in srgb,var(--pr) 22%,transparent)}
+input::placeholder,textarea::placeholder{color:var(--mu);opacity:.8}
+textarea{resize:vertical;min-height:84px}
+.pw{position:relative}.pw input{padding-right:48px}
+.eye{position:absolute;right:4px;top:4px;width:40px;height:40px;border:0;background:none;color:var(--mu);border-radius:10px;display:grid;place-items:center}
+.eye:hover{color:var(--tx);background:var(--soft)}
+.hint{font-size:.8rem;color:var(--mu);margin-top:6px}
+.tools{display:flex;gap:8px;margin-top:8px}
+.msg{border-radius:12px;padding:11px 14px;font-size:.9rem;margin-bottom:14px}
+.msg.err{background:var(--erbg);color:var(--ertx)}
+.msg.ok{background:var(--okbg);color:var(--oktx)}
+.meter{display:flex;align-items:center;gap:4px;margin-top:9px}
+.meter i{flex:1;height:4px;border-radius:4px;background:var(--bd)}
+.meter span{margin-left:8px;min-width:54px;font-size:.78rem;color:var(--mu)}
+.meter[data-s="1"]{--mc:#ef4444}.meter[data-s="2"]{--mc:#f59e0b}.meter[data-s="3"]{--mc:#84cc16}.meter[data-s="4"]{--mc:#22c55e}
+.meter[data-s="1"] i:nth-child(-n+1),.meter[data-s="2"] i:nth-child(-n+2),.meter[data-s="3"] i:nth-child(-n+3),.meter[data-s="4"] i:nth-child(-n+4){background:var(--mc)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;color:#fff;border-radius:var(--r-lg);padding:30px 26px;background:linear-gradient(150deg,#08122a 0%,#0c2150 58%,#0b3a6b 100%)}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);background-size:28px 28px;-webkit-mask-image:linear-gradient(120deg,transparent 25%,#000);mask-image:linear-gradient(120deg,transparent 25%,#000)}
+.hero .net{position:absolute;right:-24px;top:-8px;width:min(80%,430px);opacity:.55;pointer-events:none;-webkit-mask-image:linear-gradient(to left,#000 35%,transparent);mask-image:linear-gradient(to left,#000 35%,transparent)}
+.hero .lk path{stroke-dasharray:3 8;animation:flow 2.6s linear infinite;opacity:.7}
+@keyframes flow{to{stroke-dashoffset:-22}}
+.hero .in{position:relative}
+.hero h1{margin:0 0 10px;font-weight:700;font-size:clamp(2rem,6.4vw,3.35rem);line-height:1.04;letter-spacing:-.035em;max-width:16ch;text-wrap:balance}
+.hero p{margin:0;opacity:.82;max-width:44ch}
+.hero .hello{opacity:.78;margin-bottom:8px;font-size:.95rem}
+.hero .tag-badge{display:inline-block;margin-bottom:14px;padding:5px 12px;border-radius:99px;border:1px solid rgba(103,232,249,.4);color:#a5f3fc;font-size:.8rem;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chips b{font-weight:600;font-size:.82rem;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.16);padding:6px 12px;border-radius:99px}
+.hero.sm{padding:24px 22px}
+.hero.sm h1{font-size:clamp(1.55rem,4.6vw,2.4rem);max-width:none}
+.hero.sm .chips{margin-top:14px}
+
+/* auth */
+.authwrap{min-height:100dvh;max-width:1080px;margin:0 auto;padding:16px;display:grid;gap:16px;align-content:center}
+.authwrap .hero{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.auth{padding:26px 22px}
+.auth h2{margin:0 0 6px;font-size:1.55rem}
+.sub{color:var(--mu);margin:0 0 20px;font-size:.95rem}
+.alt{text-align:center;margin:18px 0 0;color:var(--mu);font-size:.92rem}
+.back{display:inline-flex;align-items:center;gap:6px;margin-bottom:18px;font-size:.9rem}
+.bigicon{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;margin-bottom:16px;background:color-mix(in srgb,var(--pr) 14%,transparent);color:var(--lk)}
+.bigicon.warn{background:var(--wabg);color:var(--watx)}.bigicon.bad{background:var(--erbg);color:var(--ertx)}
+@media(min-width:900px){
+  .authwrap{grid-template-columns:1.15fr .85fr;gap:24px;align-items:stretch}
+  .authwrap .hero{display:flex;flex-direction:column;justify-content:flex-end;min-height:600px;padding:40px 36px}
+  .authwrap .hero .net{width:480px;opacity:.9}
+  .auth{padding:36px 32px;align-self:center}
+}
+
+/* header & nav */
+.top{position:sticky;top:0;z-index:20;padding-top:env(safe-area-inset-top);background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--bd)}
+.top .wrap{display:flex;align-items:center;gap:8px;padding-top:10px;padding-bottom:10px}
+.brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0;font-family:var(--fd);font-weight:700;letter-spacing:-.01em}
+.brand span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.mark{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,var(--pr),var(--pr2));color:#fff}
+.who{font-size:.86rem;color:var(--mu);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-right:4px}
+@media(max-width:600px){.who{display:none}}
+.seg{display:flex;gap:4px;padding:4px;background:var(--soft);border-radius:14px;overflow-x:auto;scrollbar-width:none;max-width:100%;width:max-content}
+.seg::-webkit-scrollbar{display:none}
+.seg button{border:0;background:none;padding:0 14px;min-height:38px;border-radius:10px;font-weight:600;color:var(--mu);display:flex;align-items:center;gap:7px;white-space:nowrap}
+.seg button:hover{color:var(--tx)}
+.seg button.on{background:var(--card);color:var(--tx);box-shadow:0 1px 3px rgba(11,18,32,.14)}
+.count{min-width:20px;height:20px;padding:0 6px;border-radius:99px;background:var(--pr);color:#fff;font-size:.72rem;font-weight:700;display:inline-grid;place-items:center}
+.nav{margin:18px 0 16px}
+
+/* content */
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r-md);padding:18px}
+.sh{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:0 0 14px}
+.sh h2{margin:0;font-size:1.4rem}.sh small{color:var(--mu);font-weight:500;font-size:.9rem;margin-left:6px}
+.bar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:14px}
+.search{position:relative;flex:1;min-width:200px;max-width:380px}
+.search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--mu);pointer-events:none}
+.search input{padding-left:42px;margin:0;background:var(--card)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.doc{position:relative;overflow:hidden;display:flex;flex-direction:column;gap:10px;padding:20px 20px 20px 24px}
+.doc::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--pr),var(--pr2))}
+.dh{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tile{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:color-mix(in srgb,var(--pr) 13%,transparent);color:var(--lk)}
+.pill-s{font-size:.78rem;font-weight:600;padding:4px 10px;border-radius:99px;background:var(--soft);color:var(--mu)}
+.doc h3{margin:4px 0 0;font-size:1.15rem}
+.doc p{margin:0;color:var(--mu);font-size:.92rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.meta{display:flex;gap:16px;flex-wrap:wrap;color:var(--mu);font-size:.82rem;margin:auto 0 4px;padding-top:4px}
+.row{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--bd);flex-wrap:wrap}
+.row:first-child{padding-top:2px}.row:last-child{border:0;padding-bottom:2px}
+.row .i{flex:1;min-width:190px}.row .i b{display:block;overflow-wrap:anywhere}.row .i small{color:var(--mu);overflow-wrap:anywhere}
+.row .t{color:var(--mu);font-size:.82rem;white-space:nowrap}
+.av{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--pr) 14%,transparent);color:var(--lk);font-weight:700;flex:none}
+.acts{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:.75rem;font-weight:600;padding:4px 10px;border-radius:99px;background:var(--soft);color:var(--mu)}
+.tag.approved{background:var(--okbg);color:var(--oktx)}.tag.pending{background:var(--wabg);color:var(--watx)}.tag.blocked{background:var(--erbg);color:var(--ertx)}
+.crown{color:#d97706;vertical-align:-3px;margin-left:4px}
+.center{text-align:center;padding:44px 18px;color:var(--mu)}
+.center h3{color:var(--tx);margin:12px 0 6px;font-size:1.2rem}.center p{margin:0 auto 16px;max-width:40ch}
+.center .bigicon{margin:0 auto}
+.sec{margin:26px 0 12px;font-size:1.15rem}
+.drop{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding:26px 16px;border:1.5px dashed var(--bd);border-radius:14px;color:var(--mu);cursor:pointer;transition:border-color .15s,background .15s}
+.drop:hover,.drop.over{border-color:var(--pr);background:color-mix(in srgb,var(--pr) 6%,transparent)}
+.drop b{color:var(--tx);overflow-wrap:anywhere}
+.drop.has{border-style:solid;border-color:var(--pr)}
+.sp{width:34px;height:34px;border:3px solid var(--bd);border-top-color:var(--pr);border-radius:50%;animation:spin .8s linear infinite;margin:40px auto}
+
+/* dialog + toast */
+dialog{border:0;border-radius:var(--r-lg);padding:0;background:var(--card);color:var(--tx);width:min(440px,calc(100vw - 32px));box-shadow:0 30px 80px rgba(0,0,0,.4)}
+dialog::backdrop{background:rgba(5,10,25,.62);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+dialog form{padding:24px}
+dialog h3{margin:0 0 6px;font-size:1.3rem}
+dialog .sub{margin-bottom:18px}
+.dlg-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:20px}
+#toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,12px);background:#0f172a;color:#fff;padding:12px 18px;border-radius:12px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:100;max-width:min(92vw,460px);font-size:.92rem;box-shadow:0 12px 40px rgba(0,0,0,.35);border-left:4px solid var(--pr)}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#toast.ok{border-left-color:#22c55e}#toast.err{border-left-color:#ef4444}
+
+/* reader */
+#viewer{position:fixed;inset:0;height:100dvh;z-index:50;display:none;flex-direction:column;background:#141829;color:#fff;overflow:hidden;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 #viewer.on{display:flex}
-#viewer.fake{inset:auto;top:0;left:0;width:100dvh;height:100dvw;transform-origin:0 0;transform:translateX(100dvw) rotate(90deg)}
-.vb{display:flex;align-items:center;gap:8px;padding:10px 12px;padding-top:calc(10px + env(safe-area-inset-top));background:#12152a;color:#fff;transition:transform .25s;z-index:2}.vb .t{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600;font-size:.92rem}
-.vb button{background:#2a3050;color:#fff;border:0;border-radius:10px;padding:9px 12px;cursor:pointer;font-weight:600}
-.vb #pn{font-variant-numeric:tabular-nums;min-width:56px}
-#wmk{position:absolute;inset:0;z-index:1;pointer-events:none;background-repeat:repeat}
-#shield{display:none;position:absolute;inset:0;z-index:7;background:#000;color:#8d97b8;align-items:center;justify-content:center;text-align:center;padding:24px;font-weight:600;line-height:1.6}#shield.on{display:flex}
-#xit{display:none;position:absolute;top:calc(10px + env(safe-area-inset-top));right:10px;z-index:6;width:44px;height:44px;border-radius:50%;border:0;background:rgba(18,21,42,.72);color:#fff;font-size:1.1rem;cursor:pointer}
-.imm #xit{display:block}.imm.bar #xit{display:none}
-.tag.prot{background:#dbeafe;color:#1e40af}
-.imm .vb{position:absolute;top:0;left:0;right:0;transform:translateY(-110%)}.imm.bar .vb{transform:none}
-#pages{flex:1;overflow-y:scroll;overflow-x:auto;padding:10px 8px;text-align:center;-webkit-overflow-scrolling:touch}.imm #pages{padding:0}
-.pg{margin:0 auto 10px;background:#fff;border-radius:4px;box-shadow:0 4px 18px rgba(0,0,0,.4)}.imm .pg{border-radius:0;margin-bottom:4px}.pg canvas{width:100%;height:100%;display:block;pointer-events:none}
-@keyframes s{to{transform:rotate(360deg)}}@keyframes fl{to{transform:translate(-24px,-16px) scale(1.18)}}@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-@media print{body,#viewer{display:none!important}}
+#viewer.rot{inset:auto;top:0;left:100%;width:100vh;height:100vw;width:100dvh;height:100dvw;transform-origin:0 0;transform:rotate(90deg)}
+.vb{display:flex;align-items:center;gap:6px;padding:8px 10px;padding-top:max(8px,env(safe-area-inset-top));background:#0d1120;position:relative;z-index:3;transition:transform .25s ease}
+.vb .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:var(--fd);font-weight:600;padding-left:4px}
+.vb button{background:rgba(255,255,255,.08);color:#fff;border:0;border-radius:10px;min-width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;padding:0 10px}
+.vb button:hover{background:rgba(255,255,255,.17)}
+.vb button.on{background:var(--pr)}
+#pn{font-variant-numeric:tabular-nums;font-size:.86rem;opacity:.9;min-width:78px;padding:0 6px}
+#bar{height:3px;background:rgba(255,255,255,.1);position:relative;z-index:3}
+#bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--pr),var(--pr2))}
+#pages{flex:1;overflow:auto;position:relative;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;touch-action:pan-x pan-y}
+#sheet{position:relative;width:max-content;min-width:100%;padding:12px 8px calc(28px + env(safe-area-inset-bottom))}
+.pg{position:relative;margin:0 auto 12px;background:#fff;border-radius:4px;box-shadow:0 6px 24px rgba(0,0,0,.45);overflow:hidden}
+.pg::after{content:attr(data-n);position:absolute;inset:0;display:grid;place-items:center;color:#cbd2e0;font:600 2rem var(--fd)}
+.pg[data-r="1"]::after{display:none}
+.pg canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.vload{display:grid;place-items:center;gap:6px;padding-top:18vh;color:#aab3cc;text-align:center}
+#viewer.imm .vb{position:absolute;left:0;right:0;top:0;background:rgba(13,17,32,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+#viewer.imm.hide .vb{transform:translateY(-115%)}
+#viewer.imm #bar{position:absolute;top:0;left:0;right:0}
+#viewer.imm #sheet{padding:0}
+#viewer.imm .pg{margin-bottom:6px;border-radius:0;box-shadow:none}
+#pill{display:none;position:absolute;right:12px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:4;padding:6px 12px;border-radius:99px;background:rgba(13,17,32,.85);font-size:.8rem;font-variant-numeric:tabular-nums;pointer-events:none}
+#viewer.imm.hide #pill{display:block}
+@media(max-width:520px){.vb .t{display:none}#pn{flex:1;text-align:center}}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+@media print{body{display:none!important}}
 </style>
 </head>
 <body>
+<noscript><p style="padding:32px;font-family:sans-serif">JavaScript is required to use this site.</p></noscript>
 <div id="app"><div class="sp"></div></div>
-<div id="viewer" oncontextmenu="return false" role="dialog" aria-modal="true" aria-label="Document viewer">
-  <div class="vb"><button data-a="close" aria-label="Close">✕</button><span class="t"></span><button id="pn" data-a="jump" aria-label="Go to page">1/1</button><button data-a="zo" aria-label="Zoom out">−</button><button data-a="zi" aria-label="Zoom in">+</button><button data-a="land" id="lb" aria-label="Landscape full screen">⟳ Landscape</button></div>
-  <div id="pages"></div>
-  <div id="wmk" aria-hidden="true"></div>
-  <button id="xit" data-a="land" aria-label="Exit full screen">✕</button>
-  <div id="shield" aria-hidden="true">🔒 Content is hidden while this window is inactive.<br>Return to this window to continue reading.</div>
+
+<div id="viewer" role="dialog" aria-modal="true" aria-label="Document reader">
+  <div class="vb">
+    <button data-a="close" aria-label="Close reader" title="Close"></button>
+    <span class="t"></span>
+    <button id="pn" data-a="goto" aria-label="Go to page" title="Go to page">1 / 1</button>
+    <button data-a="zo" aria-label="Zoom out" title="Zoom out"></button>
+    <button data-a="zi" aria-label="Zoom in" title="Zoom in"></button>
+    <button id="bland" data-a="land" aria-label="Landscape mode" title="Landscape mode"></button>
+    <button id="bfs" data-a="fs" aria-label="Fullscreen" title="Fullscreen"></button>
+  </div>
+  <div id="bar"><i></i></div>
+  <div id="pages"><div id="sheet"></div></div>
+  <div id="pill">1 / 1</div>
 </div>
 <div id="toast" role="status" aria-live="polite"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous"></script>
-<!-- Bump the number after ?v= every time you edit config.js so browsers never serve an old copy -->
-<script src="config.js?v=4"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.118.0/dist/umd/supabase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="config.js"></script>
 <script>
-if (typeof SUPABASE_URL === 'undefined' || typeof SUPABASE_ANON_KEY === 'undefined') { document.body.innerHTML = '<p style="padding:30px;font-family:sans-serif">config.js was not found or is incomplete.</p>'; throw new Error('config.js missing'); }
-if (typeof supabase === 'undefined' || typeof pdfjsLib === 'undefined') { document.body.innerHTML = '<div style="padding:30px;font-family:sans-serif"><p>Required libraries failed to load. Please check your internet connection.</p><button onclick="location.reload()" style="padding:10px 16px;cursor:pointer">Reload</button></div>'; throw new Error('libraries missing'); }
-const B = Object.assign({ name: 'Computer Maintenance & Networking', accent: 'Maintenance', badge: 'FULL GUIDE MODULE', tagline: 'Complete Course Guide • Reference Module', chips: ['💽 Software', '🛠 Troubleshooting', '🌐 Networking'], owner: '', showUser: true, color1: '#0891b2', color2: '#2563eb' }, typeof BRAND !== 'undefined' ? BRAND : {});
+'use strict';
+/* ================= bootstrap ================= */
+if (typeof SUPABASE_URL === 'undefined' || typeof SUPABASE_ANON_KEY === 'undefined' || typeof supabase === 'undefined') {
+  document.getElementById('app').innerHTML = '<div style="max-width:460px;margin:20vh auto;padding:24px;font-family:system-ui,sans-serif;text-align:center"><h2 style="margin:0 0 8px">Setup required</h2><p style="color:#64748b;margin:0">The site configuration could not be loaded. Make sure <b>config.js</b> sits next to this file and defines <b>SUPABASE_URL</b> and <b>SUPABASE_ANON_KEY</b>.</p></div>';
+  throw new Error('config.js missing or Supabase failed to load');
+}
+
+const B = Object.assign({
+  name: 'Computer Maintenance & Networking',
+  badge: '',
+  tagline: 'Complete course guide and reference modules',
+  chips: ['Software', 'Troubleshooting', 'Networking'],
+  owner: '', showUser: true,
+  color1: '#0891b2', color2: '#2563eb',
+  redirectUrl: ''
+}, typeof BRAND !== 'undefined' ? BRAND : {});
 if (!B.owner) B.owner = B.name;
 if (!Array.isArray(B.chips)) B.chips = [];
-document.title = B.name; document.documentElement.style.setProperty('--pr', B.color1); document.documentElement.style.setProperty('--pr2', B.color2);
-const MINPW = 8;
-const $ = s => document.querySelector(s), app = $('#app');
-const e = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const heroTitle = () => B.accent ? e(B.name).replace(e(B.accent), () => '<span>' + e(B.accent) + '</span>') : e(B.name);
-const fmtD = d => new Date(d).toLocaleString('en-US', { dateStyle: 'medium', timeStyle: 'short' });
-const mb = n => (n / 1048576).toFixed(1) + ' MB';
-const fsEl = () => document.fullscreenElement || document.webkitFullscreenElement;
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { flowType: 'implicit', detectSessionInUrl: true, persistSession: true, autoRefreshToken: true } });
+document.title = B.name;
+document.documentElement.style.setProperty('--pr', B.color1);
+document.documentElement.style.setProperty('--pr2', B.color2);
+
+const MIN_PW = 8;            // minimum length for new passwords
+const MAX_PX = 14e6;         // max canvas pixels per page (iOS-safe)
+const PDFJS_CDN = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/';
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-let tries = 0, me = null, tab = 'lib', mode = 'in', docs = [], pdf = null, sizes = [], cur = null, zoom = 1, obs = null, curPage = 1, saveT, docTok = 0, imm = false, fgEmail = '', lastW = 0, rt = 0, vt = 0, lgRows = [], lgDone = false, progMap = {}, hs = 0, prevOri = '', immBusy = false, hold = 0, wmT = 0;
-let rec = /type=recovery/.test(location.hash + location.search);
-const hp = new URLSearchParams(location.hash.slice(1));
-const linkErr = hp.get('error_description');
-const STL = { approved: 'Approved', pending: 'Pending', blocked: 'Blocked' };
 
-function toast(m) {
-  const t = $('#toast'), h = fsEl() || document.body;
-  if (t.parentNode !== h) h.appendChild(t);
-  t.textContent = m; t.classList.add('on'); clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('on'), 3600);
+const store = {
+  get: k => { try { return sessionStorage.getItem(k); } catch { return null; } },
+  set: (k, v) => { try { sessionStorage.setItem(k, v); } catch {} },
+  del: k => { try { sessionStorage.removeItem(k); } catch {} }
+};
+
+/* Read recovery / error info from the URL BEFORE the Supabase client consumes it */
+const _hp = new URLSearchParams(location.hash.replace(/^#/, ''));
+const _qp = new URLSearchParams(location.search);
+if (_hp.get('type') === 'recovery') store.set('recovery', '1');
+let authNotice = null, mode = 'in';
+if (_hp.get('error_description') || _qp.get('error_description')) {
+  authNotice = { t: 'err', m: 'That reset link is invalid or has expired. Request a new one below.' };
+  mode = 'forgot';
+  history.replaceState(null, '', location.pathname);
 }
-const busy = (b, on) => { if (b) b.disabled = on; };
-const hero = sub => `<div class="hero"><svg class="deco" viewBox="0 0 160 160" fill="none" stroke="#67e8f9" stroke-width="1.5" aria-hidden="true"><path d="M20 120L60 70L100 90L140 30M60 70L50 30M100 90L130 130" opacity=".6"/><g fill="#0a1630"><circle cx="20" cy="120" r="7"/><circle cx="60" cy="70" r="9"/><circle cx="100" cy="90" r="7"/><circle cx="140" cy="30" r="8"/><circle cx="50" cy="30" r="6"/><circle cx="130" cy="130" r="6"/></g></svg><div class="badge">${e(B.badge)}</div><h1>${heroTitle()}</h1><p>${sub}</p>${B.tagline ? `<div class="tg">${e(B.tagline)}</div>` : ''}<div class="chips">${B.chips.map(c => `<b>${e(c)}</b>`).join('')}</div></div>`;
-const pwField = (id, label, ac) => `<label for="${id}">${label}</label><div class="pw"><input id="${id}" type="password" autocomplete="${ac}"><button type="button" class="eye" data-a="eye" data-t="${id}" aria-label="Show or hide password">👁</button></div>`;
-const live = () => { const t = ++vt; return () => t === vt && !!$('#main'); };
-const fail = er => { const m = $('#main'); if (m) m.innerHTML = `<div class="card center"><div class="ico">⚠️</div><p>${e(er?.message || er)}</p><button class="btn g" data-a="reload">Try again</button></div>`; };
 
-/* ---------- dialogs (replace prompt/confirm). `p` is trusted HTML: callers must escape ---------- */
-function dlg({ t, p = '', f = [], ok = 'Confirm', danger }) {
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } });
+
+/* ================= helpers ================= */
+const $ = (s, r = document) => r.querySelector(s), app = $('#app');
+const e = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const fmtDT = d => new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(d));
+const fmtD = d => new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium' }).format(new Date(d));
+const mb = n => n >= 1048576 ? (n / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(n / 1024)) + ' KB';
+const validEmail = s => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(s);
+const redirect = () => B.redirectUrl || (location.origin + location.pathname);
+const initials = s => (String(s || '?').trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('') || '?').toUpperCase();
+
+const ICONS = {
+  logo: '<circle cx="6" cy="6" r="2.2"/><circle cx="18" cy="8" r="2.2"/><circle cx="12" cy="18" r="2.2"/><path d="M7.8 7.2 10.8 16M16.5 9.9 13.3 16.2M8.2 6.4l7.6 1.2"/>',
+  eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+  eyeOff: '<path d="M9.9 4.2A10 10 0 0 1 12 5c6.5 0 10 7 10 7a17 17 0 0 1-3.2 4.2M6.6 6.6A17 17 0 0 0 2 12s3.5 7 10 7a9.7 9.7 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/><path d="m2 2 20 20"/>',
+  search: '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>',
+  book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
+  file: '<path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/>',
+  upload: '<path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/>',
+  users: '<path d="M16 20v-1.5a3.5 3.5 0 0 0-3.5-3.5h-5A3.5 3.5 0 0 0 4 18.5V20"/><circle cx="10" cy="8" r="3.5"/><path d="M20 20v-1.5a3.5 3.5 0 0 0-2.5-3.3M15.5 4.7a3.5 3.5 0 0 1 0 6.6"/>',
+  mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>',
+  activity: '<path d="M3 12h4l3-8 4 16 3-8h4"/>',
+  key: '<circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M16 7l3 3M14 9l2 2"/>',
+  logout: '<path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/>',
+  x: '<path d="M18 6 6 18M6 6l12 12"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  minus: '<path d="M5 12h14"/>',
+  land: '<rect x="2" y="6" width="20" height="12" rx="2.5"/><path d="M18.5 12h.01" stroke-width="3"/>',
+  expand: '<path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/>',
+  shrink: '<path d="M3 8h3a2 2 0 0 0 2-2V3M21 8h-3a2 2 0 0 1-2-2V3M3 16h3a2 2 0 0 1 2 2v3M21 16h-3a2 2 0 0 0-2 2v3"/>',
+  trash: '<path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14M10 11v5M14 11v5"/>',
+  check: '<path d="m5 12 5 5 9-10"/>',
+  ban: '<circle cx="12" cy="12" r="9"/><path d="m5.6 5.6 12.8 12.8"/>',
+  crown: '<path d="m3 8 4 4 5-7 5 7 4-4-2 11H5z"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  moon: '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>',
+  back: '<path d="M19 12H5M11 6l-6 6 6 6"/>',
+  alert: '<path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  inbox: '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5h13L22 12v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-6z"/>',
+  shield: '<path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/>'
+};
+const ic = (n, s = 20) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[n]}</svg>`;
+
+function toast(m, type = '') {
+  const t = $('#toast'); t.textContent = m; t.className = 'on ' + type;
+  clearTimeout(t._t); t._t = setTimeout(() => t.classList.remove('on'), 3800);
+}
+const setBusy = (b, on) => { if (!b) return; b.disabled = on; b.classList.toggle('loading', on); b.setAttribute('aria-busy', on); };
+const fmsg = (t, m) => { const el = $('#fm'); if (el) el.innerHTML = m ? `<div class="msg ${t}" role="${t === 'err' ? 'alert' : 'status'}">${e(m)}</div>` : ''; };
+const spinner = '<div class="sp" role="status" aria-label="Loading"></div>';
+
+function authErr(err) {
+  const m = String(err?.message || '').toLowerCase();
+  if (m.includes('invalid login') || m.includes('invalid credentials')) return 'Incorrect email or password.';
+  if (m.includes('not confirmed')) return 'Please confirm your email first. Check your inbox for the confirmation link.';
+  if (m.includes('already registered') || m.includes('already been registered')) return 'An account with this email already exists. Try signing in instead.';
+  if (err?.status === 429 || m.includes('rate limit') || m.includes('too many')) return 'Too many attempts. Please wait a few minutes and try again.';
+  if (m.includes('different from the old') || m.includes('same as the old')) return 'Your new password must be different from the old one.';
+  if (m.includes('failed to fetch') || m.includes('network') || m.includes('load failed')) return 'Can’t reach the server. Check your internet connection and try again.';
+  return err?.message || 'Something went wrong. Please try again.';
+}
+
+/* password UI */
+const pwField = (id, ac, o = {}) => `<div class="pw"><input id="${id}" type="password" autocomplete="${ac}" ${o.meter ? `data-meter="m-${id}"` : ''} required><button type="button" class="eye" data-a="eye" data-t="${id}" aria-label="Show password" aria-pressed="false">${ic('eye', 18)}</button></div>${o.meter ? `<div class="meter" id="m-${id}" data-s="0" aria-live="polite"><i></i><i></i><i></i><i></i><span></span></div>` : ''}`;
+function strength(p) {
+  if (!p) return 0;
+  let s = (p.length >= MIN_PW) + (p.length >= 12) + (/[a-z]/.test(p) && /[A-Z]/.test(p)) + (/\d/.test(p) && /\D/.test(p)) + /[^A-Za-z0-9]/.test(p);
+  if (p.length < MIN_PW) s = Math.min(s, 1);
+  return Math.max(1, Math.min(4, s));
+}
+document.addEventListener('input', ev => {
+  const id = ev.target.dataset?.meter; if (!id) return;
+  const m = document.getElementById(id), s = strength(ev.target.value);
+  m.dataset.s = s; m.querySelector('span').textContent = ['', 'Weak', 'Fair', 'Good', 'Strong'][s];
+});
+const pwCheck = (a, b) => a.length < MIN_PW ? `Use at least ${MIN_PW} characters.` : (a !== b ? 'The two passwords don’t match.' : '');
+function genPw() {
+  const cs = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789', a = new Uint32Array(12); crypto.getRandomValues(a);
+  return [...a].map(n => cs[n % cs.length]).join('');
+}
+
+/* modal dialog */
+function ask(o) {
   return new Promise(res => {
-    const prev = document.activeElement, m = document.createElement('div'); m.className = 'mo';
-    m.innerHTML = `<div class="card" role="dialog" aria-modal="true" aria-label="${e(t)}"><h3>${e(t)}</h3>${p ? `<p class="mu">${p}</p>` : ''}${f.map((x, i) => `<label for="f${i}">${e(x.l)}</label>${x.area
-      ? `<textarea id="f${i}" rows="3" maxlength="${+x.max || 1000}"></textarea>`
-      : `<input id="f${i}" type="${x.type || 'text'}" autocomplete="${x.ac || 'off'}"${x.max ? ` maxlength="${+x.max}"` : ''}${x.min != null ? ` min="${+x.min}"` : ''}${x.maxv != null ? ` max="${+x.maxv}"` : ''}>`}`).join('')}<div class="ra"><button class="btn g" data-k="0">Cancel</button><button class="btn ${danger ? 'r' : ''}" data-k="1">${e(ok)}</button></div></div>`;
-    (fsEl() || document.body).appendChild(m);
-    f.forEach((x, i) => { if (x.v != null) m.querySelector('#f' + i).value = x.v; });
-    const done = v => { m.remove(); setTimeout(() => { try { prev && prev.focus && prev.focus(); } catch (_) {} }, 0); res(v); };
-    m.onclick = ev => { const k = ev.target.dataset.k; if (ev.target === m || k === '0') done(null); else if (k === '1') done(f.map((_, i) => m.querySelector('#f' + i).value)); };
-    m.onkeydown = ev => { if (ev.key === 'Escape') { ev.preventDefault(); done(null); } if (ev.key === 'Enter' && ev.target.tagName === 'INPUT') { ev.preventDefault(); m.querySelector('[data-k="1"]').click(); } };
-    (m.querySelector('input,textarea') || m.querySelector('[data-k="1"]')).focus();
+    const d = document.createElement('dialog'); let out = null;
+    const fs = (o.fields || []).map(f => {
+      const inner = f.type === 'password' ? pwField(f.id, f.ac || 'new-password', { meter: f.meter })
+        : `<input id="${f.id}" type="${f.type || 'text'}" autocomplete="${f.ac || 'off'}" ${f.attrs || ''}>`;
+      const tools = f.gen ? `<div class="tools"><button type="button" class="btn g s" data-a="gen" data-t="${f.id}">Generate</button><button type="button" class="btn g s" data-a="copy" data-t="${f.id}">Copy</button></div>` : '';
+      return `<div class="f"><label for="${f.id}">${e(f.label)}</label>${inner}${tools}${f.hint ? `<div class="hint">${e(f.hint)}</div>` : ''}</div>`;
+    }).join('');
+    d.innerHTML = `<form novalidate><h3>${e(o.title)}</h3>${o.text ? `<p class="sub">${e(o.text)}</p>` : ''}<div class="dm"></div>${fs}<div class="dlg-actions">${o.cancel === false ? '' : `<button type="button" class="btn g" data-x>${e(o.cancel || 'Cancel')}</button>`}<button type="submit" class="btn${o.danger ? ' r' : ''}">${e(o.ok || 'Confirm')}</button></div></form>`;
+    document.body.appendChild(d);
+    d.firstChild.addEventListener('submit', ev => {
+      ev.preventDefault();
+      const v = {}; (o.fields || []).forEach(f => v[f.id] = d.querySelector('#' + f.id).value);
+      const err = o.validate && o.validate(v);
+      if (err) { d.querySelector('.dm').innerHTML = `<div class="msg err" role="alert">${e(err)}</div>`; return; }
+      out = v; d.close();
+    });
+    d.querySelector('[data-x]')?.addEventListener('click', () => d.close());
+    d.addEventListener('click', ev => { if (ev.target === d) d.close(); });
+    d.addEventListener('close', () => { d.remove(); res(out); });
+    d.showModal(); d.querySelector('input')?.focus();
   });
 }
 
-/* ---------- routing ---------- */
+/* shared hero artwork */
+const netSvg = () => `<svg class="net" viewBox="0 0 360 300" fill="none" aria-hidden="true"><g class="lk" stroke="#67e8f9" stroke-width="1.4"><path d="M300 40L220 110"/><path d="M220 110L320 160"/><path d="M220 110L130 90"/><path d="M220 110L250 230"/><path d="M130 90L70 200"/><path d="M70 200L250 230"/><path d="M320 160L250 230"/></g><g stroke="#67e8f9" stroke-width="1.6" fill="#0a1a3c"><circle cx="300" cy="40" r="7"/><circle cx="320" cy="160" r="8"/><circle cx="130" cy="90" r="9"/><circle cx="70" cy="200" r="7"/><circle cx="250" cy="230" r="9"/></g><circle cx="220" cy="110" r="12" fill="#0a1a3c" stroke="#67e8f9" stroke-width="1.8"/><circle cx="220" cy="110" r="4.5" fill="#67e8f9"/></svg>`;
+const chipsHtml = () => B.chips.length ? `<div class="chips">${B.chips.map(c => `<b>${e(c)}</b>`).join('')}</div>` : '';
+
+/* ================= routing ================= */
+let me = null, tries = 0, rseq = 0, pollT, cdT, lastEmail = '', lastReset = 0;
+
 async function route() {
-  const my = ++rt; vt++;
-  if (rec) return resetView();
-  let { data: { session } } = await sb.auth.getSession();
-  if (my !== rt) return;
-  if (session) {
-    const { error } = await sb.auth.getUser();
-    if (my !== rt) return;
-    if (error && [401, 403, 404].includes(error.status)) { await sb.auth.signOut({ scope: 'local' }); session = null; toast('Your session has ended. Please sign in again.'); }
-  }
-  if (!session) { me = null; return authView(); }
+  const my = ++rseq; clearTimeout(pollT);
+  const { data: { session } } = await sb.auth.getSession();
+  if (my !== rseq) return;
+  if (!session) { store.del('recovery'); me = null; return authView(); }
+  if (store.get('recovery')) return resetView();
   const { data, error } = await sb.from('profiles').select('*').eq('id', session.user.id).maybeSingle();
-  if (my !== rt) return;
+  if (my !== rseq) return;
   me = data;
   if (!me) {
     if (!error && ++tries < 4) { await new Promise(r => setTimeout(r, 1200)); return route(); }
     tries = 0;
-    app.innerHTML = `<div class="auth"><div class="card center"><div class="ico">⚠️</div><h2>Account unavailable</h2><p>${e(error?.message || 'Your account was not found. It may have been removed by your instructor.')}</p><button class="btn" data-a="refresh">Try again</button> <button class="btn g" data-a="out">Sign out</button></div></div>`;
-    return;
+    return statusView('alert', 'bad', 'We couldn’t load your profile', error?.message || 'Your profile hasn’t been created yet. Try again in a moment.', true);
   }
   tries = 0;
   if (me.status === 'approved') return appView();
-  const blocked = me.status === 'blocked';
-  app.innerHTML = `<div class="auth"><div class="card center"><div class="ico">${blocked ? '⛔' : '⏳'}</div><h2>${blocked ? 'Account suspended' : 'Awaiting approval'}</h2><p>${blocked ? 'Please contact your instructor.' : 'Your registration was received. Once your instructor approves it, refresh this page.'}</p><p><small>${e(me.email)}</small></p><button class="btn" data-a="refresh">Refresh</button> <button class="btn g" data-a="out">Sign out</button></div></div>`;
+  if (me.status === 'blocked') return statusView('ban', 'bad', 'Access blocked', 'Your account has been blocked. If you think this is a mistake, contact your instructor.', false);
+  statusView('clock', 'warn', 'Waiting for approval', 'Your registration has been received. You’ll get access as soon as your instructor approves it. This page checks automatically.', true);
+  pollT = setTimeout(route, 20000);
 }
-// NOTE: never await other supabase calls directly inside this callback (deadlock risk), so work is deferred.
 sb.auth.onAuthStateChange(ev => {
-  if (ev === 'SIGNED_OUT' && !rec) setTimeout(() => { closeDoc(); route(); }, 0);
-  if (ev === 'PASSWORD_RECOVERY') { rec = true; setTimeout(resetView, 0); }
+  if (ev === 'PASSWORD_RECOVERY') { store.set('recovery', '1'); setTimeout(route, 0); }
+  else if (ev === 'SIGNED_OUT') setTimeout(route, 0);
 });
-async function recheck() {
-  if (document.visibilityState !== 'visible' || !me || rec) return;
-  const { data, error } = await sb.from('profiles').select('status,role').eq('id', me.id).maybeSingle();
-  if (error || !me) return; // temporary network problem: do not kick the reader out
-  if (!data || data.status !== me.status || data.role !== me.role) { closeDoc(); route(); }
-}
-document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') saveProg(); else recheck(); });
-addEventListener('pagehide', saveProg);
-setInterval(recheck, 30000);
 
-/* ---------- auth ---------- */
+/* ================= auth views ================= */
+function statusView(icon, tone, title, text, refresh) {
+  app.innerHTML = `<main class="authwrap" style="max-width:520px"><section class="card auth center" style="padding:36px 24px"><div class="bigicon ${tone}">${ic(icon, 26)}</div><h3>${e(title)}</h3><p>${e(text)}</p>${me ? `<p><small>${e(me.email)}</small></p>` : ''}<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">${refresh ? `<button class="btn" data-a="refresh">${ic('clock', 18)}Check again</button>` : ''}<button class="btn g" data-a="out">Sign out</button></div></section></main>`;
+}
+const heroBlock = () => `<section class="hero">${netSvg()}<div class="in">${B.badge ? `<span class="tag-badge">${e(B.badge)}</span><br>` : ''}<h1>${e(B.name)}</h1><p>${e(B.tagline)}</p>${chipsHtml()}</div></section>`;
+const shell = inner => { app.innerHTML = `<main class="authwrap">${heroBlock()}<section class="card auth">${inner}</section></main>`; };
+
 function authView() {
-  if (mode === 'fg') return fgView(false);
-  const v = { em: $('#em')?.value || '', nm: $('#nm')?.value || '', pw: $('#pw')?.value || '' }, reg = mode === 'up';
-  app.innerHTML = `<div class="auth">${hero(reg ? 'Create your student account' : 'Sign in to continue')}
-  <div class="card"><div class="tabs"><button class="${reg ? '' : 'on'}" data-a="m-in">Sign in</button><button class="${reg ? 'on' : ''}" data-a="m-up">Register</button></div>
-  ${reg ? '<label for="nm">Full name</label><input id="nm" autocomplete="name" maxlength="80">' : ''}
-  <label for="em">Email</label><input id="em" type="email" autocomplete="email" inputmode="email">
-  ${pwField('pw', reg ? `Password (min. ${MINPW} characters)` : 'Password', reg ? 'new-password' : 'current-password')}
-  ${reg ? '' : '<div style="text-align:right;margin:-4px 0 12px"><button class="lnk" data-a="m-fg">Forgot password?</button></div>'}
-  <button class="btn w" data-a="auth" data-enter>${reg ? 'Create account' : 'Sign in'}</button></div></div>`;
-  $('#em').value = v.em; $('#pw').value = v.pw; if ($('#nm')) $('#nm').value = v.nm;
-}
-function fgView(sent) {
-  app.innerHTML = `<div class="auth">${hero('Account recovery')}<div class="card">${sent
-    ? `<div class="ico" style="text-align:center">📬</div><h3 style="text-align:center">Check your inbox</h3><p class="mu" style="text-align:center">If an account exists for <b>${e(fgEmail)}</b>, a password reset link is on its way. Check your spam folder too.</p><button class="btn w" data-a="fg" data-enter>Resend link</button>`
-    : `<h3>Forgot your password?</h3><p class="mu">Enter your email and we'll send you a secure link to create a new password.</p><label for="em">Email</label><input id="em" type="email" autocomplete="email" inputmode="email"><button class="btn w" data-a="fg" data-enter>Send reset link</button>`}
-  <div style="text-align:center;margin-top:12px"><button class="lnk" data-a="m-in">← Back to sign in</button></div></div></div>`;
-  if (!sent) { $('#em').value = fgEmail; return; }
-  let n = 60; const b = $('[data-a=fg]'); b.disabled = true; b.textContent = 'Resend in 60s';
-  const iv = setInterval(() => { if (!b.isConnected) return clearInterval(iv); n--; b.textContent = n > 0 ? `Resend in ${n}s` : 'Resend link'; b.disabled = n > 0; if (n <= 0) clearInterval(iv); }, 1000);
-}
-async function doFg(b) {
-  const email = ($('#em')?.value ?? fgEmail).trim().toLowerCase();
-  if (!/^\S+@\S+\.\S+$/.test(email)) return toast('Please enter a valid email address');
-  fgEmail = email; busy(b, true);
-  const r = await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname });
-  busy(b, false);
-  if (r.error) return toast(/rate|seconds/i.test(r.error.message) ? 'Please wait a minute before requesting another link' : r.error.message);
-  fgView(true);
+  clearInterval(cdT);
+  const keep = lastEmail ? ` value="${e(lastEmail)}"` : '';
+  const notice = authNotice ? `<div class="msg ${authNotice.t}" role="alert">${e(authNotice.m)}</div>` : ''; authNotice = null;
+  if (mode === 'up') {
+    shell(`<h2>Create your account</h2><p class="sub">Register to access the course library. Your instructor may need to approve you.</p><div id="fm"></div>
+    <form id="f-up" novalidate>
+      <div class="f"><label for="nm">Full name</label><input id="nm" autocomplete="name" required></div>
+      <div class="f"><label for="em">Email</label><input id="em" type="email" autocomplete="email" inputmode="email"${keep} required></div>
+      <div class="f"><label for="pw">Password</label>${pwField('pw', 'new-password', { meter: true })}<div class="hint">At least ${MIN_PW} characters.</div></div>
+      <button class="btn wide" type="submit">Create account</button>
+    </form><p class="alt">Already registered? <button class="lnk" data-a="m-in">Sign in</button></p>`);
+  } else if (mode === 'forgot') {
+    shell(`<button class="lnk back" data-a="m-in">${ic('back', 16)}Back to sign in</button><h2>Reset your password</h2><p class="sub">Enter the email you registered with. We’ll send you a link to choose a new password.</p>${notice}<div id="fm"></div>
+    <form id="f-forgot" novalidate>
+      <div class="f"><label for="em">Email</label><input id="em" type="email" autocomplete="email" inputmode="email"${keep} required></div>
+      <button class="btn wide" type="submit">Send reset link</button>
+    </form>`);
+  } else if (mode === 'sent') {
+    shell(`<div class="bigicon">${ic('mail', 26)}</div><h2>Check your inbox</h2><p class="sub">If an account exists for <b>${e(lastEmail)}</b>, we’ve sent a link to reset your password. It can take a minute to arrive, so check your spam folder too.</p>
+    <button class="btn g wide" id="resend" data-a="resend" disabled>Resend email</button>
+    <p class="alt"><button class="lnk" data-a="m-in">Back to sign in</button></p>`);
+    const tick = () => { const left = Math.max(0, 60 - Math.floor((Date.now() - lastReset) / 1000)), b = $('#resend'); if (!b) return clearInterval(cdT); b.disabled = left > 0; b.textContent = left > 0 ? `Resend in ${left}s` : 'Resend email'; if (!left) clearInterval(cdT); };
+    tick(); cdT = setInterval(tick, 1000);
+  } else if (mode === 'confirm') {
+    shell(`<div class="bigicon">${ic('mail', 26)}</div><h2>Confirm your email</h2><p class="sub">We’ve sent a confirmation link to <b>${e(lastEmail)}</b>. Open it, then come back here to sign in.</p><button class="btn wide" data-a="m-in">Go to sign in</button>`);
+  } else {
+    shell(`<h2>Welcome back</h2><p class="sub">Sign in to open your course library.</p>${notice}<div id="fm"></div>
+    <form id="f-in" novalidate>
+      <div class="f"><label for="em">Email</label><input id="em" type="email" autocomplete="email" inputmode="email"${keep} required></div>
+      <div class="f"><div class="lrow"><label for="pw">Password</label><button type="button" class="lnk" data-a="m-forgot">Forgot password?</button></div>${pwField('pw', 'current-password')}</div>
+      <button class="btn wide" type="submit">Sign in</button>
+    </form><p class="alt">New here? <button class="lnk" data-a="m-up">Create an account</button></p>`);
+  }
 }
 function resetView() {
-  app.innerHTML = `<div class="auth">${hero('Create a new password')}<div class="card"><h3>Set a new password</h3><p class="mu">Choose a new password for your account. It replaces your old one immediately.</p>${pwField('np', `New password (min. ${MINPW} characters)`, 'new-password')}${pwField('np2', 'Confirm new password', 'new-password')}<button class="btn w" data-a="setnew" data-enter>Update password</button><div style="text-align:center;margin-top:12px"><button class="lnk" data-a="cancelrec">Cancel</button></div></div></div>`;
-}
-async function doSetNew(b) {
-  const p = $('#np').value, p2 = $('#np2').value;
-  if (p.length < MINPW) return toast(`Password must be at least ${MINPW} characters`);
-  if (p !== p2) return toast('Passwords do not match');
-  busy(b, true);
-  const r = await sb.auth.updateUser({ password: p });
-  busy(b, false);
-  if (r.error) return toast(r.error.message);
-  rec = false; history.replaceState(null, '', location.pathname); toast('✅ Password updated successfully'); route();
-}
-async function doAuth(b) {
-  const reg = mode === 'up', email = $('#em').value.trim().toLowerCase(), password = $('#pw').value, name = ($('#nm')?.value || '').trim().replace(/\s+/g, ' ');
-  if (!/^\S+@\S+\.\S+$/.test(email)) return toast('Please enter a valid email address');
-  if (reg && !name) return toast('Please enter your full name');
-  if (reg ? password.length < MINPW : !password) return toast(reg ? `Password must be at least ${MINPW} characters` : 'Please enter your password');
-  busy(b, true);
-  try {
-    const r = reg
-      ? await sb.auth.signUp({ email, password, options: { data: { full_name: name } } })
-      : await sb.auth.signInWithPassword({ email, password });
-    if (r.error) return toast(/invalid/i.test(r.error.message) ? 'Incorrect email or password' : r.error.message);
-    if (reg && r.data.user?.identities?.length === 0) return toast('This email is already registered. Please sign in.');
-    if (reg && !r.data.session) { mode = 'in'; authView(); return toast('Please confirm your email, then sign in'); }
-    route();
-  } finally { busy(b, false); }
+  shell(`<div class="bigicon">${ic('shield', 26)}</div><h2>Choose a new password</h2><p class="sub">Your new password replaces the old one. Use at least ${MIN_PW} characters.</p><div id="fm"></div>
+  <form id="f-reset" novalidate>
+    <div class="f"><label for="np">New password</label>${pwField('np', 'new-password', { meter: true })}</div>
+    <div class="f"><label for="np2">Confirm new password</label>${pwField('np2', 'new-password')}</div>
+    <button class="btn wide" type="submit">Update password</button>
+  </form><p class="alt"><button class="lnk" data-a="out">Cancel and sign out</button></p>`);
 }
 
-/* ---------- main app ---------- */
-async function appView() {
-  const adm = me.role === 'admin';
+/* form handlers */
+const FORMS = {
+  async 'f-in'() {
+    const email = $('#em').value.trim().toLowerCase(), password = $('#pw').value;
+    if (!validEmail(email)) return fmsg('err', 'Enter a valid email address.');
+    if (!password) return fmsg('err', 'Enter your password.');
+    const r = await sb.auth.signInWithPassword({ email, password });
+    if (r.error) return fmsg('err', authErr(r.error));
+    await route();
+  },
+  async 'f-up'() {
+    const name = $('#nm').value.trim(), email = $('#em').value.trim().toLowerCase(), password = $('#pw').value;
+    if (name.length < 2) return fmsg('err', 'Enter your full name.');
+    if (!validEmail(email)) return fmsg('err', 'Enter a valid email address.');
+    if (password.length < MIN_PW) return fmsg('err', `Use at least ${MIN_PW} characters for your password.`);
+    const r = await sb.auth.signUp({ email, password, options: { data: { full_name: name }, emailRedirectTo: redirect() } });
+    if (r.error) return fmsg('err', authErr(r.error));
+    if (r.data.user && Array.isArray(r.data.user.identities) && r.data.user.identities.length === 0) return fmsg('err', 'An account with this email already exists. Try signing in instead.');
+    if (!r.data.session) { lastEmail = email; mode = 'confirm'; return authView(); }
+    await route();
+  },
+  async 'f-forgot'() {
+    const email = $('#em').value.trim().toLowerCase();
+    if (!validEmail(email)) return fmsg('err', 'Enter a valid email address.');
+    const r = await sb.auth.resetPasswordForEmail(email, { redirectTo: redirect() });
+    if (r.error) return fmsg('err', (r.error.status === 429 || /rate/i.test(r.error.message)) ? 'Too many requests. Please wait a minute and try again.' : 'We couldn’t send the email right now. Please try again shortly.');
+    lastEmail = email; lastReset = Date.now(); mode = 'sent'; authView();
+  },
+  async 'f-reset'() {
+    const a = $('#np').value, b = $('#np2').value, err = pwCheck(a, b);
+    if (err) return fmsg('err', err);
+    const r = await sb.auth.updateUser({ password: a });
+    if (r.error) return fmsg('err', authErr(r.error));
+    store.del('recovery'); mode = 'in';
+    history.replaceState(null, '', location.pathname + location.search);
+    toast('Password updated. You’re signed in.', 'ok');
+    await route();
+  },
+  async 'uf'() { await doUpload(); }
+};
+document.addEventListener('submit', async ev => {
+  const h = FORMS[ev.target.id]; if (!h) return; ev.preventDefault();
+  const btn = ev.target.querySelector('[type=submit]'); if (btn?.disabled) return;
+  setBusy(btn, true);
+  try { await h(ev.target); } catch (x) { $('#fm') ? fmsg('err', authErr(x)) : toast(authErr(x), 'err'); }
+  finally { setBusy(btn, false); }
+});
+
+/* ================= main app ================= */
+let tab = 'lib', docs = [], prog = {}, stList = [], stFilter = 'all', stQ = '';
+const TABS = [['lib', 'book', 'Library'], ['up', 'upload', 'Upload'], ['st', 'users', 'Students'], ['em', 'mail', 'Approved emails'], ['lg', 'activity', 'Activity']];
+const effTheme = () => document.documentElement.dataset.theme || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+
+function appView() {
+  const adm = me.role === 'admin', first = (me.full_name || '').trim().split(/\s+/)[0];
   if (!adm) tab = 'lib';
-  app.innerHTML = `<header><div class="wrap"><div class="logo"><i>💻</i><span>${e(B.name)}</span></div><small>${e(me.full_name || me.email)}</small><button class="btn g s" data-a="chpw" title="Change password" aria-label="Change password">🔑</button><button class="btn g s" data-a="out">Sign out</button></div></header>
-  <div class="wrap">${hero('👋 Welcome, ' + e(me.full_name || ''))}
-  ${adm ? `<div class="tabs">${[['lib', '📚 Library'], ['up', '⬆️ Upload'], ['st', '👥 Students'], ['em', '✉️ Allowed emails'], ['lg', '📊 Activity']].map(t => `<button class="${tab === t[0] ? 'on' : ''}" data-a="tab" data-t="${t[0]}">${t[1]}</button>`).join('')}</div>` : ''}
-  <div id="main"><div class="sp"></div></div></div>`;
-  ({ lib: libView, up: upView, st: stView, em: emView, lg: lgView }[tab] || libView)();
+  app.innerHTML = `<header class="top"><div class="wrap"><div class="brand"><div class="mark">${ic('logo', 20)}</div><span>${e(B.name)}</span></div><span class="who">${e(me.full_name || me.email)}</span>
+    <button class="btn g ic" data-a="theme" aria-label="Toggle light and dark theme" title="Toggle theme">${ic(effTheme() === 'dark' ? 'sun' : 'moon', 18)}</button>
+    <button class="btn g ic" data-a="chpw" aria-label="Change password" title="Change password">${ic('key', 18)}</button>
+    <button class="btn g ic" data-a="out" aria-label="Sign out" title="Sign out">${ic('logout', 18)}</button></div></header>
+  <main class="wrap page"><section class="hero sm">${netSvg()}<div class="in"><p class="hello">Welcome back${first ? ', ' + e(first) : ''}</p><h1>${e(B.name)}</h1>${chipsHtml()}</div></section>
+  ${adm ? '<nav class="nav seg" id="tabs" aria-label="Sections"></nav>' : '<div style="height:18px"></div>'}
+  <div id="main">${spinner}</div></main>`;
+  if (adm) { drawTabs(); refreshPending(); }
+  loadTab();
 }
-function drawLib() {
-  const g = $('#gl'); if (!g) return;
-  const f = ($('#q')?.value || '').toLowerCase();
-  g.innerHTML = docs.filter(d => (d.title + ' ' + (d.description || '')).toLowerCase().includes(f)).map(d => {
-    const pg = progMap[d.id];
-    return `<div class="card doc"><div class="dh"><div class="tile">📘</div><span class="badge" style="color:var(--pr);border-color:var(--pr);margin:0">GUIDE MODULE</span></div><h3>${e(d.title)}</h3><p>${e(d.description || '')}</p><div class="m">${mb(d.size_bytes || 0)} • ${e(fmtD(d.created_at))}</div><button class="btn w" data-a="open" data-id="${e(d.id)}">${pg > 1 ? '📖 Continue • page ' + (+pg) : '📖 Read'}</button></div>`;
-  }).join('') || '<div class="center" style="grid-column:1/-1">No matching files</div>';
+let pendingN = 0;
+function drawTabs() {
+  const t = $('#tabs'); if (!t) return;
+  t.innerHTML = TABS.map(([k, i, l]) => `<button class="${tab === k ? 'on' : ''}" data-a="tab" data-t="${k}" aria-current="${tab === k}">${ic(i, 17)}${l}${k === 'st' && pendingN ? `<span class="count" aria-label="${pendingN} pending">${pendingN}</span>` : ''}</button>`).join('');
 }
+async function refreshPending() {
+  const r = await sb.from('profiles').select('id', { count: 'exact', head: true }).eq('status', 'pending');
+  if (!r.error) { pendingN = r.count || 0; drawTabs(); }
+}
+function loadTab() { ({ lib: libView, up: upView, st: stView, em: emView, lg: lgView })[tab](); }
+function errBox(msg) {
+  $('#main').innerHTML = `<div class="card center"><div class="bigicon bad">${ic('alert', 26)}</div><h3>Something went wrong</h3><p>${e(msg || 'Please check your connection and try again.')}</p><button class="btn" data-a="retry">Try again</button></div>`;
+}
+
+/* ---- library ---- */
 async function libView() {
-  const ok = live();
-  const [dr, pr] = await Promise.all([
+  const m = $('#main'); m.innerHTML = spinner;
+  const [d, p] = await Promise.all([
     sb.from('documents').select('*').order('created_at', { ascending: false }),
     sb.from('progress').select('document_id,page').eq('user_id', me.id)
   ]);
-  if (!ok()) return;
-  if (dr.error) return fail(dr.error);
-  docs = dr.data || []; progMap = {}; (pr.data || []).forEach(x => { progMap[x.document_id] = x.page; });
-  $('#main').innerHTML = !docs.length ? '<div class="card center"><div class="ico">📭</div>No files have been uploaded yet</div>' : `<input id="q" placeholder="🔍 Search..." aria-label="Search"><div class="grid" id="gl"></div>`;
-  if (docs.length) { drawLib(); $('#q').oninput = drawLib; }
+  if (d.error) return errBox(d.error.message);
+  docs = d.data || []; prog = {}; (p.data || []).forEach(r => prog[r.document_id] = r.page);
+  if (!docs.length) {
+    m.innerHTML = `<div class="card center"><div class="bigicon">${ic('inbox', 26)}</div><h3>No documents yet</h3><p>${me.role === 'admin' ? 'Upload your first PDF from the Upload tab.' : 'Your instructor hasn’t published anything yet. Check back soon.'}</p></div>`;
+    return;
+  }
+  m.innerHTML = `<div class="bar"><h2 class="sh" style="margin:0"><span style="font-family:var(--fd);font-size:1.4rem;letter-spacing:-.02em">Library<small>${docs.length} ${docs.length === 1 ? 'document' : 'documents'}</small></span></h2><label class="search">${ic('search', 18)}<input id="q" type="search" placeholder="Search documents" aria-label="Search documents"></label></div><div class="grid" id="gl"></div>`;
+  const card = x => `<article class="card doc"><div class="dh"><div class="tile">${ic('file', 22)}</div>${prog[x.id] > 1 ? `<span class="pill-s">Page ${prog[x.id]}</span>` : ''}</div><h3>${e(x.title)}</h3>${x.description ? `<p>${e(x.description)}</p>` : ''}<div class="meta">${x.size_bytes ? `<span>${mb(x.size_bytes)}</span>` : ''}<span>${fmtD(x.created_at)}</span></div><button class="btn wide" data-a="open" data-id="${e(x.id)}">${ic('book', 18)}${prog[x.id] > 1 ? 'Continue reading' : 'Read now'}</button></article>`;
+  let t; const draw = f => { const l = docs.filter(x => (x.title + ' ' + (x.description || '')).toLowerCase().includes(f)); $('#gl').innerHTML = l.map(card).join('') || `<div class="card center" style="grid-column:1/-1"><h3>No matches</h3><p>Nothing found for “${e(f)}”.</p></div>`; };
+  draw(''); $('#q').oninput = ev => { clearTimeout(t); t = setTimeout(() => draw(ev.target.value.trim().toLowerCase()), 120); };
 }
 
-/* ---------- protected viewer ---------- */
+/* ================= reader ================= */
+const vw = $('#viewer'), P = $('#pages'), S = $('#sheet');
+let pdf = null, cur = null, zoom = 1, curPage = 1, sizes = [], obs = null, saveT, hideT, rzT, gen = 0, pushed = false, opening = false;
+let ls = false, lockOK = false, soft = false, lastKey = '', softHinted = false;
+const canFS = !!(vw.requestFullscreen || vw.webkitRequestFullscreen);
+const fsEl = () => document.fullscreenElement || document.webkitFullscreenElement;
+const isImm = () => vw.classList.contains('imm');
+const paintBtns = () => {
+  $('[data-a=close]', vw).innerHTML = ic('x', 20); $('[data-a=zo]', vw).innerHTML = ic('minus', 20); $('[data-a=zi]', vw).innerHTML = ic('plus', 20);
+  $('#bland').innerHTML = ic('land', 20); $('#bfs').innerHTML = ic(fsEl() || soft ? 'shrink' : 'expand', 20);
+  $('#bland').classList.toggle('on', ls); $('#bfs').classList.toggle('on', !!(fsEl() || soft));
+};
+paintBtns();
+
 async function openDoc(id) {
-  const d = docs.find(x => x.id === id); if (!d) return;
-  cur = d; pdf = null; sizes = []; curPage = 1;
-  const tok = ++docTok, v = $('#viewer'), P = $('#pages');
-  v.classList.add('on'); v.querySelector('.t').textContent = d.title; $('#pn').textContent = '…';
-  if (hs < 1) hpush(); startWm(); chk();
-  P.innerHTML = '<div class="sp"></div>'; document.body.style.overflow = 'hidden';
-  sb.from('access_logs').insert({ user_id: me.id, document_id: d.id }).then(() => {}, () => {});
+  if (opening) return; cur = docs.find(d => d.id === id); if (!cur) return; opening = true;
+  const my = ++gen;
+  vw.classList.add('on'); $('.t', vw).textContent = cur.title; $('#pn').textContent = '– / –';
+  S.innerHTML = '<div class="vload"><div class="sp"></div><div id="vtxt">Loading document…</div></div>'; document.body.style.overflow = 'hidden';
+  history.pushState({ v: 1 }, ''); pushed = true;
+  sb.from('access_logs').insert({ user_id: me.id, document_id: cur.id }).then(() => {}, () => {});
   try {
-    const { data, error } = await sb.storage.from('documents').createSignedUrl(d.file_path, 60);
+    const { data, error } = await sb.storage.from('documents').createSignedUrl(cur.file_path, 300);
     if (error) throw error;
-    const res = await fetch(data.signedUrl);
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    const buf = await res.arrayBuffer();
-    if (tok !== docTok) return;
-    const doc = await pdfjsLib.getDocument({ data: buf, cMapUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/cmaps/', cMapPacked: true, standardFontDataUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/standard_fonts/', isEvalSupported: false }).promise;
-    if (tok !== docTok) { doc.destroy(); return; }
-    // Only page 1 is measured up-front; the other pages are measured in the background (see loadSizes) so huge PDFs open fast.
-    const v1 = (await doc.getPage(1)).getViewport({ scale: 1 });
-    const { data: pr } = await sb.from('progress').select('page').eq('user_id', me.id).eq('document_id', d.id).maybeSingle();
-    if (tok !== docTok) { doc.destroy(); return; }
-    pdf = doc; sizes = Array.from({ length: doc.numPages }, () => [v1.width, v1.height]);
-    zoom = 1; layout(Math.min(Math.max(1, pr?.page || 1), doc.numPages), 0);
-    loadSizes(doc, tok).catch(() => {});
-  } catch (x) { if (tok === docTok) { closeDoc(); toast('Unable to open this file'); } }
+    const res = await fetch(data.signedUrl); if (!res.ok) throw new Error('Download failed (' + res.status + ')');
+    const buf = await res.arrayBuffer(); if (my !== gen) return;
+    $('#vtxt') && ($('#vtxt').textContent = 'Preparing pages…');
+    pdf = await pdfjsLib.getDocument({ data: buf, cMapUrl: PDFJS_CDN + 'cmaps/', cMapPacked: true, standardFontDataUrl: PDFJS_CDN + 'standard_fonts/', isEvalSupported: false }).promise;
+    sizes = await Promise.all(Array.from({ length: pdf.numPages }, (_, i) => pdf.getPage(i + 1).then(p => { const v = p.getViewport({ scale: 1 }); return [v.width, v.height]; })));
+    if (my !== gen) return;
+    const { data: pr } = await sb.from('progress').select('page').eq('user_id', me.id).eq('document_id', cur.id).maybeSingle();
+    if (my !== gen) return;
+    zoom = 1; layout(Math.min(Math.max(pr?.page || 1, 1), pdf.numPages));
+  } catch (x) {
+    if (my === gen) { closeDoc(); toast('Couldn’t open this document. Check your connection and try again.', 'err'); }
+  } finally { opening = false; }
 }
-async function loadSizes(doc, tok) {
-  const n = doc.numPages;
-  for (let i = 1; i < n; i += 24) {
-    const idx = Array.from({ length: Math.min(24, n - i) }, (_, k) => i + k);
-    const ps = await Promise.all(idx.map(j => doc.getPage(j + 1)));
-    if (tok !== docTok || doc !== pdf) return;
-    const P = $('#pages'), a = P.children[curPage - 1], t0 = a ? a.getBoundingClientRect().top : 0;
-    let ch = false;
-    ps.forEach((p, k) => { const w = p.getViewport({ scale: 1 }); ch = setSize(idx[k], w.width, w.height) || ch; });
-    if (ch && a) P.scrollTop += a.getBoundingClientRect().top - t0; // keep what the reader is looking at in place
-  }
-}
-function setSize(i, pw, ph, quiet) {
-  const o = sizes[i];
-  if (o && Math.abs(o[0] - pw) < .5 && Math.abs(o[1] - ph) < .5) return false;
-  sizes[i] = [pw, ph];
-  const d = $('#pages').children[i]; if (!d || !d.dataset.n) return true;
-  const s = parseFloat(d.style.width) / pw; d.dataset.s = s; d.style.height = ph * s + 'px';
-  if (!quiet && d.dataset.r) { unrender(d); if (obs) { obs.unobserve(d); obs.observe(d); } }
-  return true;
-}
-function layout(go, frac) {
-  if (!pdf) return;
-  const P = $('#pages'); P.innerHTML = ''; obs?.disconnect(); lastW = P.clientWidth;
-  const w = Math.min(P.clientWidth - (imm ? 0 : 16), imm ? 1800 : 900) * zoom;
-  obs = new IntersectionObserver(es => es.forEach(x => x.isIntersecting ? render(x.target) : unrender(x.target)), { root: P, rootMargin: '1400px 0px' });
+function layout(go, frac = 0) {
+  S.innerHTML = ''; obs?.disconnect();
+  const w = Math.min(P.clientWidth - (isImm() ? 0 : 16), 1100) * zoom;
+  lastKey = P.clientWidth + '|' + isImm() + '|' + zoom;
+  obs = new IntersectionObserver(es => es.forEach(x => x.isIntersecting ? render(x.target) : release(x.target)), { root: P, rootMargin: '1400px 0px' });
+  const frag = document.createDocumentFragment();
   sizes.forEach(([pw, ph], i) => {
-    const s = w / pw, d = document.createElement('div');
-    d.className = 'pg'; d.dataset.n = i + 1; d.dataset.s = s; d.style.cssText = `width:${w}px;height:${ph * s}px`;
-    P.appendChild(d); obs.observe(d);
+    const d = document.createElement('div'), s = w / pw;
+    d.className = 'pg'; d.dataset.n = i + 1; d.style.width = w + 'px'; d.style.height = (ph * s) + 'px'; frag.appendChild(d);
   });
-  const c = P.children[Math.min(Math.max(go || 1, 1), sizes.length) - 1];
-  if (c) P.scrollTop = c.offsetTop - P.offsetTop + (frac || 0) * c.offsetHeight;
+  S.appendChild(frag); [...S.children].forEach(c => obs.observe(c));
+  const t = S.children[go - 1]; if (t) P.scrollTop = t.offsetTop + frac * t.offsetHeight;
   updPage();
 }
 function relayout() {
-  const P = $('#pages'), c = P.children[curPage - 1];
-  const f = c && c.dataset.n ? Math.max(0, Math.min(1, (P.scrollTop - (c.offsetTop - P.offsetTop)) / (c.offsetHeight || 1))) : 0;
-  layout(curPage, f);
+  if (!pdf) return;
+  const c = S.children[curPage - 1], frac = c ? Math.max(0, (P.scrollTop - c.offsetTop) / c.offsetHeight) : 0;
+  layout(curPage, frac);
 }
-function goPage(n) { const P = $('#pages'), c = P.children[n - 1]; if (c && c.dataset.n) { P.scrollTop = c.offsetTop - P.offsetTop; updPage(); } }
-function unrender(d) { if (!d.dataset.r) return; d._k = (d._k || 0) + 1; try { d._t && d._t.cancel(); } catch (_) {} d._t = null; delete d.dataset.r; const c = d.querySelector('canvas'); if (c) { c.width = c.height = 0; c.remove(); } }
+function maybeRelayout() {
+  if (!pdf) return; clearTimeout(rzT);
+  rzT = setTimeout(() => { if (P.clientWidth + '|' + isImm() + '|' + zoom !== lastKey) relayout(); }, 120);
+}
 async function render(d) {
-  if (d.dataset.r || !pdf) return; d.dataset.r = 1; const k0 = d._k = (d._k || 0) + 1, doc = pdf, i = +d.dataset.n - 1;
+  if (d.dataset.r) return; d.dataset.r = 'p';
+  const my = gen, doc = pdf;
   try {
-    const p = await doc.getPage(i + 1), v1 = p.getViewport({ scale: 1 });
-    setSize(i, v1.width, v1.height, true); // pages that differ from page 1 correct themselves here
-    if (d._k !== k0 || doc !== pdf) return;
-    const s = +d.dataset.s, base = p.getViewport({ scale: s });
-    // high-quality render: >=2x pixel density, capped to stay within mobile canvas memory limits
-    const k = Math.max(1, Math.min(Math.max(devicePixelRatio || 1, 2) * 1.25, 3.5, Math.sqrt(14e6 / (base.width * base.height))));
-    const vp = p.getViewport({ scale: s * k }), c = document.createElement('canvas'), x = c.getContext('2d');
-    c.width = Math.floor(vp.width); c.height = Math.floor(vp.height); x.imageSmoothingQuality = 'high';
-    const task = p.render({ canvasContext: x, viewport: vp }); d._t = task;
-    await task.promise; d._t = null;
-    if (d._k !== k0 || doc !== pdf) { c.width = c.height = 0; return; }
-    // Watermarks are burned into the pixels: dense tiling over the WHOLE page, so any crop or capture of the page still carries them.
-    if (!isProt(cur)) tileWM(x, c.width, c.height, B.owner, c.width / 30, .08, -.5);
-    if (B.showUser) tileWM(x, c.width, c.height, wmUser(), c.width / 46, .12, -.25, 2, 4);
-    d.appendChild(c);
-  } catch (x) { if (d._k === k0) delete d.dataset.r; }
+    const p = await doc.getPage(+d.dataset.n), base = p.getViewport({ scale: 1 }), cssW = parseFloat(d.style.width);
+    const ratio = Math.min(4, Math.max(2.5, (devicePixelRatio || 1) * 1.5));   // supersample for crisp text
+    let sc = cssW * ratio / base.width;
+    const area = base.width * sc * base.height * sc; if (area > MAX_PX) sc *= Math.sqrt(MAX_PX / area);
+    const vp = p.getViewport({ scale: sc }), c = document.createElement('canvas');
+    c.width = Math.floor(vp.width); c.height = Math.floor(vp.height);
+    const x = c.getContext('2d', { alpha: false }); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
+    const task = p.render({ canvasContext: x, viewport: vp, intent: 'display' }); d._task = task; await task.promise;
+    if (my !== gen || d.dataset.r !== 'p') return;
+    watermark(x, c.width, c.height);
+    d.appendChild(c); d.dataset.r = '1';
+  } catch (err) { if (err?.name !== 'RenderingCancelledException' && d.dataset.r === 'p') d.dataset.r = ''; }
 }
-function updPage() {
-  const P = $('#pages'), top = P.scrollTop + P.clientHeight / 3; let n = 1;
-  for (const c of P.children) { if (!c.dataset.n) continue; if (c.offsetTop - P.offsetTop <= top) n = +c.dataset.n; else break; }
-  curPage = n; $('#pn').textContent = n + '/' + (pdf?.numPages || 1);
-  clearTimeout(saveT); saveT = setTimeout(saveProg, 1500);
+function release(d) {
+  if (d.dataset.r === '1') { const c = d.querySelector('canvas'); if (c) { c.width = c.height = 0; c.remove(); } }
+  else if (d.dataset.r === 'p') d._task?.cancel();
+  d.dataset.r = '';
 }
-function saveProg() { if (cur && pdf && me) sb.from('progress').upsert({ user_id: me.id, document_id: cur.id, page: curPage, updated_at: new Date() }, { onConflict: 'user_id,document_id' }).then(() => {}, () => {}); }
-function closeDoc(fromHist) {
-  if (imm) immersive(false, true);
-  clearTimeout(saveT); saveProg();
-  if (cur && pdf) progMap[cur.id] = curPage;
-  docTok++; stopWm(); hold = 0; $('#shield').classList.remove('on');
-  $('#viewer').classList.remove('on'); $('#pages').innerHTML = ''; document.body.style.overflow = '';
-  try { pdf?.destroy(); } catch (_) {}
-  pdf = null; cur = null; sizes = []; obs?.disconnect(); drawLib();
-  if (!fromHist) hpop(0);
-}
-/* landscape + full-screen reading mode */
-// Puts the device back in the orientation it had before landscape mode (Android keeps the lock otherwise).
-async function releaseOri() {
-  try {
-    const o = screen.orientation; if (!o) return;
-    if (/^portrait/.test(prevOri) && /^landscape/.test(o.type)) { try { await o.lock('portrait'); } catch (_) {} }
-    o.unlock();
-  } catch (_) {}
-  prevOri = '';
-}
-async function immersive(on, fromHist) {
-  const v = $('#viewer');
-  if (on) {
-    if (imm || immBusy) return;
-    immBusy = true;
-    try {
-      imm = true; v.classList.add('imm', 'bar'); if (hs < 2) hpush();
-      try { const f = v.requestFullscreen || v.webkitRequestFullscreen; if (f) await f.call(v, { navigationUI: 'hide' }); } catch (_) {}
-      try { prevOri = screen.orientation.type; await screen.orientation.lock('landscape'); } catch (_) { prevOri = ''; }
-      if (!imm) { await releaseOri(); return; } // user already left while the browser was switching
-      $('#lb').textContent = '⤢ Exit';
-      setTimeout(() => { if (!imm) return; v.classList.toggle('fake', innerHeight > innerWidth); relayout(); setTimeout(() => v.classList.remove('bar'), 2200); }, 450);
-      toast('Tap the page for controls • ✕ (top right) exits');
-    } finally { immBusy = false; }
-  } else {
-    if (!imm) return;
-    imm = false; v.classList.remove('imm', 'bar', 'fake'); $('#lb').textContent = '⟳ Landscape';
-    if (!fromHist) hpop(1);
-    await releaseOri(); // while still full screen, so the browser allows the lock change
-    if (fsEl()) { try { await (document.exitFullscreen || document.webkitExitFullscreen).call(document); } catch (_) {} }
-    setTimeout(() => { if (pdf) relayout(); }, 250);
-  }
-}
-['fullscreenchange', 'webkitfullscreenchange'].forEach(n => document.addEventListener(n, () => { if (imm && !fsEl()) immersive(false); }));
-let rz;
-addEventListener('resize', () => {
-  clearTimeout(rz);
-  rz = setTimeout(() => {
-    if (!pdf) return;
-    if (imm) $('#viewer').classList.toggle('fake', innerHeight > innerWidth);
-    // only the WIDTH matters: mobile address-bar show/hide changes the height and must not redraw every page
-    if (Math.abs($('#pages').clientWidth - lastW) > 2) relayout();
-  }, 250);
-});
-$('#pages').addEventListener('click', () => { if (imm) $('#viewer').classList.toggle('bar'); });
-$('#pages').addEventListener('scroll', () => { clearTimeout(updPage._t); updPage._t = setTimeout(updPage, 120); });
-/* ---------- screen-capture / copy deterrents + history (Back button) ---------- */
-const vOn = () => $('#viewer').classList.contains('on');
-const typing = t => !!t && /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName || '');
-const wipeClip = () => { try { navigator.clipboard?.writeText(' ')?.catch(() => {}); } catch (_) {} };
-function shield(on, ms) {
-  const s = $('#shield'); if (!s) return;
-  if (on) { s.classList.add('on'); if (ms) { hold = Date.now() + ms; setTimeout(chk, ms + 30); } return; }
-  if (Date.now() < hold) return;
-  s.classList.remove('on');
-}
-// Desktop: hide the pages whenever this window is not the active one. Touch devices: only when the page is hidden
-// (app switcher / tab change), because document.hasFocus() is unreliable on some mobile browsers.
-function chk() {
-  const bad = vOn() && (document.hidden || (matchMedia('(hover:hover) and (pointer:fine)').matches && !document.hasFocus()));
-  shield(!!bad);
-}
-$('#shield').addEventListener('click', () => { hold = 0; chk(); });
-addEventListener('blur', chk); addEventListener('focus', chk); document.addEventListener('visibilitychange', chk);
-addEventListener('pagehide', () => { if (vOn()) shield(true); });
-addEventListener('beforeprint', () => shield(true, 3000));
-addEventListener('keydown', k => {
-  if (!vOn()) return;
-  const key = (k.key || '').toLowerCase(), mod = k.ctrlKey || k.metaKey, dlgOpen = !!document.querySelector('.mo');
-  if (key === 'escape' && !dlgOpen && !imm) return closeDoc();
-  if (key === 'printscreen' || (k.metaKey && k.shiftKey && ['3', '4', '5', 's', '#', '$', '%'].includes(key))) { shield(true, 2500); wipeClip(); }
-  if (dlgOpen) return;
-  if (key === 'f12' || (mod && k.shiftKey && ['i', 'j', 'c'].includes(key)) || (mod && ['s', 'p', 'u', 'c', 'a', 'x'].includes(key))) k.preventDefault();
-});
-addEventListener('keyup', k => { if (vOn() && (k.key || '') === 'PrintScreen') { shield(true, 2500); wipeClip(); } });
-['copy', 'cut', 'dragstart', 'selectstart', 'contextmenu'].forEach(n => document.addEventListener(n, ev => { if (vOn() && !typing(ev.target)) ev.preventDefault(); }));
-// Back button: first closes full-screen mode, then the viewer (instead of leaving the site).
-const hpush = () => { try { history.pushState({ s: ++hs }, ''); } catch (_) {} };
-const hpop = to => { if (hs > to) { const n = hs - to; hs = to; try { history.go(-n); } catch (_) {} } };
-addEventListener('popstate', () => {
-  hs = (history.state && history.state.s) || 0;
-  if (imm && hs < 2) immersive(false, true);
-  if (vOn() && hs < 1) closeDoc(true);
-});
-if (history.state && history.state.s) { try { history.replaceState(null, ''); } catch (_) {} }
-
-/* ---------- watermark helpers ---------- */
-const isProt = d => /\.p\.pdf$/.test((d && d.file_path) || '');
-const wmUser = () => (me.full_name ? me.full_name + ' • ' : '') + me.email + ' • ' + fmtD(new Date());
-// Dense diagonal tiling over the whole canvas (white + black pass so it stays visible on light and dark pages).
-function tileWM(x, W, H, txt, size, alpha, ang, gx = 3, gy = 5) {
-  x.save(); x.font = `700 ${size}px sans-serif`; x.textBaseline = 'middle'; x.textAlign = 'left';
-  const tw = x.measureText(txt).width, sx = tw + size * gx, sy = size * gy, R = Math.hypot(W, H) / 2, o = Math.max(1, size / 24);
-  x.translate(W / 2, H / 2); x.rotate(ang); x.globalAlpha = alpha;
-  let row = 0;
-  for (let yy = -R; yy < R; yy += sy, row++) for (let xx = -R - (row % 2) * sx / 2; xx < R; xx += sx) {
-    x.fillStyle = '#fff'; x.fillText(txt, xx + o, yy + o);
-    x.fillStyle = '#000'; x.fillText(txt, xx, yy);
+function watermark(x, W, H) {
+  // 'multiply' keeps black text black and only tints the white paper, so the mark sits behind the content
+  const u = B.showUser ? (me.full_name || '') + ' • ' + me.email : '';
+  x.save(); x.globalCompositeOperation = 'multiply'; x.fillStyle = '#000'; x.rotate(-.5);
+  for (let yy = -H * .3; yy < H * 1.3; yy += H / 5) for (let xx = -W * .3; xx < W; xx += W * .85) {
+    x.globalAlpha = .045; x.font = `600 ${W / 18}px sans-serif`; x.fillText(B.owner, xx, yy);
+    if (u) { x.globalAlpha = .055; x.font = `500 ${W / 44}px sans-serif`; x.fillText(u, xx, yy + W / 26); }
   }
   x.restore();
 }
-// Always-on overlay above the pages: any screenshot or photo of the screen contains the reader's identity + time.
-function wmDraw() {
-  const o = $('#wmk'); if (!o) return;
-  const W = 520, H = 340, c = document.createElement('canvas'), x = c.getContext('2d'); c.width = W * 2; c.height = H * 2; x.scale(2, 2);
-  const L = B.showUser && me ? [(me.full_name ? me.full_name + ' • ' : '') + me.email, B.owner + ' • ' + fmtD(new Date())] : [B.owner, B.owner];
-  [[W * .5, H * .25, L[0]], [W * .5, H * .75, L[1]]].forEach(([px, py, t]) => {
-    x.save(); x.translate(px, py); x.rotate(-.38); x.textAlign = 'center'; x.textBaseline = 'middle';
-    let s = 15; x.font = `700 ${s}px sans-serif`;
-    while (x.measureText(t).width > 430 && s > 9) { s--; x.font = `700 ${s}px sans-serif`; }
-    x.globalAlpha = .16; x.fillStyle = '#fff'; x.fillText(t, 1, 1); x.fillStyle = '#000'; x.fillText(t, 0, 0); x.restore();
-  });
-  o.style.backgroundImage = `url(${c.toDataURL()})`; o.style.backgroundSize = W + 'px ' + H + 'px';
+let scT = 0;
+P.addEventListener('scroll', () => { if (!scT) scT = requestAnimationFrame(() => { scT = 0; updPage(); }); }, { passive: true });
+function updPage() {
+  if (!pdf) return;
+  const top = P.scrollTop + P.clientHeight / 3, k = S.children; let n = 1;
+  for (let i = 0; i < k.length; i++) { if (k[i].offsetTop <= top) n = i + 1; else break; }
+  curPage = n; const t = pdf.numPages, txt = n + ' / ' + t;
+  $('#pn').textContent = txt; $('#pill').textContent = txt; $('#bar i').style.width = (t > 1 ? (n - 1) / (t - 1) * 100 : 100) + '%';
+  clearTimeout(saveT); saveT = setTimeout(saveProg, 1500);
 }
-function startWm() { stopWm(); wmDraw(); wmT = setInterval(wmDraw, 60000); }
-function stopWm() { clearInterval(wmT); wmT = 0; const o = $('#wmk'); if (o) o.style.backgroundImage = ''; }
+function saveProg() {
+  clearTimeout(saveT); if (!cur || !pdf) return;
+  sb.from('progress').upsert({ user_id: me.id, document_id: cur.id, page: curPage, updated_at: new Date().toISOString() }).then(() => {}, () => {});
+}
+/* pinch-to-zoom: live preview via transform, then re-render sharply at the new zoom */
+let pin = null;
+const dist = t => Math.hypot(t[0].clientX - t[1].clientX, t[0].clientY - t[1].clientY);
+P.addEventListener('touchstart', ev => {
+  if (ev.touches.length !== 2 || !pdf) return;
+  const t = ev.touches, r = P.getBoundingClientRect();
+  pin = { d: dist(t), f: 1, fx: (t[0].clientX + t[1].clientX) / 2 - r.left, fy: (t[0].clientY + t[1].clientY) / 2 - r.top };
+  pin.ox = pin.fx + P.scrollLeft; pin.oy = pin.fy + P.scrollTop;
+  S.style.transformOrigin = pin.ox + 'px ' + pin.oy + 'px';
+}, { passive: true });
+P.addEventListener('touchmove', ev => {
+  if (!pin || ev.touches.length !== 2) return; ev.preventDefault();
+  pin.f = Math.max(.6 / zoom, Math.min(4 / zoom, dist(ev.touches) / pin.d)); S.style.transform = 'scale(' + pin.f + ')';
+}, { passive: false });
+function endPin() {
+  if (!pin) return; const p = pin; pin = null; S.style.transform = ''; S.style.transformOrigin = '';
+  const nz = Math.max(.6, Math.min(4, +(zoom * p.f).toFixed(2))); if (Math.abs(nz / zoom - 1) < .04) return;
+  const k = S.children; let i = 0; for (; i < k.length - 1; i++) if (k[i].offsetTop + k[i].offsetHeight > p.oy) break;
+  const pg = k[i], fy = (p.oy - pg.offsetTop) / pg.offsetHeight, fx = (p.ox - pg.offsetLeft) / pg.offsetWidth;
+  zoom = nz; layout(i + 1, 0);
+  const g = S.children[i]; P.scrollTop = g.offsetTop + fy * g.offsetHeight - p.fy; P.scrollLeft = g.offsetLeft + fx * g.offsetWidth - p.fx;
+}
+P.addEventListener('touchend', ev => { if (pin && ev.touches.length < 2) endPin(); });
+P.addEventListener('touchcancel', endPin);
+function zoomBy(d) { zoom = Math.max(.6, Math.min(4, +(zoom + d).toFixed(2))); relayout(); }
 
-/* ---------- "Protect": flatten a PDF into watermarked images (no text layer, watermark permanently inside the file) ---------- */
-const QL = { c: { long: 1800, q: .78 }, s: { long: 2400, q: .8 }, h: { long: 3000, q: .85 } };
-const uid = () => crypto.randomUUID ? crypto.randomUUID() : Date.now() + '-' + Math.random().toString(36).slice(2);
-function buildImagePdf(pages) {
-  const enc = new TextEncoder(), parts = [], off = [], N = pages.length, total = 2 + N * 3;
-  let len = 0;
-  const push = u => { parts.push(u); len += u.length; }, txt = s => push(enc.encode(s));
-  const obj = (n, body) => { off[n] = len; txt(`${n} 0 obj\n${body}\nendobj\n`); };
-  push(new Uint8Array([0x25, 0x50, 0x44, 0x46, 0x2d, 0x31, 0x2e, 0x34, 0x0a, 0x25, 0xe2, 0xe3, 0xcf, 0xd3, 0x0a]));
-  obj(1, '<< /Type /Catalog /Pages 2 0 R >>');
-  obj(2, `<< /Type /Pages /Kids [${pages.map((_, i) => `${3 + i * 3} 0 R`).join(' ')}] /Count ${N} >>`);
-  pages.forEach((p, i) => {
-    const po = 3 + i * 3, co = po + 1, io = po + 2, W = p.pw.toFixed(2), H = p.ph.toFixed(2), cs = `q ${W} 0 0 ${H} 0 0 cm /Im0 Do Q`;
-    obj(po, `<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${W} ${H}] /Resources << /XObject << /Im0 ${io} 0 R >> >> /Contents ${co} 0 R >>`);
-    obj(co, `<< /Length ${cs.length} >>\nstream\n${cs}\nendstream`);
-    off[io] = len;
-    txt(`${io} 0 obj\n<< /Type /XObject /Subtype /Image /Width ${p.w} /Height ${p.h} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${p.jpg.length} >>\nstream\n`);
-    push(p.jpg); txt('\nendstream\nendobj\n');
-  });
-  const xo = len;
-  let x = `xref\n0 ${total + 1}\n0000000000 65535 f \n`;
-  for (let n = 1; n <= total; n++) x += String(off[n]).padStart(10, '0') + ' 00000 n \n';
-  txt(x + `trailer\n<< /Size ${total + 1} /Root 1 0 R >>\nstartxref\n${xo}\n%%EOF\n`);
-  return new Blob(parts, { type: 'application/pdf' });
+/* immersive: fullscreen + landscape */
+function chrome(show) {
+  clearTimeout(hideT); vw.classList.toggle('hide', !show);
+  if (show && isImm()) hideT = setTimeout(() => chrome(false), 3500);
 }
-async function flattenPdf(buf, { long = 2400, q = .8, onProgress } = {}) {
-  const doc = await pdfjsLib.getDocument({ data: buf, cMapUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/cmaps/', cMapPacked: true, standardFontDataUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/standard_fonts/', isEvalSupported: false }).promise;
-  try {
-    const n = doc.numPages, pages = [];
-    for (let i = 1; i <= n; i++) {
-      if (onProgress) onProgress(i, n);
-      const p = await doc.getPage(i), v1 = p.getViewport({ scale: 1 });
-      const s = Math.min(long / Math.max(v1.width, v1.height), Math.sqrt(9e6 / (v1.width * v1.height))), vp = p.getViewport({ scale: s });
-      const c = document.createElement('canvas'), x = c.getContext('2d');
-      c.width = Math.max(1, Math.floor(vp.width)); c.height = Math.max(1, Math.floor(vp.height));
-      x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
-      await p.render({ canvasContext: x, viewport: vp }).promise;
-      tileWM(x, c.width, c.height, B.owner, c.width / 30, .11, -.5);
-      const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', q));
-      if (!blob) throw new Error('Image encoding failed');
-      pages.push({ w: c.width, h: c.height, pw: v1.width, ph: v1.height, jpg: new Uint8Array(await blob.arrayBuffer()) });
-      c.width = c.height = 0; p.cleanup();
-    }
-    return buildImagePdf(pages);
-  } finally { try { doc.destroy(); } catch (_) {} }
+P.addEventListener('click', () => { if (isImm()) chrome(vw.classList.contains('hide')); });
+function syncImm() {
+  const on = !!fsEl() || ls || soft;
+  vw.classList.toggle('imm', on); chrome(true); paintBtns(); maybeRelayout();
 }
-async function protectDoc(b, id) {
-  const d = docs.find(x => x.id === id); if (!d || isProt(d)) return;
-  if (!await dlg({ t: 'Protect this file?', p: 'Every page becomes a watermarked image and the original file is replaced. This can take a few minutes for large files; keep this tab open.', ok: 'Protect' })) return;
-  const old = b.textContent; busy(b, true);
-  try {
-    b.textContent = '⏳ Downloading…';
-    const { data, error } = await sb.storage.from('documents').createSignedUrl(d.file_path, 120);
-    if (error) throw error;
-    const res = await fetch(data.signedUrl); if (!res.ok) throw new Error('HTTP ' + res.status);
-    const blob = await flattenPdf(await res.arrayBuffer(), { ...QL.s, onProgress: (i, n) => { b.textContent = `⏳ ${i}/${n}`; } });
-    if (blob.size > 52428800) throw new Error('Protected file is ' + mb(blob.size) + ' (limit 50 MB). Upload the original again with Compact quality.');
-    b.textContent = '⏳ Saving…';
-    const path = uid() + '.p.pdf';
-    const u = await sb.storage.from('documents').upload(path, blob, { contentType: 'application/pdf' });
-    if (u.error) throw u.error;
-    const r = await sb.from('documents').update({ file_path: path, size_bytes: blob.size }).eq('id', id);
-    if (r.error) { await sb.storage.from('documents').remove([path]); throw r.error; }
-    await sb.storage.from('documents').remove([d.file_path]);
-    toast('✅ File protected'); upView();
-  } catch (x) { busy(b, false); b.textContent = old; toast('Protection failed: ' + (x?.message || x)); }
-}
+const applyRot = () => vw.classList.toggle('rot', ls && !lockOK && innerHeight > innerWidth);
+const reqFS = () => (vw.requestFullscreen || vw.webkitRequestFullscreen).call(vw);
+const exitFS = async () => { try { await (document.exitFullscreen || document.webkitExitFullscreen).call(document); } catch {} };
+const unlock = () => { try { screen.orientation?.unlock?.(); } catch {} };
 
-/* ---------- admin ---------- */
-function upView() {
-  const ok = live();
-  $('#main').innerHTML = `<div class="card"><h3>Upload a new PDF</h3><label for="t">Title</label><input id="t" maxlength="200"><label for="ds">Description (optional)</label><textarea id="ds" rows="2" maxlength="1000"></textarea><label for="f">PDF file (up to 50 MB)</label><input id="f" type="file" accept="application/pdf"><label class="opt"><input id="pt" type="checkbox" checked><span>🛡 <b>Protect file</b> (recommended): every page is converted to an image with a permanent watermark. The file has no selectable text, and any copy someone manages to download still carries the watermark.</span></label><label for="pq">Protected quality (higher = larger file)</label><select id="pq"><option value="c">Compact</option><option value="s" selected>Standard</option><option value="h">High</option></select><button class="btn w" data-a="upload">⬆️ Upload</button></div>
-  <h3 style="margin-top:20px">Uploaded files</h3><div class="card" id="dl"><div class="sp"></div></div>`;
-  sb.from('documents').select('*').order('created_at', { ascending: false }).then(({ data, error }) => {
-    if (!ok()) return;
-    if (error) { $('#dl').innerHTML = `<div class="center">${e(error.message)}</div>`; return; }
-    docs = data || [];
-    $('#dl').innerHTML = docs.map(d => `<div class="row"><div class="i"><b>${e(d.title)}</b><small>${mb(d.size_bytes || 0)} • ${e(fmtD(d.created_at))}</small></div>${isProt(d) ? '<span class="tag prot">🛡 Protected</span>' : `<button class="btn s" data-a="protect" data-id="${e(d.id)}" title="Convert to a protected, watermarked copy" aria-label="Protect file">🛡 Protect</button>`}<button class="btn g s" data-a="edoc" data-id="${e(d.id)}" title="Edit title and description" aria-label="Edit file details">✏️</button><button class="btn r s" data-a="deldoc" data-id="${e(d.id)}" title="Delete file" aria-label="Delete file">🗑</button></div>`).join('') || '<div class="center">Empty</div>';
-  });
+async function toggleFS() {
+  if (fsEl()) { await exitFS(); return; }
+  if (soft) { soft = false; syncImm(); return; }
+  if (canFS) { try { await reqFS(); } catch { toast('Fullscreen isn’t available in this browser.'); } return; }
+  soft = true; syncImm();
+  if (!softHinted) { softHinted = true; toast('Tip: use Share → Add to Home Screen to hide Safari’s address bar completely.'); }
 }
-async function upload(b) {
-  const f = $('#f').files[0], t = $('#t').value.trim();
-  if (!t || !f) return toast('A title and a file are required');
-  if (f.type !== 'application/pdf' && !/\.pdf$/i.test(f.name)) return toast('Only PDF files are allowed');
-  if (f.size > 52428800) return toast('File exceeds 50 MB');
-  const head = new TextDecoder('latin1').decode(await f.slice(0, 1024).arrayBuffer());
-  if (!head.includes('%PDF-')) return toast('This file is not a valid PDF');
-  const prot = !!$('#pt')?.checked, ql = QL[$('#pq')?.value] || QL.s;
-  busy(b, true);
-  const reset = () => { busy(b, false); b.textContent = '⬆️ Upload'; };
-  let blob = f;
-  if (prot) {
-    b.textContent = '⏳ Protecting…';
-    try { blob = await flattenPdf(await f.arrayBuffer(), { ...ql, onProgress: (i, n) => { b.textContent = `⏳ Protecting ${i}/${n}`; } }); }
-    catch (x) { reset(); return toast('Could not protect this PDF: ' + (x?.message || x)); }
-    if (blob.size > 52428800) { reset(); return toast('Protected file is ' + mb(blob.size) + ' (limit 50 MB). Choose Compact quality or split the PDF.'); }
+async function toggleLand() {
+  if (ls) {
+    ls = false; lockOK = false; unlock(); vw.classList.remove('rot'); soft = false;
+    if (fsEl()) await exitFS();
+    syncImm(); return;
   }
-  b.textContent = '⏳ Uploading...';
-  const path = uid() + (prot ? '.p.pdf' : '.pdf');
-  const u = await sb.storage.from('documents').upload(path, blob, { contentType: 'application/pdf' });
-  if (u.error) { reset(); return toast(u.error.message); }
-  const r = await sb.from('documents').insert({ title: t, description: $('#ds').value.trim(), file_path: path, size_bytes: blob.size });
-  if (r.error) { await sb.storage.from('documents').remove([path]); reset(); return toast(r.error.message); }
-  toast('✅ Uploaded'); upView();
+  ls = true; lockOK = false;
+  if (canFS && !fsEl()) { try { await reqFS(); } catch {} }
+  try { if (screen.orientation?.lock) { await screen.orientation.lock('landscape'); lockOK = true; } } catch {}
+  applyRot(); syncImm();
 }
-const stRow = s => `<div class="row"><div class="i"><b>${e(s.full_name || '—')}${s.role === 'admin' ? ' 👑' : ''}</b><small>${e(s.email)}${s.created_at ? ' • ' + e(fmtD(s.created_at)) : ''}</small></div><span class="tag ${e(s.status)}">${STL[s.status] || e(s.status)}</span>`
-  + (s.status !== 'approved' ? `<button class="btn s" data-a="setst" data-id="${e(s.id)}" data-v="approved" title="Approve" aria-label="Approve">✔</button>` : '')
-  + (s.status !== 'blocked' ? `<button class="btn r s" data-a="setst" data-id="${e(s.id)}" data-v="blocked" title="Block" aria-label="Block">⛔</button>` : '')
-  + (s.status === 'approved' ? (s.role === 'admin' ? `<button class="btn g s" data-a="setrole" data-id="${e(s.id)}" data-v="student">⬇ Remove admin</button>` : `<button class="btn g s" data-a="setrole" data-id="${e(s.id)}" data-v="admin">👑 Make admin</button>`) : '')
-  + (s.role !== 'admin' ? `<button class="btn g s" data-a="setpw" data-id="${e(s.id)}" data-n="${e(s.email)}" title="Set temporary password" aria-label="Set temporary password">🔑</button><button class="btn r s" data-a="deluser" data-id="${e(s.id)}" data-n="${e(s.email)}" title="Delete permanently" aria-label="Delete permanently">🗑</button>` : '')
-  + '</div>';
+function onFS() {
+  if (!fsEl() && (ls || soft)) { ls = false; soft = false; lockOK = false; unlock(); vw.classList.remove('rot'); }
+  syncImm();
+}
+document.addEventListener('fullscreenchange', onFS); document.addEventListener('webkitfullscreenchange', onFS);
+addEventListener('resize', () => { applyRot(); maybeRelayout(); });
+new ResizeObserver(maybeRelayout).observe(P);
+
+function closeDoc() { if (pushed) history.back(); else teardown(); }
+function teardown() {
+  pushed = false; gen++; saveProg();
+  ls = false; soft = false; lockOK = false; unlock();
+  if (fsEl()) exitFS();
+  vw.classList.remove('on', 'rot', 'imm', 'hide'); paintBtns();
+  obs?.disconnect(); S.innerHTML = ''; document.body.style.overflow = '';
+  try { pdf?.destroy(); } catch {} pdf = null; cur = null; sizes = [];
+}
+addEventListener('popstate', () => { if (vw.classList.contains('on')) { pushed = false; teardown(); } });
+vw.addEventListener('contextmenu', ev => ev.preventDefault());
+vw.addEventListener('dragstart', ev => ev.preventDefault());
+addEventListener('keydown', k => {
+  if (!vw.classList.contains('on')) return;
+  if ((k.ctrlKey || k.metaKey) && ['s', 'p', 'u', 'c'].includes(k.key.toLowerCase())) return k.preventDefault();
+  if (document.querySelector('dialog[open]')) return;
+  if (k.key === 'Escape' && !fsEl()) closeDoc();
+  else if (k.key === '+' || k.key === '=') zoomBy(.25);
+  else if (k.key === '-') zoomBy(-.25);
+});
+addEventListener('pagehide', saveProg);
+
+/* ================= admin ================= */
+function upView() {
+  $('#main').innerHTML = `<form class="card" id="uf" novalidate><h2 style="margin:0 0 16px;font-size:1.3rem">Upload a document</h2>
+    <div class="f"><label for="t">Title</label><input id="t" maxlength="120" autocomplete="off"></div>
+    <div class="f"><label for="ds">Description <span class="opt">(optional)</span></label><textarea id="ds" rows="3" maxlength="400"></textarea></div>
+    <div class="f"><span class="lab">PDF file</span><label class="drop" id="drop" for="f">${ic('upload', 26)}<b id="dn">Choose a PDF or drag it here</b><small>PDF only, up to 50 MB</small></label><input id="f" type="file" accept="application/pdf,.pdf" hidden></div>
+    <button class="btn wide" type="submit">${ic('upload', 18)}Upload document</button></form>
+  <h2 class="sec">Published documents</h2><div class="card" id="dl">${spinner}</div>`;
+  const f = $('#f'), drop = $('#drop');
+  const pick = file => {
+    if (!file) return;
+    if (!(file.type === 'application/pdf' || /\.pdf$/i.test(file.name))) { f.value = ''; return toast('Only PDF files are allowed.', 'err'); }
+    const dt = new DataTransfer(); dt.items.add(file); f.files = dt.files;
+    $('#dn').textContent = file.name + ' (' + mb(file.size) + ')'; drop.classList.add('has');
+    if (!$('#t').value.trim()) $('#t').value = file.name.replace(/\.pdf$/i, '').replace(/[_-]+/g, ' ').trim();
+  };
+  f.onchange = () => pick(f.files[0]);
+  ['dragenter', 'dragover'].forEach(n => drop.addEventListener(n, ev => { ev.preventDefault(); drop.classList.add('over'); }));
+  ['dragleave', 'drop'].forEach(n => drop.addEventListener(n, ev => { ev.preventDefault(); drop.classList.remove('over'); }));
+  drop.addEventListener('drop', ev => pick(ev.dataTransfer.files[0]));
+  sb.from('documents').select('*').order('created_at', { ascending: false }).then(({ data, error }) => {
+    if (!$('#dl')) return;
+    if (error) return ($('#dl').innerHTML = `<div class="center">${e(error.message)}</div>`);
+    docs = data || [];
+    $('#dl').innerHTML = docs.map(d => `<div class="row"><div class="tile">${ic('file', 20)}</div><div class="i"><b>${e(d.title)}</b><small>${d.size_bytes ? mb(d.size_bytes) + ' · ' : ''}${fmtD(d.created_at)}</small></div><button class="btn r s" data-a="deldoc" data-id="${e(d.id)}">${ic('trash', 16)}Delete</button></div>`).join('') || '<div class="center">Nothing published yet.</div>';
+  });
+}
+async function doUpload() {
+  const f = $('#f').files[0], t = $('#t').value.trim();
+  if (!t) return toast('Enter a title.', 'err');
+  if (!f) return toast('Choose a PDF file.', 'err');
+  if (!(f.type === 'application/pdf' || /\.pdf$/i.test(f.name))) return toast('Only PDF files are allowed.', 'err');
+  if (f.size > 52428800) return toast('That file is larger than 50 MB.', 'err');
+  const path = crypto.randomUUID() + '.pdf';
+  const u = await sb.storage.from('documents').upload(path, f, { contentType: 'application/pdf' });
+  if (u.error) return toast(u.error.message, 'err');
+  const r = await sb.from('documents').insert({ title: t, description: $('#ds').value.trim(), file_path: path, size_bytes: f.size });
+  if (r.error) { await sb.storage.from('documents').remove([path]); return toast(r.error.message, 'err'); }
+  toast('Document uploaded', 'ok'); upView();
+}
+
 async function stView() {
-  const ok = live();
+  const m = $('#main'); m.innerHTML = spinner;
   const { data, error } = await sb.from('profiles').select('*').neq('id', me.id).order('created_at', { ascending: false });
-  if (!ok()) return;
-  if (error) return fail(error);
-  const rank = { pending: 0, approved: 1, blocked: 2 }, list = (data || []).sort((a, b) => (rank[a.status] ?? 3) - (rank[b.status] ?? 3));
-  const np = list.filter(s => s.status === 'pending').length;
-  $('#main').innerHTML = `<input id="q" placeholder="🔍 Search students..." aria-label="Search students"><p class="mu" style="margin:0 0 10px"><small>${list.length} accounts${np ? ` • <b>${np} awaiting approval</b>` : ''}</small></p><div class="card" id="sl"></div>`;
-  const draw = f => { const sl = $('#sl'); if (sl) sl.innerHTML = list.filter(s => ((s.full_name || '') + s.email).toLowerCase().includes(f)).map(stRow).join('') || '<div class="center">No students</div>'; };
-  draw(''); $('#q').oninput = ev => draw(ev.target.value.toLowerCase());
+  if (error) return errBox(error.message);
+  stList = data || []; stQ = '';
+  pendingN = stList.filter(s => s.status === 'pending').length; drawTabs();
+  m.innerHTML = `<div class="bar"><div class="seg" id="flt"></div><label class="search">${ic('search', 18)}<input id="q" type="search" placeholder="Search name or email" aria-label="Search students"></label></div><div class="card" id="sl"></div>`;
+  let t; $('#q').oninput = ev => { clearTimeout(t); t = setTimeout(() => { stQ = ev.target.value.trim().toLowerCase(); drawStudents(); }, 120); };
+  drawStudents();
+}
+function drawStudents() {
+  const c = { all: stList.length, pending: 0, approved: 0, blocked: 0 }; stList.forEach(s => { if (c[s.status] !== undefined) c[s.status]++; });
+  $('#flt').innerHTML = [['all', 'All'], ['pending', 'Pending'], ['approved', 'Approved'], ['blocked', 'Blocked']].map(([k, l]) => `<button class="${stFilter === k ? 'on' : ''}" data-a="flt" data-v="${k}">${l}<span style="opacity:.6;font-weight:500">${c[k]}</span></button>`).join('');
+  const L = { approved: 'Approved', pending: 'Pending', blocked: 'Blocked' };
+  const list = stList.filter(s => (stFilter === 'all' || s.status === stFilter) && ((s.full_name || '') + ' ' + (s.email || '')).toLowerCase().includes(stQ));
+  $('#sl').innerHTML = list.map(s => {
+    const n = e(s.full_name || s.email), id = e(s.id), st = L[s.status] ? s.status : 'pending';
+    return `<div class="row"><div class="av">${e(initials(s.full_name || s.email))}</div><div class="i"><b>${e(s.full_name || '—')}${s.role === 'admin' ? `<span class="crown" title="Admin">${ic('crown', 16)}</span>` : ''}</b><small>${e(s.email)}</small></div><span class="tag ${st}">${L[st]}</span>
+    <div class="acts">${s.status !== 'approved' ? `<button class="btn s" data-a="setst" data-id="${id}" data-v="approved">${ic('check', 16)}Approve</button>` : ''}${s.status !== 'blocked' ? `<button class="btn g s" data-a="setst" data-id="${id}" data-v="blocked" data-n="${n}">${ic('ban', 16)}Block</button>` : ''}${s.status === 'approved' ? `<button class="btn g s" data-a="setrole" data-id="${id}" data-n="${n}" data-v="${s.role === 'admin' ? 'student' : 'admin'}">${ic('crown', 16)}${s.role === 'admin' ? 'Remove admin' : 'Make admin'}</button>` : ''}<button class="btn g s" data-a="setpw" data-id="${id}" data-n="${n}">${ic('key', 16)}Set password</button></div></div>`;
+  }).join('') || `<div class="center">${stList.length ? 'No students match your filters.' : 'No students have registered yet.'}</div>`;
 }
 async function emView() {
-  const ok = live();
+  const m = $('#main'); m.innerHTML = spinner;
   const { data, error } = await sb.from('allowed_emails').select('*').order('created_at', { ascending: false });
-  if (!ok()) return;
-  if (error) return fail(error);
-  $('#main').innerHTML = `<div class="card"><h3>Student email allow-list</h3><p class="mu"><small>Students who register with these emails are approved instantly. One email per line, or separate with commas.</small></p><textarea id="ae" rows="5"></textarea><button class="btn w" data-a="addem">➕ Add</button></div>
-  <div class="card" style="margin-top:14px">${(data || []).map(x => `<div class="row"><div class="i">${e(x.email)}</div><button class="btn r s" data-a="rmem" data-id="${e(x.email)}" aria-label="Remove">✕</button></div>`).join('') || '<div class="center">Empty</div>'}</div>`;
-}
-function lgDraw() {
-  const l = $('#lgl'); if (!l) return;
-  const f = ($('#q')?.value || '').toLowerCase();
-  l.innerHTML = lgRows.filter(r => ((r.profiles?.full_name || '') + (r.profiles?.email || '') + (r.documents?.title || '')).toLowerCase().includes(f)).map(r => `<div class="row"><div class="i"><b>${e(r.profiles?.full_name || r.profiles?.email || '—')}</b><small>${e(r.documents?.title || '')}</small></div><small>${e(fmtD(r.created_at))}</small></div>`).join('') || '<div class="center">No activity yet</div>';
-  $('#lgm').innerHTML = lgDone ? '' : '<button class="btn g" data-a="lgmore">Load more</button>';
-}
-async function lgMore() {
-  const my = vt;
-  const { data, error } = await sb.from('access_logs').select('created_at, profiles(full_name,email), documents(title)').order('created_at', { ascending: false }).range(lgRows.length, lgRows.length + 49);
-  if (my !== vt || !$('#lgl')) return; // the admin switched tabs while this was loading
-  if (error) return toast(error.message);
-  lgRows = lgRows.concat(data || []); lgDone = !data || data.length < 50; lgDraw();
+  if (error) return errBox(error.message);
+  m.innerHTML = `<div class="card"><h2 style="margin:0 0 6px;font-size:1.3rem">Pre-approved emails</h2><p class="sub" style="margin-bottom:14px">People who register with these addresses are approved automatically. Enter one per line or separate with commas.</p><div class="f"><textarea id="ae" rows="5" aria-label="Email addresses" placeholder="student@example.com"></textarea></div><button class="btn wide" data-a="addem">${ic('plus', 18)}Add emails</button></div>
+  <h2 class="sec">On the list <small style="color:var(--mu);font-weight:500">${(data || []).length}</small></h2>
+  <div class="card">${(data || []).map(x => `<div class="row"><div class="i"><b>${e(x.email)}</b></div><button class="btn g s" data-a="rmem" data-id="${e(x.email)}" aria-label="Remove ${e(x.email)}">${ic('x', 16)}Remove</button></div>`).join('') || '<div class="center">The list is empty.</div>'}</div>`;
 }
 async function lgView() {
-  live(); lgRows = []; lgDone = false;
-  $('#main').innerHTML = `<input id="q" placeholder="🔍 Search activity..." aria-label="Search activity"><div class="card" id="lgl"><div class="sp"></div></div><div id="lgm" style="text-align:center;margin-top:12px"></div>`;
-  $('#q').oninput = lgDraw;
-  await lgMore();
+  const m = $('#main'); m.innerHTML = spinner;
+  const { data, error } = await sb.from('access_logs').select('created_at, profiles(full_name,email), documents(title)').order('created_at', { ascending: false }).limit(100);
+  if (error) return errBox(error.message);
+  m.innerHTML = `<div class="sh"><h2>Recent activity<small>latest 100 opens</small></h2></div><div class="card">${(data || []).map(l => `<div class="row"><div class="av">${e(initials(l.profiles?.full_name || l.profiles?.email))}</div><div class="i"><b>${e(l.profiles?.full_name || l.profiles?.email || 'Unknown user')}</b><small>Opened ${e(l.documents?.title || 'a deleted document')}</small></div><span class="t">${fmtDT(l.created_at)}</span></div>`).join('') || '<div class="center">No activity yet.</div>'}</div>`;
 }
-const genPw = () => { const c = 'abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789', a = crypto.getRandomValues(new Uint32Array(12)); return [...a].map(n => c[n % c.length]).join(''); };
 
-/* ---------- events ---------- */
-async function act(b) {
-  const a = b.dataset.a, id = b.dataset.id;
-  if (a === 'm-in' || a === 'm-up' || a === 'm-fg') { mode = a === 'm-up' ? 'up' : a === 'm-fg' ? 'fg' : 'in'; authView(); }
-  else if (a === 'auth') await doAuth(b);
-  else if (a === 'fg') await doFg(b);
-  else if (a === 'setnew') await doSetNew(b);
-  else if (a === 'cancelrec') { rec = false; history.replaceState(null, '', location.pathname); await sb.auth.signOut(); mode = 'in'; route(); }
-  else if (a === 'eye') { const i = $('#' + b.dataset.t); const h = i.type === 'password'; i.type = h ? 'text' : 'password'; b.textContent = h ? '🙈' : '👁'; }
-  else if (a === 'out') { closeDoc(); await sb.auth.signOut(); me = null; mode = 'in'; tab = 'lib'; route(); }
-  else if (a === 'refresh') route();
-  else if (a === 'reload') appView();
-  else if (a === 'tab') { tab = b.dataset.t; appView(); }
-  else if (a === 'open') openDoc(id);
-  else if (a === 'close') closeDoc();
-  else if (a === 'land') immersive(!imm);
-  else if (a === 'zi' || a === 'zo') { if (!pdf) return; zoom = Math.max(.6, Math.min(2.5, zoom + (a === 'zi' ? .25 : -.25))); relayout(); }
-  else if (a === 'jump') {
-    if (!pdf) return;
-    const r = await dlg({ t: 'Go to page', f: [{ l: `Page number (1–${pdf.numPages})`, type: 'number', min: 1, maxv: pdf.numPages, v: curPage }], ok: 'Go' }); if (!r) return;
-    const n = Math.round(+r[0]);
-    if (!(n >= 1 && n <= pdf.numPages)) return toast('Enter a number between 1 and ' + pdf.numPages);
-    goPage(n);
-  }
-  else if (a === 'upload') await upload(b);
-  else if (a === 'protect') await protectDoc(b, id);
-  else if (a === 'edoc') {
-    const d = docs.find(x => x.id === id); if (!d) return;
-    const r = await dlg({ t: 'Edit file details', f: [{ l: 'Title', v: d.title, max: 200 }, { l: 'Description (optional)', v: d.description || '', area: 1, max: 1000 }], ok: 'Save' }); if (!r) return;
-    const t = r[0].trim(); if (!t) return toast('Title is required');
-    const u = await sb.from('documents').update({ title: t, description: r[1].trim() }).eq('id', id);
-    toast(u.error ? u.error.message : '✅ Saved'); upView();
-  }
-  else if (a === 'deldoc') {
-    if (!await dlg({ t: 'Delete this file?', p: 'The file will be permanently deleted for everyone.', ok: 'Delete', danger: 1 })) return;
-    busy(b, true);
-    const d = docs.find(x => x.id === id), r = await sb.from('documents').delete().eq('id', id);
-    if (r.error) { busy(b, false); return toast(r.error.message); }
-    if (d) await sb.storage.from('documents').remove([d.file_path]);
-    upView();
-  }
-  else if (a === 'setst') { busy(b, true); const r = await sb.from('profiles').update({ status: b.dataset.v }).eq('id', id); if (r.error) toast(r.error.message); stView(); }
-  else if (a === 'setrole') {
-    const up = b.dataset.v === 'admin';
-    if (!await dlg({ t: up ? 'Grant admin access?' : 'Remove admin access?', p: up ? 'This person will be able to upload files and manage all students.' : 'This person will become a regular student.', ok: 'Confirm' })) return;
-    busy(b, true); const r = await sb.from('profiles').update({ role: b.dataset.v }).eq('id', id); if (r.error) toast(r.error.message); stView();
-  }
-  else if (a === 'chpw') {
-    const r = await dlg({ t: 'Change your password', f: [{ l: `New password (min. ${MINPW} characters)`, type: 'password', ac: 'new-password' }, { l: 'Confirm new password', type: 'password', ac: 'new-password' }], ok: 'Update' }); if (!r) return;
-    if (r[0].length < MINPW) return toast(`Password must be at least ${MINPW} characters`);
-    if (r[0] !== r[1]) return toast('Passwords do not match');
-    const u = await sb.auth.updateUser({ password: r[0] }); toast(u.error ? u.error.message : '✅ Your password has been changed');
-  }
-  else if (a === 'setpw') {
-    const g = genPw();
-    const r = await dlg({ t: 'Set temporary password', p: 'For <b>' + e(b.dataset.n) + '</b>. Suggested: <b>' + g + '</b>', f: [{ l: `New temporary password (min. ${MINPW} characters; leave empty to use the suggestion)` }], ok: 'Set password' }); if (!r) return;
-    const pw = r[0] || g;
-    if (pw.length < MINPW) return toast(`Password must be at least ${MINPW} characters`);
-    const u = await sb.rpc('admin_set_password', { target: id, new_password: pw });
-    if (u.error) return toast(u.error.message);
-    try { await navigator.clipboard.writeText(pw); } catch (_) {}
-    toast('✅ Password set (copied). Share it with the student; they can change it with 🔑 after signing in.');
-  }
-  else if (a === 'deluser') {
-    if (!await dlg({ t: 'Delete student permanently?', p: '<b>' + e(b.dataset.n) + '</b> will be removed from the database, including their account, progress and activity history. This cannot be undone.', ok: 'Delete permanently', danger: 1 })) return;
-    busy(b, true);
-    const r = await sb.rpc('admin_delete_user', { target: id });
-    toast(r.error ? r.error.message : '🗑 Student deleted'); stView();
-  }
-  else if (a === 'addem') {
-    const list = [...new Set($('#ae').value.toLowerCase().split(/[\s,;]+/).filter(x => /^\S+@\S+\.\S+$/.test(x)))];
-    if (!list.length) return toast('Enter at least one valid email');
-    busy(b, true);
-    const r = await sb.from('allowed_emails').upsert(list.map(email => ({ email })));
-    if (r.error) { busy(b, false); return toast(r.error.message); }
-    for (let i = 0; i < list.length; i += 100) await sb.from('profiles').update({ status: 'approved' }).in('email', list.slice(i, i + 100)).eq('status', 'pending');
-    toast('✅ ' + list.length + ' email(s) added'); emView();
-  }
-  else if (a === 'rmem') { busy(b, true); const r = await sb.from('allowed_emails').delete().eq('email', id); if (r.error) toast(r.error.message); emView(); }
-  else if (a === 'lgmore') { busy(b, true); await lgMore(); }
+/* ================= actions ================= */
+async function done(r, okMsg, after) {
+  if (r.error) return toast(r.error.message, 'err');
+  toast(okMsg, 'ok'); after && after();
 }
-document.addEventListener('click', ev => {
-  const b = ev.target.closest('[data-a]'); if (!b) return;
-  act(b).catch(x => { console.error(x); busy(b, false); toast('Something went wrong. Please try again.'); });
+const A = {
+  'm-in': () => { keepEmail(); mode = 'in'; authView(); },
+  'm-up': () => { keepEmail(); mode = 'up'; authView(); },
+  'm-forgot': () => { keepEmail(); mode = 'forgot'; authView(); },
+  eye: b => { const i = document.getElementById(b.dataset.t), h = i.type === 'password'; i.type = h ? 'text' : 'password'; b.innerHTML = ic(h ? 'eyeOff' : 'eye', 18); b.setAttribute('aria-pressed', h); b.setAttribute('aria-label', h ? 'Hide password' : 'Show password'); },
+  gen: b => { const i = document.getElementById(b.dataset.t); i.value = genPw(); i.type = 'text'; },
+  async copy(b) { const v = document.getElementById(b.dataset.t).value; if (!v) return; try { await navigator.clipboard.writeText(v); toast('Copied to clipboard', 'ok'); } catch { toast('Couldn’t copy. Select and copy it manually.', 'err'); } },
+  async resend() {
+    if (!lastEmail || Date.now() - lastReset < 60000) return;
+    const r = await sb.auth.resetPasswordForEmail(lastEmail, { redirectTo: redirect() });
+    if (r.error) return toast(authErr(r.error), 'err');
+    lastReset = Date.now(); toast('Reset email sent again', 'ok'); authView();
+  },
+  async out() { if (vw.classList.contains('on')) teardown(); store.del('recovery'); await sb.auth.signOut(); me = null; mode = 'in'; route(); },
+  refresh: () => route(),
+  retry: () => loadTab(),
+  theme: b => { const n = effTheme() === 'dark' ? 'light' : 'dark'; document.documentElement.dataset.theme = n; try { localStorage.setItem('theme', n); } catch {} b.innerHTML = ic(n === 'dark' ? 'sun' : 'moon', 18); },
+  tab: b => { tab = b.dataset.t; drawTabs(); loadTab(); },
+  flt: b => { stFilter = b.dataset.v; drawStudents(); },
+  open: (b, id) => openDoc(id),
+  close: () => closeDoc(),
+  zi: () => zoomBy(.25), zo: () => zoomBy(-.25),
+  land: () => toggleLand(), fs: () => toggleFS(),
+  async goto() {
+    if (!pdf) return; const n = pdf.numPages;
+    const v = await ask({ title: 'Go to page', fields: [{ id: 'd-pg', label: `Page number (1–${n})`, type: 'number', attrs: `min="1" max="${n}" inputmode="numeric" value="${curPage}"` }], ok: 'Go', validate: v => { const x = +v['d-pg']; return (!Number.isInteger(x) || x < 1 || x > n) ? `Enter a number between 1 and ${n}.` : ''; } });
+    if (!v) return; const t = S.children[+v['d-pg'] - 1]; if (t) P.scrollTop = t.offsetTop;
+  },
+  async deldoc(b, id) {
+    const d = docs.find(x => x.id === id); if (!d) return;
+    if (!await ask({ title: 'Delete this document?', text: `“${d.title}” will be permanently removed for everyone. This can’t be undone.`, ok: 'Delete', danger: true })) return;
+    const s = await sb.storage.from('documents').remove([d.file_path]); if (s.error) return toast(s.error.message, 'err');
+    await done(await sb.from('documents').delete().eq('id', id), 'Document deleted', upView);
+  },
+  async setst(b, id) {
+    if (b.dataset.v === 'blocked' && !await ask({ title: 'Block this student?', text: `${b.dataset.n} will lose access immediately.`, ok: 'Block', danger: true })) return;
+    await done(await sb.from('profiles').update({ status: b.dataset.v }).eq('id', id), b.dataset.v === 'approved' ? 'Student approved' : 'Student blocked', stView);
+  },
+  async setrole(b, id) {
+    const adm = b.dataset.v === 'admin';
+    if (!await ask({ title: adm ? 'Make this person an admin?' : 'Remove admin access?', text: adm ? `${b.dataset.n} will be able to upload files and manage students.` : `${b.dataset.n} will become a regular student.`, ok: adm ? 'Make admin' : 'Remove admin', danger: !adm })) return;
+    await done(await sb.from('profiles').update({ role: b.dataset.v }).eq('id', id), adm ? 'Admin access granted' : 'Admin access removed', stView);
+  },
+  async chpw() {
+    const v = await ask({ title: 'Change password', text: 'Choose a new password for your account.', ok: 'Update password', fields: [{ id: 'd-p1', label: 'New password', type: 'password', meter: true }, { id: 'd-p2', label: 'Confirm new password', type: 'password' }], validate: v => pwCheck(v['d-p1'], v['d-p2']) });
+    if (!v) return;
+    const r = await sb.auth.updateUser({ password: v['d-p1'] }); toast(r.error ? authErr(r.error) : 'Password updated', r.error ? 'err' : 'ok');
+  },
+  async setpw(b, id) {
+    const v = await ask({ title: 'Set a temporary password', text: `For ${b.dataset.n}. Share it with them privately. They can change it after signing in.`, ok: 'Set password', fields: [{ id: 'd-ap', label: 'Temporary password', type: 'text', gen: true, attrs: 'spellcheck="false" autocapitalize="off"' }], validate: v => v['d-ap'].length < MIN_PW ? `Use at least ${MIN_PW} characters.` : '' });
+    if (!v) return;
+    const r = await sb.rpc('admin_set_password', { target: id, new_password: v['d-ap'] });
+    toast(r.error ? r.error.message : 'Password updated. Let the student know.', r.error ? 'err' : 'ok');
+  },
+  async addem() {
+    const list = [...new Set($('#ae').value.toLowerCase().split(/[\s,;]+/).filter(validEmail))];
+    if (!list.length) return toast('Enter at least one valid email address.', 'err');
+    const r = await sb.from('allowed_emails').upsert(list.map(email => ({ email }))); if (r.error) return toast(r.error.message, 'err');
+    await sb.from('profiles').update({ status: 'approved' }).in('email', list).eq('status', 'pending');
+    toast(`${list.length} ${list.length === 1 ? 'email' : 'emails'} added`, 'ok'); emView(); refreshPending();
+  },
+  async rmem(b, id) { await done(await sb.from('allowed_emails').delete().eq('email', id), 'Email removed', emView); }
+};
+function keepEmail() { const x = $('#em'); if (x) lastEmail = x.value.trim(); }
+
+document.addEventListener('click', async ev => {
+  const b = ev.target.closest('[data-a]'); if (!b || !A[b.dataset.a]) return;
+  try { await A[b.dataset.a](b, b.dataset.id); } catch (x) { toast(x?.message || 'Something went wrong. Please try again.', 'err'); }
 });
-document.addEventListener('keydown', ev => { if (ev.key === 'Enter' && ev.target.closest('.auth') && ev.target.tagName === 'INPUT') $('[data-enter]')?.click(); });
-if (linkErr) { mode = 'fg'; history.replaceState(null, '', location.pathname); setTimeout(() => toast('This reset link is invalid or has expired. Please request a new one.'), 400); }
+addEventListener('offline', () => toast('You’re offline. Some actions won’t work until you reconnect.', 'err'));
+addEventListener('online', () => toast('Back online', 'ok'));
+
 route();
 </script>
 </body>
